@@ -1,20 +1,43 @@
 function toMapWithKeyAndValueMapper(data, keyMapper, valueMapper) {
-  if (data === null || data === undefined || typeof data !== "object")
+  if (data === null || data === undefined || typeof data !== "object") {
     return data;
+  }
 
   const result = {};
 
-  for (const [key, value] of Object.entries(data)) {
-    const mappedKey = keyMapper[key] ?? key;
+  const normalizedKeyMapper = Object.fromEntries(
+    Object.entries(keyMapper || {}).map(([sourceKey, mappedKey]) => [
+      sourceKey.toLowerCase(),
+      mappedKey,
+    ])
+  );
 
-    let processedValue = value;
-    const fieldValueMapper = valueMapper?.[key];
+  const normalizedValueMapper = Object.fromEntries(
+    Object.entries(valueMapper || {}).map(([fieldName, fieldValueMappings]) => [
+      fieldName.toLowerCase(),
+      Object.fromEntries(
+        Object.entries(fieldValueMappings).map(([sourceValue, mappedValue]) => [
+          sourceValue.toLowerCase(),
+          mappedValue,
+        ])
+      ),
+    ])
+  );
+
+  for (const [originalKey, originalValue] of Object.entries(data)) {
+    const normalizedKey = originalKey.toLowerCase();
+    const mappedKey = normalizedKeyMapper[normalizedKey] ?? originalKey;
+
+    let processedValue = originalValue;
+
+    const fieldValueMapper = normalizedValueMapper[normalizedKey];
+
     if (
-      value !== null &&
+      originalValue !== null &&
       fieldValueMapper &&
-      fieldValueMapper[value] !== undefined
+      fieldValueMapper[originalValue.toLowerCase()] !== undefined
     ) {
-      processedValue = fieldValueMapper[value];
+      processedValue = fieldValueMapper[originalValue.toLowerCase()];
     }
 
     if (processedValue === null) {
