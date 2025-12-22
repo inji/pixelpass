@@ -6,7 +6,7 @@ const {
 } = require("../src");
 
 const {
-  toJson,
+  translateToJson,
   replaceKeysAtDepth,
   replaceValuesForClaim169,
 } = require("../src/utils/cborUtils");
@@ -38,8 +38,8 @@ test("decode returns text when CBOR decode returns null/undefined", () => {
  * cborUtils.js - Uncovered Lines
  * ------------------------------------------------------------------ */
 
-// Line 36, 40 - toJson with Map containing nested Maps
-test("toJson handles deeply nested Maps", () => {
+// Line 36, 40 - translateToJson with Map containing nested Maps
+test("translateToJson handles deeply nested Maps", () => {
   const innerMap = new Map([
     ["level2", "value2"],
     ["data", new Map([["level3", "value3"]])],
@@ -49,7 +49,7 @@ test("toJson handles deeply nested Maps", () => {
     ["nested", innerMap],
   ]);
 
-  const result = toJson(outerMap);
+  const result = translateToJson(outerMap);
 
   expect(result.level1).toBe("value1");
   expect(result.nested.level2).toBe("value2");
@@ -300,19 +300,19 @@ test("replaceKeysAtDepth with arrays at target depth", () => {
  * EDGE CASES FOR COMPLETE BRANCH COVERAGE
  * ------------------------------------------------------------------ */
 
-test("toJson handles empty Map", () => {
+test("translateToJson handles empty Map", () => {
   const emptyMap = new Map();
-  const result = toJson(emptyMap);
+  const result = translateToJson(emptyMap);
   expect(result).toStrictEqual({});
 });
 
-test("toJson handles empty array", () => {
+test("translateToJson handles empty array", () => {
   const emptyArray = [];
-  const result = toJson(emptyArray);
+  const result = translateToJson(emptyArray);
   expect(result).toStrictEqual([]);
 });
 
-test("toJson handles Map with mixed value types", () => {
+test("translateToJson handles Map with mixed value types", () => {
   const map = new Map([
     ["string", "value"],
     ["number", 123],
@@ -322,7 +322,7 @@ test("toJson handles Map with mixed value types", () => {
     ["object", { nested: "value" }],
   ]);
 
-  const result = toJson(map);
+  const result = translateToJson(map);
 
   expect(result.string).toBe("value");
   expect(result.number).toBe(123);

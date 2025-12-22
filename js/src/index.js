@@ -18,11 +18,18 @@ const pako = require("pako");
 const cbor = require("cbor-web");
 const JSZip = require("jszip");
 const {
-  toJson,
+  translateToJson,
   replaceKeysAtDepth,
   replaceValuesForClaim169,
+  decodeFromBase64UrlFormat
 } = require("./utils/cborUtils.js");
 const { toMapWithKeyAndValueMapper } = require("./utils/mapperUtils.js");
+
+function toJson(base64UrlEncodedCborEncodedString) {
+  const decodedData = decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString);
+  const cborDecoded = cbor.decodeFirstSync(decodedData);
+    return translateToJson(cborDecoded);
+}
 
 function generateQRData(data, header = "") {
   let parsedData = null;
@@ -123,7 +130,7 @@ function decodeMappedData(
   try {
     const bytes = Buffer.from(data, "hex");
     const decoded = cbor.decode(bytes);
-    jsonData = toJson(decoded);
+    jsonData = translateToJson(decoded);
   } catch (error) {
     jsonData = JSON.parse(data);
   }
@@ -140,6 +147,7 @@ function decodeMappedData(
 }
 
 module.exports = {
+  toJson,
   generateQRData,
   generateQRCode,
   decode,

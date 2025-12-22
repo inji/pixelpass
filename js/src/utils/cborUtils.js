@@ -7,23 +7,23 @@ const {
   CLAIM_169_ROOT_REVERSE_VALUE_MAPPER,
 } = require("../shared/Constants");
 
-function toJson(value) {
+function translateToJson(value) {
   if (value instanceof Map) {
     const data = {};
     value.forEach((mapValue, mapKey) => {
-      data[mapKey] = toJson(mapValue);
+      data[mapKey] = translateToJson(mapValue);
     });
     return data;
   }
 
   if (Array.isArray(value)) {
-    return value.map(toJson);
+    return value.map(translateToJson);
   }
 
   if (typeof value === "object" && value !== null) {
     const data = {};
     for (const [key, val] of Object.entries(value)) {
-      data[key] = toJson(val);
+      data[key] = translateToJson(val);
     }
     return data;
   }
@@ -163,8 +163,13 @@ function replaceValuesForClaim169(jsonData) {
   return result;
 }
 
+function decodeFromBase64UrlFormat(content) {
+  return Buffer.from(content, 'base64url');
+}
+
 module.exports = {
-  toJson,
+  translateToJson,
   replaceKeysAtDepth,
   replaceValuesForClaim169,
+  decodeFromBase64UrlFormat
 };
