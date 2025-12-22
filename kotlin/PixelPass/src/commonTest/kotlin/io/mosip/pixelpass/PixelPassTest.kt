@@ -11,6 +11,9 @@ import org.zeroturnaround.zip.ZipUtil
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.test.*
+import io.mosip.pixelpass.shared.*
+import io.mosip.pixelpass.utils.toMapWithKeyAndValueMapper
+
 
 
 class PixelPassTest {
@@ -20,6 +23,7 @@ class PixelPassTest {
         clearAllMocks()
     }
 
+    private val pixelPass = PixelPass()
 
     @Test
     fun `should return decoded data for given QR data`() {
@@ -98,7 +102,7 @@ class PixelPassTest {
         val expected =
             JSONObject("{\"name\": \"Jhon\", \"id\": \"207\", \"l_name\": \"Honay\"}").toString()
         val data = "a302644a686f6e01633230370365486f6e6179"
-        val mapper = arrayOf( mapOf("1" to "id", "2" to "name", "3" to "l_name"))
+        val mapper = arrayOf(mapOf("1" to "id", "2" to "name", "3" to "l_name"))
 
         val actual = PixelPass().decodeMappedData(data, mapper)
         assertEquals(expected, actual)
@@ -109,7 +113,7 @@ class PixelPassTest {
         val expected =
             JSONObject("{\"name\": \"Jhon\", \"id\": \"207\", \"l_name\": \"Honay\"}").toString()
         val data = "{ \"1\": \"207\", 2: Jhon, 3: Honay }"
-        val mapper = arrayOf( mapOf("1" to "id", "2" to "name", "3" to "l_name"))
+        val mapper = arrayOf(mapOf("1" to "id", "2" to "name", "3" to "l_name"))
 
         val actual = PixelPass().decodeMappedData(data, mapper)
         assertEquals(expected, actual)
@@ -175,30 +179,30 @@ class PixelPassTest {
 
         val data = JSONObject(
             """{
-  "ID": "3918592438",
-  "Version": 10,
-  "Full Name": "Janardhan BS",
-  "Date of Birth": "19840418",
-  "Gender": "Male",
-  "Address": "New House, Near Metro Line, Bengaluru, KA",
-  "Email ID": "janardhan@example.com",
-  "Phone Number": "+919876543210",
-  "Nationality": "IN",
-  "hello":"world",
-  "Face": {
-    "Data": "5249",
-    "Data format": "Image",
-    "Data sub format": "PNG"
-  },
-   "Voice": {
-    "Data": "5249",
-    "Data format": "Sound",
-    "Data sub format": "WAV"
-  }, 
-}"""
+                          "ID": "3918592438",
+                          "Version": 10,
+                          "Full Name": "Janardhan BS",
+                          "Date of Birth": "19840418",
+                          "Gender": "Male",
+                          "Address": "New House, Near Metro Line, Bengaluru, KA",
+                          "Email ID": "janardhan@example.com",
+                          "Phone Number": "+919876543210",
+                          "Nationality": "IN",
+                          "hello":"world",
+                          "Face": {
+                            "Data": "5249",
+                            "Data format": "Image",
+                            "Data sub format": "PNG"
+                          },
+                           "Voice": {
+                            "Data": "5249",
+                            "Data format": "Sound",
+                            "Data sub format": "WAV"
+                          }, 
+                        }"""
         )
         val actual = PixelPass().getMappedData(data, cborEnable = true)
-        val expected ="ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64"
+        val expected = "ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64"
         assertEquals(expected, actual)
     }
 
@@ -206,65 +210,102 @@ class PixelPassTest {
     fun `should return claim 169 semantics mapped CBOR data in an array for given array of data if no mapper is given`() {
 
         val data = JSONArray(
-            """[{
-  "ID": "3918592438",
-  "Version": 10,
-  "Full Name": "Janardhan BS",
-  "Date of Birth": "19840418",
-  "Gender": "Male",
-  "Address": "New House, Near Metro Line, Bengaluru, KA",
-  "Email ID": "janardhan@example.com",
-  "Phone Number": "+919876543210",
-  "Nationality": "IN",
-  "hello":"world",
-  "Face": {
-    "Data": "5249",
-    "Data format": "Image",
-    "Data sub format": "PNG"
-  },
-   "Voice": {
-    "Data": "5249",
-    "Data format": "Sound",
-    "Data sub format": "WAV"
-  }, 
-},
-{
-  "ID": "102030",
-  "Full Name": "Jhon",
-  "Date of Birth": "19990102",
-  "Gender": "Male",
-   "Left Middle Finger": {
-    "Data": "9988776655332211",
-    "Data format": "Template",
-    "Data sub format": "Fingerprint Template NIST"
-  }, 
-}
-]""".trimIndent()
+          """[{
+                        "ID": "3918592438",
+                        "Version": 10,
+                        "Full Name": "Janardhan BS",
+                        "Date of Birth": "19840418",
+                        "Gender": "Male",
+                        "Address": "New House, Near Metro Line, Bengaluru, KA",
+                        "Email ID": "janardhan@example.com",
+                        "Phone Number": "+919876543210",
+                        "Nationality": "IN",
+                        "hello":"world",
+                        "Face": {
+                          "Data": "5249",
+                          "Data format": "Image",
+                          "Data sub format": "PNG"
+                        },
+                        "Voice": {
+                          "Data": "5249",
+                          "Data format": "Sound",
+                          "Data sub format": "WAV"
+                        }, 
+                      },
+                      {
+                        "ID": "102030",
+                        "Full Name": "Jhon",
+                        "Date of Birth": "19990102",
+                        "Gender": "Male",
+                        "Left Middle Finger": {
+                          "Data": "9988776655332211",
+                          "Data format": "Template",
+                          "Data sub format": "Fingerprint Template NIST"
+                        }, 
+                      }
+                    ]"""
+                .trimIndent()
         )
         val actual = PixelPass().getMappedData(data, cborEnable = true)
         val expected =
-            JSONArray("""["ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64","a5016631303230333004644a686f6e0868313939393031303209011839a300703939383837373636353533333232313101010202"]""")
+            JSONArray(
+                """["ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64","a5016631303230333004644a686f6e0868313939393031303209011839a300703939383837373636353533333232313101010202"]"""
+            )
         assertEquals(expected.toString(), actual.toString())
     }
 
     @Test
     fun `should return properly remapped data for given claim 169 semantics mapped if no mapper is given`() {
 
-        val expected = "{\"Address\":\"New House, Near Metro Line, Bengaluru, KA\",\"Version\":10,\"Email ID\":\"janardhan@example.com\",\"Full Name\":\"Janardhan BS\",\"Date of Birth\":\"19840418\",\"ID\":\"3918592438\",\"Gender\":\"Male\",\"hello\":\"world\",\"Phone Number\":\"+919876543210\",\"Face\":{\"Data format\":\"Image\",\"Data sub format\":\"PNG\",\"Data\":\"5249\"},\"Voice\":{\"Data format\":\"Sound\",\"Data sub format\":\"WAV\",\"Data\":\"5249\"},\"Nationality\":\"IN\"}"
+        val expected =
+            "{\"Address\":\"New House, Near Metro Line, Bengaluru, KA\",\"Version\":10,\"Email ID\":\"janardhan@example.com\",\"Full Name\":\"Janardhan BS\",\"Date of Birth\":\"19840418\",\"ID\":\"3918592438\",\"Gender\":\"Male\",\"hello\":\"world\",\"Phone Number\":\"+919876543210\",\"Face\":{\"Data format\":\"Image\",\"Data sub format\":\"PNG\",\"Data\":\"5249\"},\"Voice\":{\"Data format\":\"Sound\",\"Data sub format\":\"WAV\",\"Data\":\"5249\"},\"Nationality\":\"IN\"}"
         val data =
             "ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64"
         val actual = PixelPass().decodeMappedData(data)
         assertEquals(expected, actual)
     }
+
     @Test
     fun `should return properly remapped data for given array claim 169 semantics mapped CBOR data if no mapper is given`() {
 
-        val expected = arrayOf("""{"Address":"New House, Near Metro Line, Bengaluru, KA","Version":10,"Email ID":"janardhan@example.com","Full Name":"Janardhan BS","Date of Birth":"19840418","ID":"3918592438","Gender":"Male","hello":"world","Phone Number":"+919876543210","Face":{"Data format":"Image","Data sub format":"PNG","Data":"5249"},"Voice":{"Data format":"Sound","Data sub format":"WAV","Data":"5249"},"Nationality":"IN"}""", """{"Left Middle Finger":{"Data format":"Template","Data sub format":"Fingerprint Template NIST","Data":"9988776655332211"},"Full Name":"Jhon","Date of Birth":"19990102","ID":"102030","Gender":"Male"}""")
+        val expected =
+            arrayOf(
+                """{"Address":"New House, Near Metro Line, Bengaluru, KA","Version":10,"Email ID":"janardhan@example.com","Full Name":"Janardhan BS","Date of Birth":"19840418","ID":"3918592438","Gender":"Male","hello":"world","Phone Number":"+919876543210","Face":{"Data format":"Image","Data sub format":"PNG","Data":"5249"},"Voice":{"Data format":"Sound","Data sub format":"WAV","Data":"5249"},"Nationality":"IN"}""",
+                """{"Left Middle Finger":{"Data format":"Template","Data sub format":"Fingerprint Template NIST","Data":"9988776655332211"},"Full Name":"Jhon","Date of Birth":"19990102","ID":"102030","Gender":"Male"}""",
+            )
         val data =
-            arrayOf("ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64","a5016631303230333004644a686f6e0868313939393031303209011839a300703939383837373636353533333232313101010202")
+            arrayOf(
+                "ac016a33393138353932343338020a046c4a616e61726468616e2042530868313938343034313809010a78294e657720486f7573652c204e656172204d6574726f204c696e652c2042656e67616c7572752c204b410b756a616e61726468616e406578616d706c652e636f6d0c6d2b3931393837363534333231300d62494e183ea3006435323439010002001841a3006435323439010202006568656c6c6f65776f726c64",
+                "a5016631303230333004644a686f6e0868313939393031303209011839a300703939383837373636353533333232313101010202",
+            )
         val actual = PixelPass().decodeMappedData(data)
         assertContentEquals(expected, actual)
     }
+
+    @Test
+    fun `should round-trip JSON through getMappedData and decodeMappedData`() {
+        val inputJson = JSONObject(
+            """{"Address":"New House, Near Metro Line, Bengaluru, KA","Version":10,"Email ID":"janardhan@example.com","Full Name":"Janardhan BS","Date of Birth":"19840418","ID":"3918592438","Gender":"Male","hello":"world","Phone Number":"+919876543210","Face":{"Data format":"Image","Data sub format":"PNG","Data":"5249"},"Voice":{"Data format":"Sound","Data sub format":"WAV","Data":"5249"},"Nationality":"IN"}"""
+        )
+
+        val encoded = pixelPass.getMappedData(
+            jsonData = inputJson,
+            keyMapper = CLAIM_169_KEY_MAPPER,
+            valueMapper = CLAIM_169_VALUE_MAPPER,
+            cborEnable = true
+        ) as String
+
+        val decoded = pixelPass.decodeMappedData(
+            data = encoded,
+            keyMapper = CLAIM_169_REVERSE_KEY_MAPPER
+        )
+
+        val expectedElement = inputJson.toMapWithKeyAndValueMapper()
+        val actualElement = JSONObject(decoded).toMapWithKeyAndValueMapper()
+        assertEquals(
+            expectedElement as Map<*, *>,
+            actualElement as Map<*, *>
+        )
+    }
+
 }
-
-
