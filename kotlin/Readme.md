@@ -81,7 +81,7 @@ return an array hex string which is a CBOR encoded JSON with given mapper if `cb
 `decodeMappedData(data: String, keyMapper: Array<Map<String, String>>, valueMapperFunction: (JSONObject) -> JSONObject)`
 
 - `data` - A CBOR Encoded string or JSON string which needs to be re mapped.
-- `keyMapper` - A array of map which is used to reverse map keys for the given data. Which is a Array<Map<String, String>>. The order of array is directly equals to the depth of JSON tree. As some ot the keys are repeated at different depths of JSON this approach is needed. It will default to the Claim-169 reverse key mapper if nothing provided.
+- `keyMapper` - A array of map which is used to reverse map keys for the given data. Which is a Array<Map<String, String>>. The order of array is directly equals to the depth of JSON tree. As some of the keys are repeated at different depths of JSON this approach is needed. It will default to the Claim-169 reverse key mapper if nothing provided.
 - `valueMapperFunction` - A function which is used to map values for the given data. Which is a (JSONObject) -> JSONObject. It will default to the Claim-169 value mapper function if nothing provided.
 
 return a JSON remapped string.
@@ -89,7 +89,7 @@ return a JSON remapped string.
 `decodeMappedData(data: Array<String>, keyMapper: Array<Map<String, String>>, valueMapperFunction: (JSONObject) -> JSONObject)`
 
 - `data` - An array of CBOR Encoded string or JSON string which needs to be re mapped.
-- `keyMapper` - A array of map which is used to reverse map keys for the given data. Which is a Array<Map<String, String>>. The order of array is directly equals to the depth of JSON tree. As some ot the keys are repeated at different depths of JSON this approach is needed. It will default to the Claim-169 reverse key mapper if nothing provided.
+- `keyMapper` - A array of map which is used to reverse map keys for the given data. Which is a Array<Map<String, String>>. The order of array is directly equals to the depth of JSON tree. As some of the keys are repeated at different depths of JSON this approach is needed. It will default to the Claim-169 reverse key mapper if nothing provided.
 - `valueMapperFunction` - A function which is used to map values for the given data. Which is a (JSONObject) -> JSONObject. It will default to the Claim-169 value mapper function if nothing provided.
 
 return an array JSON remapped string.
