@@ -143,10 +143,10 @@ class PixelPass {
     }
 
     fun decodeMappedData(data: Array<String>, keyMapper: Array<Map<String, String>> = CLAIM_169_REVERSE_KEY_MAPPER, valueMapperFunction: (JSONObject) -> JSONObject = Utils()::replaceValuesForClaim169): Array<String> {
-        val decodedJsonArray = mutableListOf<String>()
-        data.indices.forEach { i ->
-                decodedJsonArray.add(i,decodeMappedData(data[i],keyMapper,valueMapperFunction))
-        }
-        return decodedJsonArray.toTypedArray()
+    val decodedJsonArray = mutableListOf<String>()
+    data.forEach { item ->
+      decodedJsonArray.add(decodeMappedData(item, keyMapper, valueMapperFunction))
     }
+    return decodedJsonArray.toTypedArray()
+  }
 }
