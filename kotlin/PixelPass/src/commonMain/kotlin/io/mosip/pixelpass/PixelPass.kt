@@ -121,6 +121,7 @@ class PixelPass {
         (0 until jsonData.length()).forEach { i ->
             when (val item = jsonData.get(i)) {
                 is JSONObject -> mappedJsonArray.put(getMappedData(item,keyMapper,valueMapper,cborEnable))
+                else -> throw IllegalArgumentException("Invalid input: Expected JSONObject at index $i, but found ${item::class.simpleName}")
             }
         }
         return mappedJsonArray

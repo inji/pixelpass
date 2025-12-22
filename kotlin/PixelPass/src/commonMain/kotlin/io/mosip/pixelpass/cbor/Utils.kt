@@ -257,43 +257,44 @@ class Utils {
 
     fun replaceValuesForClaim169(jsonData: JSONObject): JSONObject {
         CLAIM_169_ROOT_REVERSE_VALUE_MAPPER.forEach { (fieldName, reverseMap) ->
-            if (jsonData.has(fieldName)) {
-                val originalValue = jsonData.get(fieldName)
-                val mappedValue = reverseMap[originalValue]
-                if (mappedValue != null) {
-                    jsonData.put(fieldName, mappedValue)
-                }
+        if (jsonData.has(fieldName)) {
+            val originalValue = jsonData.get(fieldName)
+            val mappedValue = reverseMap[originalValue]
+            if (mappedValue != null) {
+            jsonData.put(fieldName, mappedValue)
             }
+        }
         }
 
         CLAIM_169_BIOMETRIC_KEYS.forEach { nestedKey ->
-            if (jsonData.has(nestedKey)) {
-                val nestedObject = jsonData.optJSONObject(nestedKey)
-                if (nestedObject != null) {
-                    if (!nestedObject.has(CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY) || !nestedObject.has(
-                            CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY
-                        )
-                    ) {
-                        return nestedObject
-                    }
-                    val dataFormatShortCode = nestedObject.opt(CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY)
-                    val subFormatShortCodeValue =
-                        nestedObject.get(CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY)
+        if (!jsonData.has(nestedKey)) return@forEach
 
-                    if (dataFormatShortCode != null) {
-                        val dataFormatValue =
-                            CLAIM_169_BIOMETRIC_FORMAT_REVERSE_VALUE_MAPPER[dataFormatShortCode]
-                        nestedObject.put(CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY, dataFormatValue)
-                        nestedObject.put(
-                            CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY,
-                            CLAIM_169_BIOMETRIC_SUB_FORMAT_REVERSE_VALUE_MAPPER[dataFormatValue]?.get(
-                                subFormatShortCodeValue
-                            )
-                        )
-                        jsonData.put(nestedKey, nestedObject)
-                    }
-                }
-            }
+        val nestedObject = jsonData.optJSONObject(nestedKey) ?: return@forEach
+
+        if (
+            !nestedObject.has(CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY) ||
+            !nestedObject.has(CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY)
+        ) {
+            return@forEach
+        }
+
+        val dataFormatShortCode = nestedObject.opt(CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY) ?: return@forEach
+
+        val subFormatShortCodeValue =
+            nestedObject.opt(CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY) ?: return@forEach
+
+        val dataFormatValue =
+            CLAIM_169_BIOMETRIC_FORMAT_REVERSE_VALUE_MAPPER[dataFormatShortCode] ?: dataFormatShortCode
+
+        val subFormatValue =
+            CLAIM_169_BIOMETRIC_SUB_FORMAT_REVERSE_VALUE_MAPPER[dataFormatValue]?.get(
+            subFormatShortCodeValue
+            ) ?: subFormatShortCodeValue
+
+        nestedObject.put(CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY, dataFormatValue)
+        nestedObject.put(CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY, subFormatValue)
+
+        jsonData.put(nestedKey, nestedObject)
         }
         return jsonData
     }

@@ -138,9 +138,9 @@ class PixelPassTest {
     fun `should throw error if binary data type not zip`() {
         val tempZip = File.createTempFile("temp", ".png")
 
-        tempZip.writeBytes(byteArrayOf(0x00, 0x01, 0x02)) // Writing some dummy bytes
+        tempZip.writeBytes(byteArrayOf(0x00, 0x01, 0x02))
 
-        assertFailsWith<UnknownBinaryFileTypeException> { // ✅ Correct usage
+        assertFailsWith<UnknownBinaryFileTypeException> {
             PixelPass().decodeBinary(tempZip.readBytes())
         }
 
