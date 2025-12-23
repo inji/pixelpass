@@ -26,9 +26,13 @@ const {
 const { toMapWithKeyAndValueMapper } = require("./utils/mapperUtils.js");
 
 function toJson(base64UrlEncodedCborEncodedString) {
+  if (typeof base64UrlEncodedCborEncodedString !== "string") {
+    throw new TypeError("Expected base64url-encoded CBOR string");
+  }
+
   const decodedData = decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString);
   const cborDecoded = cbor.decodeFirstSync(decodedData);
-    return translateToJson(cborDecoded);
+  return translateToJson(cborDecoded);
 }
 
 function generateQRData(data, header = "") {
@@ -96,17 +100,16 @@ function getMappedData(
   valueMapper = CLAIM_169_VALUE_MAPPER,
   cborEnable = false
 ) {
+  if (jsonData == null) {
+    throw new TypeError("jsonData must not be null or undefined");
+  }
   if (Array.isArray(jsonData)) {
     return jsonData.map((item) =>
       getMappedData(item, keyMapper, valueMapper, cborEnable)
     );
   }
 
-  const payload = toMapWithKeyAndValueMapper(
-    jsonData,
-    keyMapper,
-    valueMapper
-  );
+  const payload = toMapWithKeyAndValueMapper(jsonData, keyMapper, valueMapper);
 
   if (cborEnable) {
     return Buffer.from(cbor.encode(payload)).toString("hex");
@@ -120,6 +123,9 @@ function decodeMappedData(
   keyMapper = CLAIM_169_REVERSE_KEY_MAPPER,
   valueMapperFunction = replaceValuesForClaim169
 ) {
+  if (data == null) {
+    throw new TypeError("data must not be null or undefined");
+  }
   if (Array.isArray(data)) {
     return data.map((item, i) => {
       return decodeMappedData(item, keyMapper, valueMapperFunction);
@@ -133,6 +139,10 @@ function decodeMappedData(
     jsonData = translateToJson(decoded);
   } catch (error) {
     jsonData = JSON.parse(data);
+  }
+
+  if (!Array.isArray(keyMapper)) {
+    throw new TypeError("keyMapper must be an array of mapper objects for depth-aware decoding");
   }
 
   keyMapper.forEach((mapper, index) => {
