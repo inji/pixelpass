@@ -101,7 +101,8 @@ function replaceValuesForClaim169(jsonData) {
   CLAIM_169_BIOMETRIC_KEYS.forEach((nestedKey) => {
     if (result[nestedKey] === undefined) return;
 
-    const nestedObject = result[nestedKey];
+    const nestedObject = { ...result[nestedKey] };
+
     if (
       typeof nestedObject !== "object" ||
       nestedObject === null ||
@@ -138,6 +139,8 @@ function replaceValuesForClaim169(jsonData) {
         : null;
 
     if (dataFormatInt === null || Number.isNaN(dataFormatInt)) return;
+
+    if (subFormatInt !== null && Number.isNaN(subFormatInt)) return;
 
     const dataFormatValue =
       CLAIM_169_BIOMETRIC_FORMAT_REVERSE_VALUE_MAPPER[dataFormatInt];

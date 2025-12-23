@@ -1,28 +1,40 @@
+function normalizeMappers(keyMapper = {}, valueMapper = {}) {
+  return {
+    normalizedKeyMapper: Object.fromEntries(
+      Object.entries(keyMapper).map(([k, v]) => [k.toLowerCase(), v])
+    ),
+    normalizedValueMapper: Object.fromEntries(
+      Object.entries(valueMapper).map(([field, mappings]) => [
+        typeof field === "string" && field.toLowerCase(),
+        Object.fromEntries(
+          Object.entries(mappings).map(([src, mapped]) => [
+            String(src).toLowerCase(),
+            mapped,
+          ])
+        ),
+      ])
+    ),
+  };
+}
+
 function toMapWithKeyAndValueMapper(data, keyMapper, valueMapper) {
-  if (data === null || data === undefined || typeof data !== "object") {
+  if (data === null || data === undefined) {
+    return data;
+  }
+
+  if (Array.isArray(data)) {
+    return toListWithKeyAndValueMapper(data, keyMapper, valueMapper);
+  }
+
+  if (typeof data !== "object") {
     return data;
   }
 
   const result = {};
+  
+  const normalizedMappers = normalizeMappers(keyMapper, valueMapper);
 
-  const normalizedKeyMapper = Object.fromEntries(
-    Object.entries(keyMapper || {}).map(([sourceKey, mappedKey]) => [
-      sourceKey.toLowerCase(),
-      mappedKey,
-    ])
-  );
-
-  const normalizedValueMapper = Object.fromEntries(
-    Object.entries(valueMapper || {}).map(([fieldName, fieldValueMappings]) => [
-      fieldName.toLowerCase(),
-      Object.fromEntries(
-        Object.entries(fieldValueMappings).map(([sourceValue, mappedValue]) => [
-          sourceValue.toLowerCase(),
-          mappedValue,
-        ])
-      ),
-    ])
-  );
+  const { normalizedKeyMapper, normalizedValueMapper } = normalizedMappers;
 
   for (const [originalKey, originalValue] of Object.entries(data)) {
     const normalizedKey = originalKey.toLowerCase();
@@ -34,6 +46,7 @@ function toMapWithKeyAndValueMapper(data, keyMapper, valueMapper) {
 
     if (
       originalValue !== null &&
+      typeof originalValue === "string" &&
       fieldValueMapper &&
       fieldValueMapper[originalValue.toLowerCase()] !== undefined
     ) {
