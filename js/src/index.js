@@ -29,10 +29,13 @@ function toJson(base64UrlEncodedCborEncodedString) {
   if (typeof base64UrlEncodedCborEncodedString !== "string") {
     throw new TypeError("Expected base64url-encoded CBOR string");
   }
-
-  const decodedData = decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString);
-  const cborDecoded = cbor.decodeFirstSync(decodedData);
-  return translateToJson(cborDecoded);
+  try {
+    const decodedData = decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString);
+    const cborDecoded = cbor.decodeFirstSync(decodedData);
+    return translateToJson(cborDecoded);
+  } catch (error) {
+    throw new Error(`Failed to decode CBOR data: ${error.message}`);
+  }
 }
 
 function generateQRData(data, header = "") {
