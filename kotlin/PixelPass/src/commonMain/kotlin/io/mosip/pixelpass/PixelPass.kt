@@ -27,6 +27,7 @@ import java.util.logging.Logger
 
 class PixelPass {
     private val logger = Logger.getLogger(PixelPass::class.java.name)
+    
     fun toJson(base64UrlEncodedCborEncodedString: String): Any {
         val decodedData: ByteArray =
             decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString)
@@ -74,33 +75,54 @@ class PixelPass {
         throw UnknownBinaryFileTypeException()
     }
 
-     fun generateQRData(
+    fun generateQRData(
         data: String,
         header: String = ""
     ): String {
-         val parsedData: Any?
-         var compressedData = byteArrayOf()
-         val b45EncodedData: String
-         try {
-             parsedData = if (data.startsWith('[') && data.endsWith(']')) {
-                 JSONArray(data)
-             } else {
-                 JSONObject(data)
-             }
-             val toDataItem = Utils().toDataItem(parsedData)
+        val parsedData: Any?
+        var compressedData = byteArrayOf()
+        val b45EncodedData: String
+        try {
+            parsedData = if (data.startsWith('[') && data.endsWith(']')) {
+                JSONArray(data)
+            } else {
+                JSONObject(data)
+            }
+            val toDataItem = Utils().toDataItem(parsedData)
 
-             val cborByteArrayOutputStream = ByteArrayOutputStream()
-             CborEncoder(cborByteArrayOutputStream).nonCanonical().encode(toDataItem)
-             compressedData = ZLib().encode(cborByteArrayOutputStream.toByteArray())
+            val cborByteArrayOutputStream = ByteArrayOutputStream()
+            CborEncoder(cborByteArrayOutputStream).nonCanonical().encode(toDataItem)
+            compressedData = ZLib().encode(cborByteArrayOutputStream.toByteArray())
 
-         }catch (e: Exception){
-             logger.severe(e.toString())
-             compressedData = ZLib().encode(data.toByteArray())
-         }finally {
-             b45EncodedData = String(Base45.getEncoder().encode(compressedData))
-         }
+        }catch (e: Exception){
+            logger.severe(e.toString())
+            compressedData = ZLib().encode(data.toByteArray())
+        }finally {
+            b45EncodedData = String(Base45.getEncoder().encode(compressedData))
+        }
 
         return (header + b45EncodedData)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    fun getMappedData(jsonData: JSONObject, mapper: Map<String,String>, cborEnable: Boolean = false): String {
+        val mappedJson = JSONObject()
+        val iterator = jsonData.keys().iterator()
+        while (iterator.hasNext()){
+            val next = iterator.next()
+            val key = mapper[next] ?: next
+            val value = jsonData.get(next.toString())
+            mappedJson.put(key.toString(),value)
+        }
+
+        val payload = Utils().toDataItem(mappedJson)
+
+        if (cborEnable) {
+            val cborByteArrayOutputStream = ByteArrayOutputStream()
+            CborEncoder(cborByteArrayOutputStream).encode(payload)
+            return cborByteArrayOutputStream.toByteArray().toHexString()
+        }
+        return payload.toString()
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -120,11 +142,34 @@ class PixelPass {
         val mappedJsonArray = JSONArray()
         (0 until jsonData.length()).forEach { i ->
             when (val item = jsonData.get(i)) {
-                is JSONObject -> mappedJsonArray.put(getMappedData(item,keyMapper,valueMapper,cborEnable))
+                is JSONObject -> {
+                    val result = getMappedData(item, keyMapper, valueMapper, cborEnable)
+                    mappedJsonArray.put(result)
+                }
                 else -> throw IllegalArgumentException("Invalid input: Expected JSONObject at index $i, but found ${item::class.simpleName}")
             }
         }
         return mappedJsonArray
+    }
+
+    fun decodeMappedData(data: String, mapper: Map<String,String>): String {
+        var jsonData: JSONObject
+        try {
+            val cborDecodedData = CborDecoder(ByteArrayInputStream(data.decodeHex())).decode()[0]
+            jsonData =  (Utils().toJson(cborDecodedData) as JSONObject)
+        }catch (_: Exception){
+            jsonData = JSONObject(data)
+        }
+
+        val payload = JSONObject()
+        val iterator = jsonData.keys().iterator()
+        while (iterator.hasNext()){
+            val next = iterator.next()
+            val key = mapper[next] ?: next
+            val value = jsonData.get(next.toString())
+            payload.put(key.toString(),value)
+        }
+        return payload.toString()
     }
 
     fun decodeMappedData(data: String, keyMapper: Array<Map<String, String>> = CLAIM_169_REVERSE_KEY_MAPPER, valueMapperFunction: (JSONObject) -> JSONObject = Utils()::replaceValuesForClaim169): String {
@@ -143,10 +188,10 @@ class PixelPass {
     }
 
     fun decodeMappedData(data: Array<String>, keyMapper: Array<Map<String, String>> = CLAIM_169_REVERSE_KEY_MAPPER, valueMapperFunction: (JSONObject) -> JSONObject = Utils()::replaceValuesForClaim169): Array<String> {
-    val decodedJsonArray = mutableListOf<String>()
-    data.forEach { item ->
-      decodedJsonArray.add(decodeMappedData(item, keyMapper, valueMapperFunction))
+        val decodedJsonArray = mutableListOf<String>()
+        data.forEach { item ->
+            decodedJsonArray.add(decodeMappedData(item, keyMapper, valueMapperFunction))
+        }
+        return decodedJsonArray.toTypedArray()
     }
-    return decodedJsonArray.toTypedArray()
-  }
 }
