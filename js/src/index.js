@@ -21,7 +21,7 @@ const {
   translateToJson,
   replaceKeysAtDepth,
   replaceValuesForClaim169,
-  decodeFromBase64UrlFormat
+  decodeFromBase64UrlFormat,
 } = require("./utils/cborUtils.js");
 const { toMapWithKeyAndValueMapper } = require("./utils/mapperUtils.js");
 
@@ -75,13 +75,12 @@ async function generateQRCode(data, ecc = DEFAULT_ECC_LEVEL, header = "") {
 
 function decode(data) {
   const decodedBase45Data = b45.decode(data);
-  // Base45 returns number[], convert it
-  const binaryData = Uint8Array.from(decodedBase45Data);
-  const decompressedData = pako.inflate(binaryData);
+  const decompressedData = pako.inflate(decodedBase45Data);
   const textData = new TextDecoder().decode(decompressedData);
   try {
-    const decodedCBORData = cbor.decodeFirstSync(decompressedData);
-    return JSON.stringify(decodedCBORData);
+    const decodedCBORData = cbor.decode(decompressedData);
+    if (decodedCBORData) return JSON.stringify(decodedCBORData);
+    return textData;
   } catch (e) {
     return textData;
   }
@@ -98,66 +97,142 @@ async function decodeBinary(data) {
   }
 }
 
-function getMappedData(
-  jsonData,
-  keyMapper = CLAIM_169_KEY_MAPPER,
-  valueMapper = CLAIM_169_VALUE_MAPPER,
-  cborEnable = false
-) {
-  if (jsonData == null) {
-    throw new TypeError("jsonData must not be null or undefined");
+function translateToJSON(claims, mapper) {
+  const result = {};
+  if (claims instanceof Map) {
+    claims.forEach((value, param) => {
+      const key = mapper[param] ? mapper[param] : param;
+      result[key] = value;
+    });
+  } else if (typeof claims === "object" && claims !== null) {
+    Object.entries(claims).forEach(([param, value]) => {
+      const key = mapper[param] ? mapper[param] : param;
+      result[key] = value;
+    });
+  } else {
+    throw new Error("Invalid data format for translation");
   }
-  if (Array.isArray(jsonData)) {
-    return jsonData.map((item) =>
-      getMappedData(item, keyMapper, valueMapper, cborEnable)
-    );
-  }
-
-  const payload = toMapWithKeyAndValueMapper(jsonData, keyMapper, valueMapper);
-
-  if (cborEnable) {
-    return Buffer.from(cbor.encode(payload)).toString("hex");
-  }
-
-  return payload;
+  return result;
 }
 
-function decodeMappedData(
-  data,
-  keyMapper = CLAIM_169_REVERSE_KEY_MAPPER,
-  valueMapperFunction = replaceValuesForClaim169
-) {
-  if (data == null) {
-    throw new TypeError("data must not be null or undefined");
+function getMappedData(...args) {
+  const [jsonData, mapper, cborEnableOrValueMapper, cborEnable] = args;
+
+  const isNewSignature = Array.isArray(mapper) || args.length === 4;
+
+  if (isNewSignature) {
+    const keyMapper = mapper || CLAIM_169_KEY_MAPPER;
+    const valueMapper = cborEnableOrValueMapper || CLAIM_169_VALUE_MAPPER;
+    const cborEnableNew = cborEnable || false;
+
+    if (jsonData == null) {
+      throw new TypeError("jsonData must not be null or undefined");
+    }
+    if (Array.isArray(jsonData)) {
+      return jsonData.map((item) =>
+        getMappedData(item, keyMapper, valueMapper, cborEnableNew)
+      );
+    }
+
+    const payload = toMapWithKeyAndValueMapper(
+      jsonData,
+      keyMapper,
+      valueMapper
+    );
+
+    if (cborEnableNew) {
+      return Buffer.from(cbor.encode(payload)).toString("hex");
+    }
+
+    return payload;
   }
-  if (Array.isArray(data)) {
-    return data.map((item, i) => {
-      return decodeMappedData(item, keyMapper, valueMapperFunction);
+
+  const cborEnableOld = cborEnableOrValueMapper || false;
+
+  if (jsonData === null) {
+    return null;
+  }
+
+  if (Array.isArray(jsonData)) {
+    return jsonData.map((item) => getMappedData(item, mapper, cborEnableOld));
+  }
+
+  const payload = {};
+  for (const param in jsonData) {
+    const key = mapper && mapper[param] ? mapper[param] : param;
+    const value = jsonData[param];
+
+    if (value !== null && typeof value === "object") {
+      payload[key] = getMappedData(value, mapper, false);
+    } else {
+      payload[key] = value;
+    }
+  }
+
+  if (cborEnableOld) return cbor.encode(payload);
+  else return payload;
+}
+
+function decodeMappedData(...args) {
+  const [data, mapper, valueMapperFunction] = args;
+
+  const isNewSignature = Array.isArray(mapper) || args.length === 3;
+
+  if (isNewSignature) {
+    const keyMapper = mapper || CLAIM_169_REVERSE_KEY_MAPPER;
+    const valueMapper = valueMapperFunction || replaceValuesForClaim169;
+
+    if (data == null) {
+      throw new TypeError("data must not be null or undefined");
+    }
+    if (Array.isArray(data)) {
+      return data.map((item) => {
+        return decodeMappedData(item, keyMapper, valueMapper);
+      });
+    }
+
+    let jsonData;
+    try {
+      const bytes = Buffer.from(data, "hex");
+      const decoded = cbor.decodeFirstSync(bytes);
+      jsonData = translateToJson(decoded);
+    } catch (error) {
+      try {
+        jsonData = JSON.parse(data);
+      } catch (parseError) {
+        throw new Error(`Failed to parse data: ${parseError.message}`);
+      }
+    }
+
+    if (!Array.isArray(keyMapper)) {
+      throw new TypeError(
+        "keyMapper must be an array of mapper objects for depth-aware decoding"
+      );
+    }
+
+    keyMapper.forEach((mapper, index) => {
+      jsonData = replaceKeysAtDepth(jsonData, mapper, index);
     });
+
+    if (valueMapper) {
+      jsonData = valueMapper(jsonData);
+    }
+
+    return JSON.stringify(jsonData);
   }
 
   let jsonData;
   try {
-    const bytes = Buffer.from(data, "hex");
-    const decoded = cbor.decodeFirstSync(bytes);
-    jsonData = translateToJson(decoded);
-  } catch (error) {
-    jsonData = JSON.parse(data);
+    jsonData = cbor.decode(data);
+  } catch (e) {
+    try {
+      jsonData = typeof data === "string" ? JSON.parse(data) : data;
+    } catch (parseError) {
+      throw new Error(`Failed to decode data: ${parseError.message}`);
+    }
   }
 
-  if (!Array.isArray(keyMapper)) {
-    throw new TypeError("keyMapper must be an array of mapper objects for depth-aware decoding");
-  }
-
-  keyMapper.forEach((mapper, index) => {
-    jsonData = replaceKeysAtDepth(jsonData, mapper, index);
-  });
-
-  if (valueMapperFunction) {
-    jsonData = valueMapperFunction(jsonData);
-  }
-
-  return JSON.stringify(jsonData);
+  return translateToJSON(jsonData, mapper);
 }
 
 module.exports = {
@@ -167,5 +242,5 @@ module.exports = {
   decode,
   decodeBinary,
   getMappedData,
-  decodeMappedData
+  decodeMappedData,
 };
