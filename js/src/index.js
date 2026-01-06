@@ -234,7 +234,7 @@ function decodeMappedData(...args) {
     }
   }
 
-  return translateToJSON(jsonData, mapper);
+  return JSON.stringify(translateToJSON(jsonData, mapper));
 }
 
 module.exports = {
