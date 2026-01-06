@@ -91,9 +91,14 @@ function decode(data) {
 async function decodeBinary(data) {
   let decodedData = new TextDecoder("utf-8").decode(data);
   if (decodedData.startsWith(ZIP_HEADER)) {
-    return (await JSZip.loadAsync(decodedData))
-      .file(DEFAULT_ZIP_FILE_NAME)
-      .async("text");
+    const zip = await JSZip.loadAsync(decodedData);
+    const file = zip.file(DEFAULT_ZIP_FILE_NAME);
+    if (!file) {
+      throw new Error(
+        `File '${DEFAULT_ZIP_FILE_NAME}' not found in ZIP archive`
+      );
+    }
+    return file.async("text");
   } else {
     throw new Error("Unsupported binary file type");
   }
