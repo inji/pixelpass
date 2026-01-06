@@ -2,21 +2,22 @@ package io.mosip.pixelpass.utils
 
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.Locale
 
 fun JSONObject.toMapWithKeyAndValueMapper(
   keyMapper: Map<String, Any> = emptyMap(),
   valueMapper: Map<String, Map<Any, Any>> = emptyMap()
 ): Map<Any, Any?> {
 
-  val normalizedKeyMapper: Map<String, Any> = keyMapper.mapKeys { it.key.toLowerCase() }
+  val normalizedKeyMapper: Map<String, Any> = keyMapper.mapKeys { it.key.toLowerCase(Locale.ROOT) }
 
   val normalizedValueMapper: Map<String, Map<Any, Any>> =
     valueMapper
-      .mapKeys { it.key.toLowerCase() }
+      .mapKeys { it.key.toLowerCase(Locale.ROOT) }
       .mapValues { (_, mapper) ->
         mapper.mapKeys { entry ->
           val key = entry.key
-          if (key is String) key.toLowerCase() else key
+          if (key is String) key.toLowerCase(Locale.ROOT) else key
         }
       }
 
@@ -25,7 +26,7 @@ fun JSONObject.toMapWithKeyAndValueMapper(
 
   while (keys.hasNext()) {
     val originalKey = keys.next() as String
-    val normalizedKey = originalKey.toLowerCase()
+    val normalizedKey = originalKey.toLowerCase(Locale.ROOT)
 
     val newKey: Any = normalizedKeyMapper[normalizedKey] ?: originalKey
 
@@ -36,7 +37,7 @@ fun JSONObject.toMapWithKeyAndValueMapper(
     var processedValue: Any? =
       if (originalValue != JSONObject.NULL && fieldValueMapper != null) {
         val lookupValue =
-          if (originalValue is String) originalValue.toLowerCase() else originalValue
+          if (originalValue is String) originalValue.toLowerCase(Locale.ROOT) else originalValue
 
         fieldValueMapper[lookupValue] ?: originalValue
       } else {

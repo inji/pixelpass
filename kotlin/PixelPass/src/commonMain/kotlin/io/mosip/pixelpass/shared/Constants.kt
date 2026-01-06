@@ -8,7 +8,8 @@ const val DEFAULT_ZLIB_COMPRESSION_LEVEL = 9
 const val ZIP_HEADER = "PK"
 const val DEFAULT_ZIP_FILE_NAME = "certificate.json"
 
-val CLAIM_169_KEY_MAPPER = mapOf(
+val CLAIM_169_KEY_MAPPER =
+  mapOf(
     "ID" to 1,
     "Version" to 2,
     "Language" to 3,
@@ -46,119 +47,107 @@ val CLAIM_169_KEY_MAPPER = mapOf(
     "Data" to 0,
     "Data format" to 1,
     "Data sub format" to 2,
-    "Data issuer" to 3
-)
+    "Data issuer" to 3,
+  )
 
-val CLAIM_169_VALUE_MAPPER: Map<String, Map<Any, Int>> by lazy {
-    mapOf(
-        "Data format" to mapOf(
-            "Image" to 0,
-            "Template" to 1,
-            "Sound" to 2,
-            "Bio Hash" to 3
-        ),
-        "Data sub format" to mapOf(
-            "PNG" to 0,
-            "JPEG" to 1,
-            "JPEG2000" to 2,
-            "AVIF" to 3,
-            "WEBP" to 4,
-            "TIFF" to 5,
-            "WSQ" to 6,
-            "Fingerprint Template ANSI 378" to 0,
-            "Fingerprint Template ISO 19794-2" to 1,
-            "Fingerprint Template NIST" to 2,
-            "WAV" to 0,
-            "MP3" to 1
-        ),
-        "Gender" to mapOf(
-            "Male" to 1,
-            "Female" to 2,
-            "Others" to 3
-        ),
-        "Marital Status" to mapOf(
-            "Unmarried" to 1,
-            "Married" to 2,
-            "Divorced" to 3
-        ),
-        "Binary Image Format" to mapOf(
-            "JPEG" to 1,
-            "JPEG2" to 2,
-            "AVIF" to 3,
-            "WEBP" to 4
-        )
-    )
-}
+val CLAIM_169_VALUE_MAPPER: Map<String, Map<Any, Int>> =
+  mapOf(
+    "Data format" to mapOf("Image" to 0, "Template" to 1, "Sound" to 2, "Bio Hash" to 3),
+    "Data sub format" to
+      mapOf(
+        "PNG" to 0,
+        "JPEG" to 1,
+        "JPEG2000" to 2,
+        "AVIF" to 3,
+        "WEBP" to 4,
+        "TIFF" to 5,
+        "WSQ" to 6,
+        "Fingerprint Template ANSI 378" to 0,
+        "Fingerprint Template ISO 19794-2" to 1,
+        "Fingerprint Template NIST" to 2,
+        "WAV" to 0,
+        "MP3" to 1,
+      ),
+    "Gender" to mapOf("Male" to 1, "Female" to 2, "Others" to 3),
+    "Marital Status" to mapOf("Unmarried" to 1, "Married" to 2, "Divorced" to 3),
+    "Binary Image Format" to mapOf("JPEG" to 1, "JPEG2" to 2, "AVIF" to 3, "WEBP" to 4),
+  )
 
-val CLAIM_169_REVERSE_KEY_MAPPER: Array<Map<String, String>> = arrayOf(
+val CLAIM_169_REVERSE_KEY_MAPPER: Array<Map<String, String>> =
+  arrayOf(
     mapOf(
-        "1" to "ID",
-        "2" to "Version",
-        "3" to "Language",
-        "4" to "Full Name",
-        "5" to "First Name",
-        "6" to "Middle Name",
-        "7" to "Last Name",
-        "8" to "Date of Birth",
-        "9" to "Gender",
-        "10" to "Address",
-        "11" to "Email ID",
-        "12" to "Phone Number",
-        "13" to "Nationality",
-        "14" to "Marital Status",
-        "15" to "Guardian",
-        "16" to "Binary Image",
-        "17" to "Binary Image Format",
-        "18" to "Best Quality Fingers",
-        "50" to "Right Thumb",
-        "51" to "Right Pointer Finger",
-        "52" to "Right Middle Finger",
-        "53" to "Right Ring Finger",
-        "54" to "Right Little Finger",
-        "55" to "Left Thumb",
-        "56" to "Left Pointer Finger",
-        "57" to "Left Middle Finger",
-        "58" to "Left Ring Finger",
-        "59" to "Left Little Finger",
-        "60" to "Right Iris",
-        "61" to "Left Iris",
-        "62" to "Face",
-        "63" to "Right Palm Print",
-        "64" to "Left Palm Print",
-        "65" to "Voice"
+      "1" to "ID",
+      "2" to "Version",
+      "3" to "Language",
+      "4" to "Full Name",
+      "5" to "First Name",
+      "6" to "Middle Name",
+      "7" to "Last Name",
+      "8" to "Date of Birth",
+      "9" to "Gender",
+      "10" to "Address",
+      "11" to "Email ID",
+      "12" to "Phone Number",
+      "13" to "Nationality",
+      "14" to "Marital Status",
+      "15" to "Guardian",
+      "16" to "Binary Image",
+      "17" to "Binary Image Format",
+      "18" to "Best Quality Fingers",
+      "50" to "Right Thumb",
+      "51" to "Right Pointer Finger",
+      "52" to "Right Middle Finger",
+      "53" to "Right Ring Finger",
+      "54" to "Right Little Finger",
+      "55" to "Left Thumb",
+      "56" to "Left Pointer Finger",
+      "57" to "Left Middle Finger",
+      "58" to "Left Ring Finger",
+      "59" to "Left Little Finger",
+      "60" to "Right Iris",
+      "61" to "Left Iris",
+      "62" to "Face",
+      "63" to "Right Palm Print",
+      "64" to "Left Palm Print",
+      "65" to "Voice",
     ),
-    mapOf(
-        "0" to "Data",
-        "1" to "Data format",
-        "2" to "Data sub format",
-        "3" to "Data issuer",
-    )
-)
+    mapOf("0" to "Data", "1" to "Data format", "2" to "Data sub format", "3" to "Data issuer"),
+  )
 
-val CLAIM_169_ROOT_REVERSE_VALUE_MAPPER: Map<String, Map<Any, String>> = mapOf(
+val CLAIM_169_ROOT_REVERSE_VALUE_MAPPER: Map<String, Map<Any, String>> =
+  mapOf(
     "Data format" to mapOf(0 to "Image", 1 to "Template", 2 to "Sound", 3 to "Bio Hash"),
     "Gender" to mapOf(1 to "Male", 2 to "Female", 3 to "Others"),
     "Binary Image Format" to mapOf(1 to "JPEG", 2 to "JPEG2", 3 to "AVIF", 4 to "WEBP"),
     "Marital Status" to mapOf(1 to "Unmarried", 2 to "Married", 3 to "Divorced"),
-)
+  )
 
-val CLAIM_169_BIOMETRIC_FORMAT_REVERSE_VALUE_MAPPER:  Map<Any, Any> = mapOf(0 to "Image", 1 to "Template", 2 to "Sound", 3 to "Bio Hash")
+val CLAIM_169_BIOMETRIC_FORMAT_REVERSE_VALUE_MAPPER: Map<Any, Any> =
+  mapOf(0 to "Image", 1 to "Template", 2 to "Sound", 3 to "Bio Hash")
 
-val CLAIM_169_BIOMETRIC_SUB_FORMAT_REVERSE_VALUE_MAPPER: Map<String, Map<Any, Any>> = mapOf(
-    "Image" to mapOf(
-        0 to "PNG", 1 to "JPEG", 2 to "JPEG2000", 3 to "AVIF", 4 to "WEBP", 5 to "TIFF", 6 to "WSQ"
-    ),
-    "Template" to mapOf(
+val CLAIM_169_BIOMETRIC_SUB_FORMAT_REVERSE_VALUE_MAPPER: Map<String, Map<Any, Any>> =
+  mapOf(
+    "Image" to
+      mapOf(
+        0 to "PNG",
+        1 to "JPEG",
+        2 to "JPEG2000",
+        3 to "AVIF",
+        4 to "WEBP",
+        5 to "TIFF",
+        6 to "WSQ",
+      ),
+    "Template" to
+      mapOf(
         0 to "Fingerprint Template ANSI 378",
         1 to "Fingerprint Template ISO 19794-2",
-        2 to "Fingerprint Template NIST"
-    ),
-    "Sound" to mapOf(
-        0 to "WAV", 1 to "MP3"
-    )
-)
+        2 to "Fingerprint Template NIST",
+      ),
+    "Sound" to mapOf(0 to "WAV", 1 to "MP3"),
+  )
 
-val CLAIM_169_BIOMETRIC_KEYS = listOf(
+val CLAIM_169_BIOMETRIC_KEYS =
+  listOf(
     "Right Thumb",
     "Right Pointer Finger",
     "Right Middle Finger",
@@ -174,8 +163,8 @@ val CLAIM_169_BIOMETRIC_KEYS = listOf(
     "Face",
     "Right Palm Print",
     "Left Palm Print",
-    "Voice"
-)
+    "Voice",
+  )
 
 const val CLAIM_169_BIOMETRIC_DATA_FORMAT_KEY = "Data format"
 const val CLAIM_169_BIOMETRIC_DATA_SUB_FORMAT_KEY = "Data sub format"
