@@ -106,7 +106,138 @@ async function decodeBinary(data) {
   }
 }
 
-function translateToJSON(claims, mapper) {
+/**
+ * @deprecated This method is deprecated. Use the new getMappedData with keyMapper and valueMapper parameters instead.
+ * Maps JSON data using a simple key mapper.
+ * @param {Object} jsonData - The JSON data to map
+ * @param {Object} mapper - The key mapper object
+ * @param {boolean} cborEnable - Whether to encode as CBOR
+ * @returns {Object|Buffer} Mapped data
+ */
+function getMappedDataDeprecated(jsonData, mapper, cborEnable = false) {
+  const payload = {};
+  for (const param in jsonData) {
+    const key = mapper[param] ? mapper[param] : param;
+    payload[key] = jsonData[param];
+  }
+  if (cborEnable) return cbor.encode(payload);
+  else return payload;
+}
+
+/**
+ * Maps JSON data using key and value mappers with support for arrays.
+ * @param {Object|Array} jsonData - The JSON data to map
+ * @param {Object} keyMapper - The key mapper object (default: CLAIM_169_KEY_MAPPER)
+ * @param {Object|Function} valueMapper - The value mapper object or function (default: CLAIM_169_VALUE_MAPPER)
+ * @param {boolean} cborEnable - Whether to encode as CBOR and return hex string
+ * @returns {Object|Array|string|null} Mapped data (hex string if cborEnable is true, null if input is null)
+ */
+function getMappedData(
+  jsonData,
+  keyMapper = CLAIM_169_KEY_MAPPER,
+  valueMapper = CLAIM_169_VALUE_MAPPER,
+  cborEnable = false
+) {
+  if (jsonData == null) {
+    throw new TypeError("jsonData must not be null or undefined");
+  }
+
+  if (Array.isArray(jsonData)) {
+    return jsonData.map((item) =>
+      getMappedData(item, keyMapper, valueMapper, cborEnable)
+    );
+  }
+
+  const payload = toMapWithKeyAndValueMapper(jsonData, keyMapper, valueMapper);
+
+  if (cborEnable) {
+    return Buffer.from(cbor.encode(payload)).toString("hex");
+  }
+
+  return payload;
+}
+
+/**
+ * @deprecated This method is deprecated. Use the new decodeMappedData with keyMapper and valueMapper parameters instead.
+ * Decodes CBOR data and translates using a simple mapper.
+ * @param {Buffer|Object} data - The data to decode
+ * @param {Object} mapper - The key mapper object
+ * @returns {Object} Decoded and translated data
+ */
+function decodeMappedDataDeprecated(data, mapper) {
+  try {
+    const jsonData = cbor.decode(data);
+    return translateToJSONDeprecated(jsonData, mapper);
+  } catch (e) {
+    return translateToJSONDeprecated(data, mapper);
+  }
+}
+
+/**
+ * Decodes mapped data with support for depth-aware key mapping and value transformation.
+ * @param {string|Array} data - The hex-encoded CBOR data or JSON string to decode
+ * @param {Array} keyMapper - Array of mapper objects for depth-aware decoding (default: CLAIM_169_REVERSE_KEY_MAPPER)
+ * @param {Function} valueMapper - Function to transform values (default: replaceValuesForClaim169)
+ * @returns {string|Array} JSON string of decoded and mapped data (or array if input is array)
+ */
+function decodeMappedData(
+  data,
+  keyMapper = CLAIM_169_REVERSE_KEY_MAPPER,
+  valueMapper = replaceValuesForClaim169
+) {
+  if (data == null) {
+    throw new TypeError("data must not be null or undefined");
+  }
+
+  if (Array.isArray(data)) {
+    return data.map((item) => {
+      return decodeMappedData(item, keyMapper, valueMapper);
+    });
+  }
+
+  let jsonData;
+
+  try {
+    const bytes = Buffer.from(data, "hex");
+    const decoded = cbor.decodeFirstSync(bytes);
+    jsonData = translateToJson(decoded);
+  } catch (error) {
+    try {
+      jsonData = JSON.parse(data);
+    } catch (parseError) {
+      throw new Error(`Failed to decode data: ${error.message}`);
+    }
+  }
+
+  if (keyMapper) {
+    if (!Array.isArray(keyMapper)) {
+      throw new TypeError(
+        "keyMapper must be an array of mapper objects for depth-aware decoding"
+      );
+    }
+
+    keyMapper.forEach((mapper, index) => {
+      if (mapper && typeof mapper === "object") {
+        jsonData = replaceKeysAtDepth(jsonData, mapper, index);
+      }
+    });
+  }
+
+  if (valueMapper && typeof valueMapper === "function") {
+    jsonData = valueMapper(jsonData);
+  }
+
+  return JSON.stringify(jsonData);
+}
+
+/**
+ * @deprecated This method is deprecated. It's kept for backward compatibility.
+ * Translates claims data using a simple mapper.
+ * @param {Map|Object} claims - The claims data
+ * @param {Object} mapper - The key mapper object
+ * @returns {Object} Translated data
+ */
+function translateToJSONDeprecated(claims, mapper) {
   const result = {};
   if (claims instanceof Map) {
     claims.forEach((value, param) => {
@@ -118,130 +249,8 @@ function translateToJSON(claims, mapper) {
       const key = mapper[param] ? mapper[param] : param;
       result[key] = value;
     });
-  } else {
-    throw new Error("Invalid data format for translation");
   }
   return result;
-}
-
-function getMappedData(...args) {
-  const [jsonData, mapper, cborEnableOrValueMapper, cborEnable] = args;
-
-  const isNewSignature = Array.isArray(mapper) || args.length === 4;
-
-  if (isNewSignature) {
-    const keyMapper = mapper || CLAIM_169_KEY_MAPPER;
-    const valueMapper = cborEnableOrValueMapper || CLAIM_169_VALUE_MAPPER;
-    const cborEnableNew = cborEnable || false;
-
-    if (jsonData == null) {
-      throw new TypeError("jsonData must not be null or undefined");
-    }
-    if (Array.isArray(jsonData)) {
-      return jsonData.map((item) =>
-        getMappedData(item, keyMapper, valueMapper, cborEnableNew)
-      );
-    }
-
-    const payload = toMapWithKeyAndValueMapper(
-      jsonData,
-      keyMapper,
-      valueMapper
-    );
-
-    if (cborEnableNew) {
-      return Buffer.from(cbor.encode(payload)).toString("hex");
-    }
-
-    return payload;
-  }
-
-  const cborEnableOld = cborEnableOrValueMapper || false;
-
-  if (jsonData === null) {
-    return null;
-  }
-
-  if (Array.isArray(jsonData)) {
-    return jsonData.map((item) => getMappedData(item, mapper, cborEnableOld));
-  }
-
-  const payload = {};
-  for (const param in jsonData) {
-    const key = mapper && mapper[param] ? mapper[param] : param;
-    const value = jsonData[param];
-
-    if (value !== null && typeof value === "object") {
-      payload[key] = getMappedData(value, mapper, false);
-    } else {
-      payload[key] = value;
-    }
-  }
-
-  if (cborEnableOld) return cbor.encode(payload);
-  else return payload;
-}
-
-function decodeMappedData(...args) {
-  const [data, mapper, valueMapperFunction] = args;
-
-  const isNewSignature = Array.isArray(mapper) || args.length === 3;
-
-  if (isNewSignature) {
-    const keyMapper = mapper || CLAIM_169_REVERSE_KEY_MAPPER;
-    const valueMapper = valueMapperFunction || replaceValuesForClaim169;
-
-    if (data == null) {
-      throw new TypeError("data must not be null or undefined");
-    }
-    if (Array.isArray(data)) {
-      return data.map((item) => {
-        return decodeMappedData(item, keyMapper, valueMapper);
-      });
-    }
-
-    let jsonData;
-    try {
-      const bytes = Buffer.from(data, "hex");
-      const decoded = cbor.decodeFirstSync(bytes);
-      jsonData = translateToJson(decoded);
-    } catch (error) {
-      try {
-        jsonData = JSON.parse(data);
-      } catch (parseError) {
-        throw new Error(`Failed to parse data: ${parseError.message}`);
-      }
-    }
-
-    if (!Array.isArray(keyMapper)) {
-      throw new TypeError(
-        "keyMapper must be an array of mapper objects for depth-aware decoding"
-      );
-    }
-
-    keyMapper.forEach((mapper, index) => {
-      jsonData = replaceKeysAtDepth(jsonData, mapper, index);
-    });
-
-    if (valueMapper) {
-      jsonData = valueMapper(jsonData);
-    }
-
-    return JSON.stringify(jsonData);
-  }
-
-  let jsonData;
-  try {
-    jsonData = cbor.decodeFirstSync(data);
-  } catch (e) {
-    try {
-      jsonData = typeof data === "string" ? JSON.parse(data) : data;
-    } catch (parseError) {
-      throw new Error(`Failed to decode data: ${parseError.message}`);
-    }
-  }
-
-  return JSON.stringify(translateToJSON(jsonData, mapper));
 }
 
 module.exports = {
@@ -252,4 +261,8 @@ module.exports = {
   decodeBinary,
   getMappedData,
   decodeMappedData,
+  // Deprecated exports for backward compatibility
+  getMappedDataDeprecated,
+  decodeMappedDataDeprecated,
+  translateToJSONDeprecated,
 };
