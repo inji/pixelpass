@@ -77,7 +77,9 @@ async function generateQRCode(data, ecc = DEFAULT_ECC_LEVEL, header = "") {
 
 function decode(data) {
   const decodedBase45Data = b45.decode(data);
-  const decompressedData = pako.inflate(decodedBase45Data);
+  // Base45 returns number[], convert it
+  const binaryData = Uint8Array.from(decodedBase45Data);
+  const decompressedData = pako.inflate(binaryData);
   const textData = new TextDecoder().decode(decompressedData);
   try {
     const decodedCBORData = cbor.decode(decompressedData);
