@@ -30,7 +30,9 @@ function toJson(base64UrlEncodedCborEncodedString) {
     throw new TypeError("Expected base64url-encoded CBOR string");
   }
   try {
-    const decodedData = decodeFromBase64UrlFormat(base64UrlEncodedCborEncodedString);
+    const decodedData = decodeFromBase64UrlFormat(
+      base64UrlEncodedCborEncodedString
+    );
     const cborDecoded = cbor.decodeFirstSync(decodedData);
     return translateToJson(cborDecoded);
   } catch (error) {
@@ -223,7 +225,7 @@ function decodeMappedData(...args) {
 
   let jsonData;
   try {
-    jsonData = cbor.decode(data);
+    jsonData = cbor.decodeFirstSync(data);
   } catch (e) {
     try {
       jsonData = typeof data === "string" ? JSON.parse(data) : data;
