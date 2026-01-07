@@ -82,7 +82,7 @@ function decode(data) {
   const decompressedData = pako.inflate(binaryData);
   const textData = new TextDecoder().decode(decompressedData);
   try {
-    const decodedCBORData = cbor.decode(decompressedData);
+    const decodedCBORData = cbor.decodeFirstSync(decompressedData);
     if (decodedCBORData) return JSON.stringify(decodedCBORData);
     return textData;
   } catch (e) {

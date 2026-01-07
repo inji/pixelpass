@@ -1,4 +1,4 @@
-const { getMappedData } = require("../src");
+const { getMappedData, decodeMappedData } = require("../src");
 const {
   CLAIM_169_KEY_MAPPER,
   CLAIM_169_VALUE_MAPPER,
@@ -48,18 +48,18 @@ describe("getMappedData", () => {
 
   test("should return CBOR hex string for claim-169 mapped full JSON", () => {
     const jsonData = {
-      "Address": "New House, Near Metro Line, Bengaluru, KA",
-      "Version": 10,
+      Address: "New House, Near Metro Line, Bengaluru, KA",
+      Version: 10,
       "Email ID": "janardhan@example.com",
       "Full Name": "Janardhan BS",
-      "Date of Birth": "19840418",
-      "ID": "3918592438",
-      "Gender": "Male",
-      "hello": "world",
+      "Date of Birth": "04-18-1984",
+      ID: "3918592438",
+      Gender: "Male",
+      hello: "world",
       "Phone Number": "+919876543210",
-      "Face": { "Data format": "Image", "Data sub format": "PNG", "Data": "5249" },
-      "Voice": { "Data format": "Sound", "Data sub format": "WAV", "Data": "5249" },
-      "Nationality": "IN",
+      Face: { "Data format": "Image", "Data sub format": "PNG", Data: "5249" },
+      Voice: { "Data format": "Sound", "Data sub format": "WAV", Data: "5249" },
+      Nationality: "IN",
     };
     const result = getMappedData(
       jsonData,
@@ -67,7 +67,22 @@ describe("getMappedData", () => {
       CLAIM_169_VALUE_MAPPER,
       true
     );
-    expect(typeof result).toBe("string");
-  });
+    const decodedString = decodeMappedData(result);
+    const decoded = JSON.parse(decodedString);
 
+    expect(decoded).toMatchObject({
+      ID: "3918592438",
+      Version: 10,
+      "Full Name": "Janardhan BS",
+      "Date of Birth": "04-18-1984",
+      Gender: "Male",
+      Address: "New House, Near Metro Line, Bengaluru, KA",
+      "Email ID": "janardhan@example.com",
+      "Phone Number": "+919876543210",
+      Nationality: "IN",
+      Face: { Data: "5249", "Data format": "Image", "Data sub format": "PNG" },
+      Voice: { Data: "5249", "Data format": "Sound", "Data sub format": "WAV" },
+      hello: "world",
+    });
+  });
 });
