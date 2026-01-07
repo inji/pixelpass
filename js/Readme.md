@@ -6,11 +6,11 @@ Pixelpass is a library which can do multiple things which are listed below,
 
 - Given a JSON String → `generateQRData` → Gives back CBOR-encoded data.
 
-- Given a CBOR encoded data as byte array → `decode` → Gives back JSON String.
+- Given a CBOR-encoded data as byte array → `decode` → Gives back JSON String.
 - Given data as byteArray → `decodeBinary` → Gives back JSON String.
 - Given a JSON and Mapper → `getMappedData` → Gives back CBOR-encoded data or mapped JSON.
 
-- Given a CBOR encoded data and Mapper → `decodeMappedData` → Gives back a JSON.
+- Given a CBOR-encoded data and Mapper → `decodeMappedData` → Gives back a JSON.
 
 ## Features
 
@@ -127,7 +127,7 @@ const valueMapper = {}; // Optional value mapping
 
 const result = getMappedData(jsonData, keyMapper, valueMapper, true);
 
-// If cborEnable is true, result is a hex string of CBOR encoded data
+// If cborEnable is true, result is a hex string of CBOR-encoded data
 const cborEncodedString = result;
 
 // If cborEnable is false, result is the mapped JSON object
