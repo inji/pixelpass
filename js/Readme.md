@@ -143,14 +143,14 @@ The `getMappedData` takes 4 arguments:
 
 The example of a converted map would look like, `{ "1": "207", "2": "Jhon", "3": "Honay"}`
 
-When `cborEnable` is `true`, the function returns a hex string of the CBOR encoded mapped data.
+When `cborEnable` is `true`, the function returns a hex string of the CBOR-encoded mapped data.
 When `cborEnable` is `false`, the function returns the mapped JSON object directly.
 
 **⚠️ DEPRECATION NOTICE**: The previous 3-argument signature `getMappedData(jsonData, mapper, cborEnable)` is deprecated. Please use the new 4-argument signature with separate `keyMapper` and `valueMapper` parameters.
 
 ### decodeMappedData( data, keyMapper, valueMapper )
 
-- `data` - A CBOR encoded hex string, a mapped JSON string, or an array of either.
+- `data` - A CBOR-encoded hex string, a mapped JSON string, or an array of either.
 - `keyMapper` - An array of mapper objects for depth-aware key decoding. Each mapper object handles keys at a specific depth level.
 - `valueMapper` - A function to transform values in the decoded JSON. Optional.
 
@@ -172,7 +172,7 @@ const jsonData = JSON.parse(jsonString);
 
 The `decodeMappedData` takes 3 arguments:
 
-1. A CBOR encoded hex string, a JSON string, or an array of either
+1. A CBOR-encoded hex string, a JSON string, or an array of either
 2. An array of mapper objects for depth-aware key decoding (each index corresponds to a depth level)
 3. An optional value mapper function to transform the decoded data
 
