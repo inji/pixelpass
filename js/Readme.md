@@ -4,11 +4,11 @@ Pixelpass is a library which can do multiple things which are listed below,
 
 - Given a data → `generateQRCode` → returns a QR Code.
 
-- Given a JSON String → `generateQRData` → Gives back CBOR encoded data.
+- Given a JSON String → `generateQRData` → Gives back CBOR-encoded data.
 
 - Given a CBOR encoded data as byte array → `decode` → Gives back JSON String.
 - Given data as byteArray → `decodeBinary` → Gives back JSON String.
-- Given a JSON and Mapper → `getMappedData` → Gives back CBOR encoded data or mapped JSON.
+- Given a JSON and Mapper → `getMappedData` → Gives back CBOR-encoded data or mapped JSON.
 
 - Given a CBOR encoded data and Mapper → `decodeMappedData` → Gives back a JSON.
 
@@ -109,7 +109,7 @@ const zipdata = <zip-byte-array>;
 const decompressedData = decodeBinary(zipdata);
 ```
 
-The `decodeBinary` will take a `UInt8ByteArray` as parameter and gives us unzipped string. Currently only zip binary data is only supported.
+The `decodeBinary` will take a `UInt8ByteArray` as parameter and gives us unzipped string. Currently only zip binary data is supported.
 
 ### getMappedData( jsonData, keyMapper, valueMapper, cborEnable )
 
