@@ -29,7 +29,7 @@ publishing {
             pom {
                 withXml {
                     asNode().appendNode('name', "Pixelpass")
-                    asNode().appendNode('url', "https://github.com/mosip/pixelpass")
+                    asNode().appendNode('url', "https://github.com/inji/pixelpass")
                     asNode().appendNode('description', "Kotlin library to generate QR code from VC and decode the data")
 
                     asNode().appendNode('licenses').appendNode('license').with {
@@ -38,9 +38,9 @@ publishing {
                     }
 
                     asNode().appendNode('scm').with {
-                        appendNode('connection', 'scm:git:git://github.com/mosip/pixelpass.git')
-                        appendNode('developerConnection', 'scm:git:ssh://github.com:mosip/pixelpass.git')
-                        appendNode('url', "https://github.com/mosip/pixelpass")
+                        appendNode('connection', 'scm:git:git://github.com/inji/pixelpass.git')
+                        appendNode('developerConnection', 'scm:git:ssh://github.com:inji/pixelpass.git')
+                        appendNode('url', "https://github.com/inji/pixelpass")
                         appendNode('tag', "HEAD")
                     }
 
@@ -49,7 +49,7 @@ publishing {
                         appendNode('name', 'Mosip')
                         appendNode('email', 'mosip.emailnotifier@gmail.com')
                         appendNode('organization', 'io.mosip')
-                        appendNode("organizationUrl", "https://github.com/mosip/pixelpass")
+                        appendNode("organizationUrl", "https://github.com/inji/pixelpass")
                     }
 
                     def dependenciesNode = asNode().appendNode('dependencies')
@@ -123,7 +123,7 @@ publishing {
             pom {
                 withXml {
                     asNode().appendNode('name', "Pixelpass")
-                    asNode().appendNode('url', "https://github.com/mosip/pixelpass")
+                    asNode().appendNode('url', "https://github.com/inji/pixelpass")
                     asNode().appendNode('description', "Java library to generate QR code from VC and decode the data")
 
                     asNode().appendNode('licenses').appendNode('license').with {
@@ -136,7 +136,7 @@ publishing {
                         appendNode('name', 'Mosip')
                         appendNode('email', 'mosip.emailnotifier@gmail.com')
                         appendNode('organization', 'io.mosip')
-                        appendNode('organizationUrl', 'https://github.com/mosip/pixelpass')
+                        appendNode('organizationUrl', 'https://github.com/inji/pixelpass')
                     }
 
                     def dependenciesNode = asNode().appendNode('dependencies')
@@ -158,9 +158,9 @@ publishing {
                     pluginNode.appendNode('version', '3.0.1')
 
                     asNode().appendNode('scm').with {
-                        appendNode('connection', 'scm:git:git://github.com/mosip/pixelpass.git')
-                        appendNode('developerConnection', 'scm:git:ssh://github.com:mosip/pixelpass.git')
-                        appendNode('url', "https://github.com/mosip/pixelpass")
+                        appendNode('connection', 'scm:git:git://github.com/inji/pixelpass.git')
+                        appendNode('developerConnection', 'scm:git:ssh://github.com:inji/pixelpass.git')
+                        appendNode('url', "https://github.com/inji/pixelpass")
                         appendNode('tag', "HEAD")
                     }
 
