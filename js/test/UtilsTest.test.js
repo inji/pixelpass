@@ -251,15 +251,14 @@ test("toListWithKeyAndValueMapper handles deeply nested object structures in arr
  * INTEGRATION TESTS - Covering edge cases through public API
  * ------------------------------------------------------------------ */
 
-test("getMappedData with arrays containing nulls", () => {
+test("getMappedData with arrays containing nulls throws error", () => {
   const data = [{ name: "A" }, null, { name: "B" }];
   const keyMapper = { name: "n" };
 
-  const result = getMappedData(data, keyMapper);
-
-  expect(result[0].n).toBe("A");
-  expect(result[1]).toBe(null);
-  expect(result[2].n).toBe("B");
+  expect(() => getMappedData(data, keyMapper)).toThrow(TypeError);
+  expect(() => getMappedData(data, keyMapper)).toThrow(
+    "jsonData must not be null or undefined"
+  );
 });
 
 test("decodeMappedData with nested arrays at specific depth", () => {

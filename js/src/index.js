@@ -106,32 +106,6 @@ async function decodeBinary(data) {
   }
 }
 
-/**
- * @deprecated This method is deprecated. Use the new getMappedData with keyMapper and valueMapper parameters instead.
- * Maps JSON data using a simple key mapper.
- * @param {Object} jsonData - The JSON data to map
- * @param {Object} mapper - The key mapper object
- * @param {boolean} cborEnable - Whether to encode as CBOR
- * @returns {Object|Buffer} Mapped data
- */
-function getMappedDataDeprecated(jsonData, mapper, cborEnable = false) {
-  const payload = {};
-  for (const param in jsonData) {
-    const key = mapper[param] ? mapper[param] : param;
-    payload[key] = jsonData[param];
-  }
-  if (cborEnable) return cbor.encode(payload);
-  else return payload;
-}
-
-/**
- * Maps JSON data using key and value mappers with support for arrays.
- * @param {Object|Array} jsonData - The JSON data to map
- * @param {Object} keyMapper - The key mapper object (default: CLAIM_169_KEY_MAPPER)
- * @param {Object|Function} valueMapper - The value mapper object or function (default: CLAIM_169_VALUE_MAPPER)
- * @param {boolean} cborEnable - Whether to encode as CBOR and return hex string
- * @returns {Object|Array|string|null} Mapped data (hex string if cborEnable is true, null if input is null)
- */
 function getMappedData(
   jsonData,
   keyMapper = CLAIM_169_KEY_MAPPER,
@@ -157,29 +131,6 @@ function getMappedData(
   return payload;
 }
 
-/**
- * @deprecated This method is deprecated. Use the new decodeMappedData with keyMapper and valueMapper parameters instead.
- * Decodes CBOR data and translates using a simple mapper.
- * @param {Buffer|Object} data - The data to decode
- * @param {Object} mapper - The key mapper object
- * @returns {Object} Decoded and translated data
- */
-function decodeMappedDataDeprecated(data, mapper) {
-  try {
-    const jsonData = cbor.decode(data);
-    return translateToJSONDeprecated(jsonData, mapper);
-  } catch (e) {
-    return translateToJSONDeprecated(data, mapper);
-  }
-}
-
-/**
- * Decodes mapped data with support for depth-aware key mapping and value transformation.
- * @param {string|Array} data - The hex-encoded CBOR data or JSON string to decode
- * @param {Array} keyMapper - Array of mapper objects for depth-aware decoding (default: CLAIM_169_REVERSE_KEY_MAPPER)
- * @param {Function} valueMapper - Function to transform values (default: replaceValuesForClaim169)
- * @returns {string|Array} JSON string of decoded and mapped data (or array if input is array)
- */
 function decodeMappedData(
   data,
   keyMapper = CLAIM_169_REVERSE_KEY_MAPPER,
@@ -230,29 +181,6 @@ function decodeMappedData(
   return JSON.stringify(jsonData);
 }
 
-/**
- * @deprecated This method is deprecated. It's kept for backward compatibility.
- * Translates claims data using a simple mapper.
- * @param {Map|Object} claims - The claims data
- * @param {Object} mapper - The key mapper object
- * @returns {Object} Translated data
- */
-function translateToJSONDeprecated(claims, mapper) {
-  const result = {};
-  if (claims instanceof Map) {
-    claims.forEach((value, param) => {
-      const key = mapper[param] ? mapper[param] : param;
-      result[key] = value;
-    });
-  } else if (typeof claims === "object" && claims !== null) {
-    Object.entries(claims).forEach(([param, value]) => {
-      const key = mapper[param] ? mapper[param] : param;
-      result[key] = value;
-    });
-  }
-  return result;
-}
-
 module.exports = {
   toJson,
   generateQRData,
@@ -261,8 +189,4 @@ module.exports = {
   decodeBinary,
   getMappedData,
   decodeMappedData,
-  // Deprecated exports for backward compatibility
-  getMappedDataDeprecated,
-  decodeMappedDataDeprecated,
-  translateToJSONDeprecated,
 };
