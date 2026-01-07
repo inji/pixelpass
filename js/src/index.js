@@ -156,7 +156,7 @@ function decodeMappedData(
     try {
       jsonData = JSON.parse(data);
     } catch (parseError) {
-      throw new Error(`Failed to decode data: ${error.message}`);
+      throw new Error(`Failed to decode data as CBOR or JSON: ${parseError.message}`);
     }
   }
 
