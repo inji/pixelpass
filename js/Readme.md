@@ -122,7 +122,7 @@ The `decodeBinary` will take a `UInt8ByteArray` as parameter and gives us unzipp
 import { getMappedData } from "@mosip/pixelpass";
 
 const jsonData = { name: "Jhon", id: "207", l_name: "Honay" };
-const mapper = { id: "1", name: "2", l_name: "3" };
+const keyMapper = { id: "1", name: "2", l_name: "3" };
 const valueMapper = {}; // Optional value mapping
 
 const result = getMappedData(jsonData, keyMapper, valueMapper, true);
