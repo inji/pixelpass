@@ -25,7 +25,7 @@ on:
 jobs:
   publish-snapshot:
     if: ${{ inputs.release_type == 'snapshot' }}
-    uses: mosip/kattu/.github/workflows/maven-publish-android.yml@master
+    uses: mosip/kattu/.github/workflows/maven-publish-android.yml@MOSIP-44195
     with:
       SERVICE_LOCATION: 'kotlin'
       ANDROID_SERVICE_LOCATION: 'PixelPass'
@@ -42,7 +42,7 @@ jobs:
   
   publish-release:
     if: ${{ inputs.release_type == 'release' }}
-    uses: mosip/kattu/.github/workflows/maven-publish-android-download.yaml@master
+    uses: mosip/kattu/.github/workflows/maven-publish-android-download.yaml@MOSIP-44195
     with:
       SERVICE_LOCATION: 'kotlin'
       ANDROID_SERVICE_LOCATION: 'PixelPass'
