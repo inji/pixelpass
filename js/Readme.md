@@ -12,6 +12,35 @@ Pixelpass is a library which can do multiple things which are listed below,
 
 - Given a CBOR-encoded data and Mapper → `decodeMappedData` → Gives back a JSON.
 
+## 🚨 Breaking Changes (`0.8.0` and later)
+
+Starting from version `0.8.0`, the following APIs have undergone changes
+to support advanced key/value compression and depth-aware decoding.
+
+These updates improve interoperability and reduce CBOR payload sizes.
+
+## 🔄 API Contract Changes
+
+### 1. `getMappedData` --- Signature Change
+
+#### Old (Deprecated)
+
+`getMappedData(jsonData, mapper, cborEnable?)`
+
+#### New (Recommended)
+
+`getMappedData(jsonData, keyMapper, valueMapper, cborEnable?)`
+
+### 2. `decodeMappedData` --- Signature Change
+
+#### Old (Deprecated)
+
+`decodeMappedData(data, mapper)`
+
+#### New (Recommended)
+
+`decodeMappedData(data, keyMapper, valueMapperFunction?)`.
+
 ## Features
 
 - Compresses the data using zlib compression of level 9.
