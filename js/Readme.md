@@ -39,7 +39,7 @@ These updates improve interoperability and reduce CBOR payload sizes.
 
 #### New (Recommended)
 
-`decodeMappedData(data, keyMapper, valueMapperFunction?)`.
+`decodeMappedData(data, keyMapper, valueMapper?)`.
 
 ## Features
 
