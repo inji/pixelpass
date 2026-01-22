@@ -192,6 +192,22 @@ tasks.register("generatePom") {
     dependsOn("generatePomFileForAarPublication", "generatePomFileForJarReleasePublication")
 }
 
+afterEvaluate {
+    val signTasks = listOf("signJarReleasePublication", "signAarPublication")
+    val publishTasks = listOf(
+        "publishAarPublicationToLocalMavenWithChecksumsRepository",
+        "publishJarReleasePublicationToLocalMavenWithChecksumsRepository",
+        "publishAarPublicationToMavenLocal",
+        "publishJarReleasePublicationToMavenLocal",
+        "publishAarPublicationToPixelpassRepository",
+        "publishJarPublicationToPixelpassRepository",
+    )
+
+    publishTasks.forEach { publishName ->
+        tasks.findByName(publishName)?.dependsOn(signTasks[0], signTasks[1])
+    }
+}
+
 apply(from = "publish-artifact.gradle")
 
 var buildDir = project.layout.buildDirectory.get()
