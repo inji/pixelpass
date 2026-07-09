@@ -9,22 +9,48 @@
 
 ## Usage
 
-Both Kotlin and Java packages are compiled from same Kotlin codebase. They are also deployed as aar and jar packages to maven. Below is how to use them.
+The library is implemented in Kotlin and is compatible with both **Kotlin** and **Java** projects. It is published to Maven as two artifacts:
 
-### Kotlin
+* **`pixelpass-aar`** – Android library (AAR)
+* **`pixelpass-jar`** – JVM library (JAR)
 
-`implementation("io.inji:pixelpass:0.8.0-RC1")`
+Choose the artifact that best fits your project.
 
-### Java
+### Gradle
+
+**Android (AAR)**
+
+```gradle
+implementation("io.inji:pixelpass-aar:1.0.0-alpha.1")
+```
+
+**JVM (JAR)**
+
+```gradle
+implementation("io.inji:pixelpass-jar:1.0.0-alpha.1")
+```
+
+### Maven
+
+**Android (AAR)**
 
 ```xml
 <dependency>
-  <groupId>io.inji</groupId>
-  <artifactId>pixelpass</artifactId>
-  <version>0.8.0-RC1</version>
+    <groupId>io.inji</groupId>
+    <artifactId>pixelpass-aar</artifactId>
+    <version>1.0.0-alpha.1</version>
 </dependency>
 ```
 
+**JVM (JAR)**
+
+```xml
+<dependency>
+    <groupId>io.inji</groupId>
+    <artifactId>pixelpass-jar</artifactId>
+    <version>1.0.0-alpha.1</version>
+</dependency>
+```
 
 ## APIs
 
