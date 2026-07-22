@@ -127,4 +127,4 @@ return an array JSON remapped string.
 returns decoded data in JSON format
 
 ## License
-MPL-2.0
+Apache 2.0
