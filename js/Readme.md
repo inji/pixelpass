@@ -280,4 +280,4 @@ Key differences:
 - `jsonData must not be null or undefined` - thrown when null or undefined is passed to `getMappedData`.
 
 ## License
-MPL-2.0
+Apache 2.0
