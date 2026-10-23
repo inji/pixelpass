@@ -29,4 +29,11 @@ describe("generateQRData", () => {
     const result = generateQRData("plain text", "PREFIX:");
     expect(result.startsWith("PREFIX:")).toBe(true);
   });
+
+  test("preserves an SD-JWT as a JSON string for Verify", () => {
+    const sdJwt = "header.payload.signature~disclosure~";
+    const encoded = generateQRData(JSON.stringify(sdJwt));
+
+    expect(decode(encoded)).toBe(JSON.stringify(sdJwt));
+  });
 });

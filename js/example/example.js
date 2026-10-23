@@ -42,7 +42,9 @@ app.post('/qr', (req, res) => {
         parsed = json;
     }
 
-    const stringified = typeof parsed === 'string' ? parsed : JSON.stringify(parsed);
+    // Encode both JSON credentials and string credentials as JSON. This preserves
+    // the JSON string wrapper required when an SD-JWT is decoded by Verify.
+    const stringified = JSON.stringify(parsed);
 
     const opts = {
         errorCorrectionLevel: DEFAULT_ECC_LEVEL,
