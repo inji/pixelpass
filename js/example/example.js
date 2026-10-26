@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path');
 const {generateQRCode, generateQRData} = require('../src')
 const QRCode = require("qrcode");
+const {toQrPayload} = require("./qrPayload");
 const {
     DEFAULT_QR_QUALITY,
     DEFAULT_QR_BORDER,
@@ -33,17 +34,6 @@ app.post('/qr', (req, res) => {
     let json = req.body;
     console.log("RECEIVED:", json);
 
-    let parsed;
-    try {
-        parsed = JSON.parse(json);
-        console.log("Valid JSON detected.");
-    } catch (e) {
-        console.log("Non‑JSON input, treating as raw text.");
-        parsed = json;
-    }
-
-    const stringified = typeof parsed === 'string' ? parsed : JSON.stringify(parsed);
-
     const opts = {
         errorCorrectionLevel: DEFAULT_ECC_LEVEL,
         quality: DEFAULT_QR_QUALITY,
@@ -56,7 +46,10 @@ app.post('/qr', (req, res) => {
     };
 
     try {
-        const qrData = generateQRData(stringified);
+        // Always encode input as JSON so decode() returns valid JSON: objects as-is,
+        // strings (for example SD-JWT or JWT) as JSON strings. See INJIVER-1386.
+        const qrPayload = toQrPayload(json);
+        const qrData = generateQRData(qrPayload);
         const version = QRCode.create(qrData, { errorCorrectionLevel: DEFAULT_ECC_LEVEL }).version;
 
         QRCode.toDataURL(qrData, opts).then(qr => res.send([version, qr]));

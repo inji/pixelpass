@@ -29,4 +29,5 @@ describe("generateQRData", () => {
     const result = generateQRData("plain text", "PREFIX:");
     expect(result.startsWith("PREFIX:")).toBe(true);
   });
+
 });
