@@ -1,4 +1,5 @@
 const { generateQRData, decode } = require("../src");
+const {toQrPayload} = require("../example/qrPayload");
 
 describe("generateQRData", () => {
   test("encode raw string to QR", () => {
@@ -30,10 +31,19 @@ describe("generateQRData", () => {
     expect(result.startsWith("PREFIX:")).toBe(true);
   });
 
-  test("preserves an SD-JWT as a JSON string for Verify", () => {
+  test("round-trips example app QR payloads as valid JSON", () => {
+    const vcJson = JSON.stringify({
+      "@context": ["https://www.w3.org/2018/credentials/v1"],
+      type: ["VerifiableCredential", "FarmerCredential"],
+      credentialSubject: {fullName: "John Doe", farmerId: "9876543210"},
+    });
     const sdJwt = "header.payload.signature~disclosure~";
-    const encoded = generateQRData(JSON.stringify(sdJwt));
+    const quotedSdJwt = JSON.stringify(sdJwt);
+    const jwt = "header.payload.signature";
 
-    expect(decode(encoded)).toBe(JSON.stringify(sdJwt));
+    expect(JSON.parse(decode(generateQRData(toQrPayload(vcJson))))).toEqual(JSON.parse(vcJson));
+    expect(JSON.parse(decode(generateQRData(toQrPayload(`${sdJwt}\n`))))).toBe(sdJwt);
+    expect(JSON.parse(decode(generateQRData(toQrPayload(quotedSdJwt))))).toBe(sdJwt);
+    expect(JSON.parse(decode(generateQRData(toQrPayload(jwt))))).toBe(jwt);
   });
 });
