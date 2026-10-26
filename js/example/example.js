@@ -34,10 +34,6 @@ app.post('/qr', (req, res) => {
     let json = req.body;
     console.log("RECEIVED:", json);
 
-    // Always encode input as JSON so decode() returns valid JSON: objects as-is,
-    // strings (for example SD-JWT or JWT) as JSON strings. See INJIVER-1386.
-    const qrPayload = toQrPayload(json);
-
     const opts = {
         errorCorrectionLevel: DEFAULT_ECC_LEVEL,
         quality: DEFAULT_QR_QUALITY,
@@ -50,6 +46,9 @@ app.post('/qr', (req, res) => {
     };
 
     try {
+        // Always encode input as JSON so decode() returns valid JSON: objects as-is,
+        // strings (for example SD-JWT or JWT) as JSON strings. See INJIVER-1386.
+        const qrPayload = toQrPayload(json);
         const qrData = generateQRData(qrPayload);
         const version = QRCode.create(qrData, { errorCorrectionLevel: DEFAULT_ECC_LEVEL }).version;
 

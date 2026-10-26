@@ -1,5 +1,10 @@
 const toQrPayload = (rawInput) => {
-    const input = rawInput.trim();
+    const input = typeof rawInput === "string" ? rawInput.trim() : "";
+
+    // Preserve the example's previous behavior for an empty request body.
+    if (!input) {
+        return "{}";
+    }
 
     try {
         return JSON.stringify(JSON.parse(input));

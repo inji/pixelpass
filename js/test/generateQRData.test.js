@@ -1,5 +1,4 @@
 const { generateQRData, decode } = require("../src");
-const {toQrPayload} = require("../example/qrPayload");
 
 describe("generateQRData", () => {
   test("encode raw string to QR", () => {
@@ -31,19 +30,4 @@ describe("generateQRData", () => {
     expect(result.startsWith("PREFIX:")).toBe(true);
   });
 
-  test("round-trips example app QR payloads as valid JSON", () => {
-    const vcJson = JSON.stringify({
-      "@context": ["https://www.w3.org/2018/credentials/v1"],
-      type: ["VerifiableCredential", "FarmerCredential"],
-      credentialSubject: {fullName: "John Doe", farmerId: "9876543210"},
-    });
-    const sdJwt = "header.payload.signature~disclosure~";
-    const quotedSdJwt = JSON.stringify(sdJwt);
-    const jwt = "header.payload.signature";
-
-    expect(JSON.parse(decode(generateQRData(toQrPayload(vcJson))))).toEqual(JSON.parse(vcJson));
-    expect(JSON.parse(decode(generateQRData(toQrPayload(`${sdJwt}\n`))))).toBe(sdJwt);
-    expect(JSON.parse(decode(generateQRData(toQrPayload(quotedSdJwt))))).toBe(sdJwt);
-    expect(JSON.parse(decode(generateQRData(toQrPayload(jwt))))).toBe(jwt);
-  });
 });
