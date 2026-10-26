@@ -7,7 +7,8 @@ const toQrPayload = (rawInput) => {
     }
 
     try {
-        return JSON.stringify(JSON.parse(input));
+        const parsed = JSON.parse(input);
+        return JSON.stringify(typeof parsed === "string" ? parsed.trim() : parsed);
     } catch (error) {
         return JSON.stringify(input);
     }

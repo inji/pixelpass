@@ -13,7 +13,7 @@ describe("toQrPayload", () => {
   test.each([
     ["VC JSON", vcJson, JSON.parse(vcJson)],
     ["raw SD-JWT with trailing newline", `${sdJwt}\n`, sdJwt],
-    ["quoted SD-JWT", JSON.stringify(sdJwt), sdJwt],
+    ["quoted SD-JWT with trailing newline", JSON.stringify(`${sdJwt}\n`), sdJwt],
     ["plain JWT", jwt, jwt],
     ["empty string", "", {}],
     ["non-string request body", {}, {}],
