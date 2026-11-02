@@ -1,0 +1,91 @@
+{
+  "repo_name": "pixelpass",
+  "head": "c9e2258d9ba66c1cd493fef3efb51f9abaa66501",
+  "branch": "aidlc/onboarding-context",
+  "remotes": [
+    "https://github.com/inji/pixelpass.git"
+  ],
+  "discovered_at": "2026-11-02T17:02:29Z",
+  "maven": {
+    "poms": [],
+    "parent": null
+  },
+  "services": {},
+  "ui_test_projects": [],
+  "node": [
+    {
+      "path": "js/example",
+      "name": "example",
+      "node": "",
+      "scripts": {
+        "start": "node example.js"
+      },
+      "runner": "",
+      "libs": [],
+      "lockfile": "package-lock.json",
+      "jest_config": "",
+      "coverage_reporters": [
+        "clover",
+        "json",
+        "lcov",
+        "text"
+      ],
+      "lcov": true,
+      "test_files": 0
+    },
+    {
+      "path": "js",
+      "name": "@injistack/pixelpass",
+      "node": "",
+      "scripts": {
+        "test": "jest --coverage",
+        "verify": "npm test",
+        "localPublish": "npm version patch && npm test && npm publish --access public --registry http://localhost:4873"
+      },
+      "runner": "jest",
+      "libs": [
+        "babel-jest",
+        "jest"
+      ],
+      "lockfile": "package-lock.json",
+      "jest_config": "",
+      "coverage_reporters": [
+        "clover",
+        "json",
+        "lcov",
+        "text"
+      ],
+      "lcov": true,
+      "test_files": 9
+    }
+  ],
+  "ci": {
+    "workflows": [
+      "kotlin-artifacts-build.yml",
+      "push-trigger.yml"
+    ],
+    "uses": [
+      "mosip/kattu/.github/workflows/gradle-build.yml",
+      "mosip/kattu/.github/workflows/gradlew-sonar-analysis.yml",
+      "mosip/kattu/.github/workflows/maven-publish-android-download.yml",
+      "mosip/kattu/.github/workflows/maven-publish-android.yml",
+      "mosip/kattu/.github/workflows/npm-publish-to-npm-registry.yml"
+    ]
+  },
+  "db": {
+    "dirs": [],
+    "forward": 0,
+    "unpaired": []
+  },
+  "deploy": {
+    "helm": [],
+    "dockerfiles": []
+  },
+  "guidance": [],
+  "api_test": null,
+  "standards": {
+    "tools": [],
+    "config_files": []
+  },
+  "baseline": null
+}

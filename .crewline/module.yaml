@@ -1,0 +1,27 @@
+module: pixelpass
+remotes:
+- https://github.com/inji/pixelpass.git
+verified_at:
+  commit: c9e2258d9ba66c1cd493fef3efb51f9abaa66501
+  date: '2026-11-02T17:02:29Z'
+stack:
+  maven_parent: null
+  gradle_root: kotlin/settings.gradle.kts
+  gradle_projects:
+  - kotlin/PixelPass
+  node_projects:
+  - js
+  - js/example
+  ui_test_projects: []
+  api_test: false
+roles:
+  development:
+  - development/local-context.md
+  - development/discovery.json
+  qa:
+  - qa/module-context.md
+  - qa/known-issues.md
+guidance:
+- README.md
+- js/Readme.md
+- kotlin/Readme.md
