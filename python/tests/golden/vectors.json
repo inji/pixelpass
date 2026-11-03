@@ -1,0 +1,5666 @@
+{
+  "schema_version": 1,
+  "generator": "python/tests/golden/generate_vectors.js",
+  "upstream_commit": "c9e2258d9ba66c1cd493fef3efb51f9abaa66501",
+  "js_src_sha256": "d1d636a9df07549288824990d18c8bc620638dcdc12787aa7bef12df8510a6bd",
+  "package": {
+    "name": "@injistack/pixelpass",
+    "version": "1.0.0-rc.2"
+  },
+  "node_version": "v20.20.2",
+  "dependencies": {
+    "base45-web": "1.0.2",
+    "cbor-web": "9.0.2",
+    "jszip": "3.10.1",
+    "pako": "2.1.0",
+    "qrcode": "1.5.3"
+  },
+  "constants": {
+    "CLAIM_169_KEY_MAPPER": {
+      "ID": 1,
+      "Version": 2,
+      "Language": 3,
+      "Full Name": 4,
+      "First Name": 5,
+      "Middle Name": 6,
+      "Last Name": 7,
+      "Date of Birth": 8,
+      "Gender": 9,
+      "Address": 10,
+      "Email ID": 11,
+      "Phone Number": 12,
+      "Nationality": 13,
+      "Marital Status": 14,
+      "Guardian": 15,
+      "Binary Image": 16,
+      "Binary Image Format": 17,
+      "Best Quality Fingers": 18,
+      "Right Thumb": 50,
+      "Right Pointer Finger": 51,
+      "Right Middle Finger": 52,
+      "Right Ring Finger": 53,
+      "Right Little Finger": 54,
+      "Left Thumb": 55,
+      "Left Pointer Finger": 56,
+      "Left Middle Finger": 57,
+      "Left Ring Finger": 58,
+      "Left Little Finger": 59,
+      "Right Iris": 60,
+      "Left Iris": 61,
+      "Face": 62,
+      "Right Palm Print": 63,
+      "Left Palm Print": 64,
+      "Voice": 65,
+      "Data": 0,
+      "Data format": 1,
+      "Data sub format": 2,
+      "Data issuer": 3
+    },
+    "CLAIM_169_VALUE_MAPPER": {
+      "Data format": {
+        "Image": 0,
+        "Template": 1,
+        "Sound": 2,
+        "Bio Hash": 3
+      },
+      "Data sub format": {
+        "PNG": 0,
+        "JPEG": 1,
+        "JPEG2000": 2,
+        "AVIF": 3,
+        "WEBP": 4,
+        "TIFF": 5,
+        "WSQ": 6,
+        "Fingerprint Template ANSI 378": 0,
+        "Fingerprint Template ISO 19794-2": 1,
+        "Fingerprint Template NIST": 2,
+        "WAV": 0,
+        "MP3": 1
+      },
+      "Gender": {
+        "Male": 1,
+        "Female": 2,
+        "Others": 3
+      },
+      "Marital Status": {
+        "Unmarried": 1,
+        "Married": 2,
+        "Divorced": 3
+      },
+      "Binary Image Format": {
+        "JPEG": 1,
+        "JPEG2": 2,
+        "AVIF": 3,
+        "WEBP": 4
+      }
+    },
+    "CLAIM_169_REVERSE_KEY_MAPPER": [
+      {
+        "1": "ID",
+        "2": "Version",
+        "3": "Language",
+        "4": "Full Name",
+        "5": "First Name",
+        "6": "Middle Name",
+        "7": "Last Name",
+        "8": "Date of Birth",
+        "9": "Gender",
+        "10": "Address",
+        "11": "Email ID",
+        "12": "Phone Number",
+        "13": "Nationality",
+        "14": "Marital Status",
+        "15": "Guardian",
+        "16": "Binary Image",
+        "17": "Binary Image Format",
+        "18": "Best Quality Fingers",
+        "50": "Right Thumb",
+        "51": "Right Pointer Finger",
+        "52": "Right Middle Finger",
+        "53": "Right Ring Finger",
+        "54": "Right Little Finger",
+        "55": "Left Thumb",
+        "56": "Left Pointer Finger",
+        "57": "Left Middle Finger",
+        "58": "Left Ring Finger",
+        "59": "Left Little Finger",
+        "60": "Right Iris",
+        "61": "Left Iris",
+        "62": "Face",
+        "63": "Right Palm Print",
+        "64": "Left Palm Print",
+        "65": "Voice"
+      },
+      {
+        "0": "Data",
+        "1": "Data format",
+        "2": "Data sub format",
+        "3": "Data issuer"
+      }
+    ],
+    "DEFAULT_ZLIB_COMPRESSION_LEVEL": 9,
+    "DEFAULT_ECC_LEVEL": "L",
+    "DEFAULT_QR_BORDER": 3,
+    "DEFAULT_QR_SCALE": 10,
+    "DEFAULT_ZIP_FILE_NAME": "certificate.json"
+  },
+  "counts": {
+    "decode/byte-string": 4,
+    "decode/deviation": 8,
+    "decode/empty-string": 1,
+    "decode/falsy-cbor": 10,
+    "decode/float": 29,
+    "decode/header-prefix": 4,
+    "decode/indefinite": 4,
+    "decode/integer-above-2^53": 13,
+    "decode/integer-like-keys": 5,
+    "decode/integer-width": 2,
+    "decode/invalid-utf8": 7,
+    "decode/json-array": 5,
+    "decode/json-object": 7,
+    "decode/map-non-string-keys": 8,
+    "decode/negative-zero": 4,
+    "decode/nested-object": 1,
+    "decode/plain-text": 8,
+    "decode/scalar-string": 8,
+    "decode/simple-value": 4,
+    "decode/tagged": 20,
+    "decode/text-length": 4,
+    "decode/text-parses-as-cbor": 8,
+    "decode/text-with-bom": 4,
+    "decode/trailing-bytes": 2,
+    "decode/truthy-cbor": 5,
+    "decode/unicode": 7,
+    "decodeMappedData/byte-string": 1,
+    "decodeMappedData/claim169-int-keys": 17,
+    "decodeMappedData/claim169-roundtrip": 2,
+    "decodeMappedData/custom-mappers": 2,
+    "decodeMappedData/deviation": 1,
+    "decodeMappedData/float": 1,
+    "decodeMappedData/json-input": 3,
+    "decodeMappedData/malformed": 4,
+    "decodeMappedData/map-non-string-keys": 1,
+    "decodeMappedData/tagged": 2,
+    "decodeMappedData/top-level-array": 2,
+    "decodeMappedData/top-level-scalar": 4,
+    "decodeMappedData/uppercase-hex": 1,
+    "generateQRData/deviation": 1,
+    "generateQRData/empty-string": 1,
+    "generateQRData/float": 15,
+    "generateQRData/header-prefix": 4,
+    "generateQRData/integer-above-2^53": 8,
+    "generateQRData/integer-like-keys": 2,
+    "generateQRData/integer-width": 1,
+    "generateQRData/json-array": 5,
+    "generateQRData/json-object": 7,
+    "generateQRData/negative-zero": 3,
+    "generateQRData/nested-object": 1,
+    "generateQRData/plain-text": 8,
+    "generateQRData/scalar-string": 8,
+    "generateQRData/text-length": 4,
+    "generateQRData/text-parses-as-cbor": 8,
+    "generateQRData/text-with-bom": 2,
+    "generateQRData/unicode": 5,
+    "getMappedData/claim169-mapped": 22,
+    "getMappedData/custom-mappers": 2,
+    "getMappedData/list-input": 2,
+    "getMappedData/mapping-collision": 11,
+    "getMappedData/scalar": 80,
+    "replaceValuesForClaim169/claim169-value-mapper": 6,
+    "toJson/base64url": 10,
+    "toJson/byte-string": 4,
+    "toJson/deviation": 3,
+    "toJson/falsy-cbor": 9,
+    "toJson/float": 14,
+    "toJson/indefinite": 4,
+    "toJson/integer-above-2^53": 5,
+    "toJson/integer-like-keys": 3,
+    "toJson/integer-width": 1,
+    "toJson/malformed": 3,
+    "toJson/map-non-string-keys": 8,
+    "toJson/negative-zero": 1,
+    "toJson/simple-value": 4,
+    "toJson/tagged": 20,
+    "toJson/truthy-cbor": 5,
+    "toJson/unicode": 2
+  },
+  "vector_count": 525,
+  "vectors": [
+    {
+      "id": "decode.deviation.base45-pair-above-255",
+      "category": "deviation",
+      "function": "decode",
+      "input": ":Z",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-14/R2-2 (out-of-range Base45 group): base45-web keeps 1619 and Uint8Array truncates it, JS returns ''; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": ""
+    },
+    {
+      "id": "decode.deviation.base45-triplet-above-65535",
+      "category": "deviation",
+      "function": "decode",
+      "input": "GGW",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-14/R2-2 (out-of-range Base45 group), AC-11: base45-web accepts a triplet > 65535 (pako then fails); Python raises DecodingError",
+      "python_error": "DecodingError",
+      "expect_error": "unknown compression method"
+    },
+    {
+      "id": "decode.deviation.corrupt-zlib",
+      "category": "deviation",
+      "function": "decode",
+      "input": "X5030",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-11: both raise; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "expect_error": "incorrect header check"
+    },
+    {
+      "id": "decode.deviation.empty-input",
+      "category": "deviation",
+      "function": "decode",
+      "input": "",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-14/R2-2 (empty zlib stream): JS decode('') returns '' (pako returns undefined for an empty stream); Python raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": ""
+    },
+    {
+      "id": "decode.deviation.invalid-base45-char",
+      "category": "deviation",
+      "function": "decode",
+      "input": "AB#",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-11: both raise; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "expect_error": "Invalid character at position 2."
+    },
+    {
+      "id": "decode.deviation.invalid-base45-length",
+      "category": "deviation",
+      "function": "decode",
+      "input": "AAAA",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-11: both raise; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "expect_error": "utf8StringArg has incorrect length."
+    },
+    {
+      "id": "decode.deviation.truncated-zlib",
+      "category": "deviation",
+      "function": "decode",
+      "input": "NCF3QBUBJ32KGOJ7UIS8AX3C*TIOCG6Y0I3",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-14/R2-2 (truncated zlib stream), AC-11: pako.inflate returns undefined on a truncated stream and JS decode returns ''; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": ""
+    },
+    {
+      "id": "decode.deviation.zlib-trailing-garbage",
+      "category": "deviation",
+      "function": "decode",
+      "input": "NCF3QBUBJ32KGOJ7UIS8AX3C*TIOCG6Y0PHJ*F1X5030",
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-11 (corrupt zlib stream): pako throws on bytes after the zlib stream; Python raises DecodingError too",
+      "python_error": "DecodingError",
+      "expect_error": "incorrect header check"
+    },
+    {
+      "id": "decode.empty-string.empty",
+      "category": "empty-string",
+      "function": "decode",
+      "input": "NCF3H0000100",
+      "header": "",
+      "compare": "exact",
+      "expected": ""
+    },
+    {
+      "id": "decode.float.double-0.1",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZV69OG 4QZPS00/CE43",
+      "header": "",
+      "compare": "exact",
+      "expected": "0.1"
+    },
+    {
+      "id": "decode.float.double-1e-7",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZVO2B:3W%YLBXTU00U25M4",
+      "header": "",
+      "compare": "exact",
+      "expected": "1e-7"
+    },
+    {
+      "id": "decode.float.double-1e21",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF8%VVQS%3V SR8AVQ00TW8%2",
+      "header": "",
+      "compare": "exact",
+      "expected": "1e+21"
+    },
+    {
+      "id": "decode.float.double-1e300",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF:YVR6DW%O$SGAUEO0032FG2",
+      "header": "",
+      "compare": "exact",
+      "expected": "1e+300"
+    },
+    {
+      "id": "decode.float.double-min-subnormal",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFL$V100KVHJ51S50",
+      "header": "",
+      "compare": "exact",
+      "expected": "5e-324"
+    },
+    {
+      "id": "decode.float.exponent-int",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF*RIV50F30Z20",
+      "header": "",
+      "compare": "exact",
+      "expected": "100"
+    },
+    {
+      "id": "decode.float.half-range-int-65504",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF*VIUAW300FP5O5",
+      "header": "",
+      "compare": "exact",
+      "expected": "65504"
+    },
+    {
+      "id": "decode.float.in-object",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF5QB3FJMZP300FN8MNUI VQL628CZICGOA$6SDH0ON14KPQKJ BO3*PHGRG66.1Q 30MKHQ1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"h\":1.5,\"s\":0.1,\"w\":2,\"n\":-2.5,\"big\":1e+300}"
+    },
+    {
+      "id": "decode.float.overflow-1e400",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF+YVFTO300L3TS2",
+      "header": "",
+      "compare": "exact",
+      "expected": "null"
+    },
+    {
+      "id": "decode.float.overflow-neg-1e400",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFK%V13H400L3TL5",
+      "header": "",
+      "compare": "exact",
+      "expected": "null"
+    },
+    {
+      "id": "decode.float.single-1.5",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF7ZVF5G+DG8006J4P5",
+      "header": "",
+      "compare": "exact",
+      "expected": "1.5"
+    },
+    {
+      "id": "decode.float.single-100000.5",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF0%V2/FDCO900GP5E3",
+      "header": "",
+      "compare": "exact",
+      "expected": "100000.5"
+    },
+    {
+      "id": "decode.float.single-max",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF YV56C3CWB006YBM5",
+      "header": "",
+      "compare": "exact",
+      "expected": "3.4028234663852886e+38"
+    },
+    {
+      "id": "decode.float.whole-2.0",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFBNC0003H030",
+      "header": "",
+      "compare": "exact",
+      "expected": "2"
+    },
+    {
+      "id": "decode.float.zero-point-zero",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF9NC000V5010",
+      "header": "",
+      "compare": "exact",
+      "expected": "\u0000"
+    },
+    {
+      "id": "decode.header-prefix.header-only-empty-data",
+      "category": "header-prefix",
+      "function": "decode",
+      "input": "HDRNCF3H0000100",
+      "header": "HDR",
+      "compare": "exact",
+      "expected": ""
+    },
+    {
+      "id": "decode.header-prefix.ncb",
+      "category": "header-prefix",
+      "function": "decode",
+      "input": "NCB:NCF3QB7EJN019P0.70",
+      "header": "NCB:",
+      "compare": "exact",
+      "expected": "{\"a\":1}"
+    },
+    {
+      "id": "decode.header-prefix.unicode-header",
+      "category": "header-prefix",
+      "function": "decode",
+      "input": "hé😀:NCF:PD3VC6Y0/B0330",
+      "header": "hé😀:",
+      "compare": "exact",
+      "expected": "[1,2,3]"
+    },
+    {
+      "id": "decode.header-prefix.uri",
+      "category": "header-prefix",
+      "function": "decode",
+      "input": "mosip://NCFKVPV0QIKP775*16EA9Q00UH132",
+      "header": "mosip://",
+      "compare": "exact",
+      "expected": "hello world"
+    },
+    {
+      "id": "decode.integer-above-2^53.2^53",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFHXV::OCCO600K:9+1",
+      "header": "",
+      "compare": "exact",
+      "expected": "9007199254740992"
+    },
+    {
+      "id": "decode.integer-above-2^53.2^53+1",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFHXV::OCCO600K:9+1",
+      "header": "",
+      "compare": "exact",
+      "expected": "9007199254740992"
+    },
+    {
+      "id": "decode.integer-above-2^53.2^53+2",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCF8%V%-T200KVHDR1O80",
+      "header": "",
+      "compare": "exact",
+      "expected": "9007199254740994"
+    },
+    {
+      "id": "decode.integer-above-2^53.2^64",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFHXV+CSCCO700IVS%4",
+      "header": "",
+      "compare": "exact",
+      "expected": "18446744073709552000"
+    },
+    {
+      "id": "decode.integer-above-2^53.30-digits",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCF8%VCWV80S.BW36TW00IO3G3",
+      "header": "",
+      "compare": "exact",
+      "expected": "1.2345678901234568e+29"
+    },
+    {
+      "id": "decode.integer-above-2^53.max-safe",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFOSI*EIL+1M00ICO81",
+      "header": "",
+      "compare": "exact",
+      "expected": "9007199254740991"
+    },
+    {
+      "id": "decode.integer-above-2^53.neg-2^53+1",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFNZVSSH+DG800K:9X4",
+      "header": "",
+      "compare": "exact",
+      "expected": "-9007199254740992"
+    },
+    {
+      "id": "decode.integer-above-2^53.neg-max-safe",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFQUM*EIH+1UAW 030 0",
+      "header": "",
+      "compare": "exact",
+      "expected": "-9007199254740991"
+    },
+    {
+      "id": "decode.integer-like-keys.nested-order",
+      "category": "integer-like-keys",
+      "function": "decode",
+      "input": "NCF:PBKBDTCN*LQHC4ELIDJM+D90EC5LC:CA4KA1FEWKEWY8MU47/K6G1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"1\":[{\"8\":0,\"9\":0}],\"z\":{\"1\":\"a\",\"2\":\"b\",\"3\":\"c\",\"x\":\"y\"}}"
+    },
+    {
+      "id": "decode.integer-like-keys.order",
+      "category": "integer-like-keys",
+      "function": "decode",
+      "input": "NCF0QB-AD/*IM%O9VCPFOY CAVC%JCQ+CST4GL2/133K2%KIBP1EA2Y1LJE9..GKLP8JFLWJK9B1M1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"0\":10,\"2\":3,\"10\":2,\"4294967294\":7,\"b\":1,\"a\":4,\"01\":5,\"4294967295\":6,\"-1\":8,\"1.0\":9}"
+    },
+    {
+      "id": "decode.integer-width.boundaries",
+      "category": "integer-width",
+      "function": "decode",
+      "input": "NCF-X2FIOW00*412EOT*GN04K32-RQ+3AQOD8AN/WNTMQ:COV%U48A5MN2RALIR*LLZ10T.5L5",
+      "header": "",
+      "compare": "exact",
+      "expected": "[23,24,255,256,65535,65536,4294967295,4294967296,-1,-24,-25,-256,-257,-65536,-65537]"
+    },
+    {
+      "id": "decode.json-array.empty",
+      "category": "json-array",
+      "function": "decode",
+      "input": "NCFWND000*DG*2",
+      "header": "",
+      "compare": "exact",
+      "expected": "[]"
+    },
+    {
+      "id": "decode.json-array.len-23",
+      "category": "json-array",
+      "function": "decode",
+      "input": "NCFGVJWGOP*O6SO:5PJMOC0P%XO68P.24ZP4GE46Y02 2090",
+      "header": "",
+      "compare": "exact",
+      "expected": "[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]"
+    },
+    {
+      "id": "decode.json-array.len-24",
+      "category": "json-array",
+      "function": "decode",
+      "input": "NCFNRJAMO6HP%*PPSP96Q%MPP0QCYP4/5G353Q5ZE5TY1%H33A0",
+      "header": "",
+      "compare": "exact",
+      "expected": "[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]"
+    },
+    {
+      "id": "decode.json-array.mixed",
+      "category": "json-array",
+      "function": "decode",
+      "input": "NCF-PDHS9%C5YFWLDIRHOS2T0SO9KHJ10N:KF4",
+      "header": "",
+      "compare": "exact",
+      "expected": "[1,\"two\",3.5,false,null,{\"x\":[]}]"
+    },
+    {
+      "id": "decode.json-array.nested",
+      "category": "json-array",
+      "function": "decode",
+      "input": "NCF7QD VDDVC0XB DRK003XK.0",
+      "header": "",
+      "compare": "exact",
+      "expected": "[[[[1]]],[{}],[[]]]"
+    },
+    {
+      "id": "decode.json-object.credential-like",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCFVZ8.-NGWG333*8KI6QRKIH PWH8ST6B913:D21RQ/D1-5FDO%ISI7P3SBOE5*$FW2GMZ9W3F1:9V3DQW5*09W8DV%5NMK3ZIB-O.SINIJX/B+U7B3M**UH9E2CNZ+TO95V+9:KT44SP.GSUHD383AJZ0DFDKWE5+T8/ G RI%H4SPSA089BQ+SGM.1OXA$PC:HMTKNA DCSB.CP3BJ*E0U6O.HV7HE:3MCC69QRVM5SZI:OR9D31AL/9R$RDMVQEBRX7EC.0V4DC.0FIGW5IZTEY$F0QBU2E5DB*N3687G%3 OJWPM4DCCXOIMDG-NMM7K1SS%D-BVM$EJQ4S869N1AIKM3",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"@context\":[\"https://www.w3.org/2018/credentials/v1\"],\"type\":[\"VerifiableCredential\"],\"issuer\":\"did:web:example.com\",\"credentialSubject\":{\"id\":\"did:jwk:abc\",\"fullName\":\"Test User\",\"dateOfBirth\":\"1990/01/01\",\"gender\":[{\"language\":\"eng\",\"value\":\"Male\"}]},\"proof\":{\"type\":\"Ed25519Signature2020\",\"jws\":\"eyJhbGciOiJFZERTQSJ9..sig\"}}"
+    },
+    {
+      "id": "decode.json-object.duplicate-keys",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCF:PB7EJ%ZJ5ZOA00V$I01",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":3,\"b\":2}"
+    },
+    {
+      "id": "decode.json-object.empty",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCFVMB000-FKQ3",
+      "header": "",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.json-object.escapes",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCF:PBQ7BRCLGGK%UK$9MDMOA0PILLADL-9F2KC3I6ZVFE20UKT*1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"q\":\"\\\"x\\\"\\\\ / \\b\\f\\n\\r\\t A é\",\"c\":\"\\u0001\\u001f\"}"
+    },
+    {
+      "id": "decode.json-object.map-24-entries",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCFEX157P:KG400P48H-I66C2 5-C20UR8RFQSGWDT0QC35CWP3$OFK.RH%U5635HSXA07V2HY5PO7I-UV2RERP*PP5TP/VAQULY-A:FADLKMPAR3BRM6N C//S7:S75GA E94",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"k0\":0,\"k1\":1,\"k2\":2,\"k3\":3,\"k4\":4,\"k5\":5,\"k6\":6,\"k7\":7,\"k8\":8,\"k9\":9,\"k10\":10,\"k11\":11,\"k12\":12,\"k13\":13,\"k14\":14,\"k15\":15,\"k16\":16,\"k17\":17,\"k18\":18,\"k19\":19,\"k20\":20,\"k21\":21,\"k22\":22,\"k23\":23}"
+    },
+    {
+      "id": "decode.json-object.simple",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCF.PB.NI7DJDQJ:CJ*IJPOJADJUE5G7JYBJPMI+3J8Z6+P4W0ORI3IYQAW1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"name\":\"Alice\",\"age\":30,\"active\":true,\"tags\":null}"
+    },
+    {
+      "id": "decode.json-object.whitespace",
+      "category": "json-object",
+      "function": "decode",
+      "input": "NCF:PB7EJ4DJI+Q*CPG0001D*3",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":1,\"b\":[1,2]}"
+    },
+    {
+      "id": "decode.negative-zero.float",
+      "category": "negative-zero",
+      "function": "decode",
+      "input": "NCFX$VCCO300:3UW2",
+      "header": "",
+      "compare": "exact",
+      "expected": "��\u0000"
+    },
+    {
+      "id": "decode.negative-zero.int",
+      "category": "negative-zero",
+      "function": "decode",
+      "input": "NCFX$VCCO300:3UW2",
+      "header": "",
+      "compare": "exact",
+      "expected": "��\u0000"
+    },
+    {
+      "id": "decode.negative-zero.nested",
+      "category": "negative-zero",
+      "function": "decode",
+      "input": "NCF:PBAFJ8VM$84 GLT49%00LDFK3",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":0,\"b\":[0]}"
+    },
+    {
+      "id": "decode.nested-object.deep",
+      "category": "nested-object",
+      "function": "decode",
+      "input": "NCF3QB DJ746MED+MC0SO-YI6IH7 90I1YUQHUQ:VE2A1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":[1,{\"f\":\"g\"}]}}}}}"
+    },
+    {
+      "id": "decode.plain-text.hello",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCFKVPV0QIKP775*16EA9Q00UH132",
+      "header": "",
+      "compare": "exact",
+      "expected": "hello world"
+    },
+    {
+      "id": "decode.plain-text.infinity-literal",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCF. U8Q92+P3T5YM07Z1XI0",
+      "header": "",
+      "compare": "exact",
+      "expected": "Infinity"
+    },
+    {
+      "id": "decode.plain-text.invalid-json",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCFWTL%H9XNMYM0*Y0 80",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":1"
+    },
+    {
+      "id": "decode.plain-text.json-with-nan",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCFWTL%H90SM4R9-RLD00TZEX4",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":NaN}"
+    },
+    {
+      "id": "decode.plain-text.long",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCF2M1M69O35-.P$3QO599PPK9Q599F7MWDPA.PL45$DPUM9HHAF70.9T6-AQH5Z+S WT2YGRE5+YAMPLBSRC707+KS0",
+      "header": "",
+      "compare": "exact",
+      "expected": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. "
+    },
+    {
+      "id": "decode.plain-text.multiline",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCFEYP9$PQ 68OP6MIT NORP5TM/86 10RWJF5",
+      "header": "",
+      "compare": "exact",
+      "expected": "line1\nline2\r\nline3\ttab"
+    },
+    {
+      "id": "decode.plain-text.nan-literal",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCF3YU7%U100D:VT5",
+      "header": "",
+      "compare": "exact",
+      "expected": "NaN"
+    },
+    {
+      "id": "decode.plain-text.single-quotes",
+      "category": "plain-text",
+      "function": "decode",
+      "input": "NCFWTLD1A87NRXL800JSBJ0",
+      "header": "",
+      "compare": "exact",
+      "expected": "{'a':1}"
+    },
+    {
+      "id": "decode.raw.byte-string.empty",
+      "category": "byte-string",
+      "function": "decode",
+      "input": "NCFAOE000Z98K1",
+      "header": "",
+      "source_cbor_hex": "40",
+      "compare": "exact",
+      "expected": "{\"type\":\"Buffer\",\"data\":[]}"
+    },
+    {
+      "id": "decode.raw.byte-string.in-map",
+      "category": "byte-string",
+      "function": "decode",
+      "input": "NCF3QBXEJ+WFT:TE00F+CI5",
+      "header": "",
+      "source_cbor_hex": "a1616443deadbe",
+      "compare": "exact",
+      "expected": "{\"d\":{\"type\":\"Buffer\",\"data\":[222,173,190]}}"
+    },
+    {
+      "id": "decode.raw.byte-string.indefinite",
+      "category": "byte-string",
+      "function": "decode",
+      "input": "NCFISHLVCKYCF+19U0YA0",
+      "header": "",
+      "source_cbor_hex": "5f41014102ff",
+      "compare": "exact",
+      "expected": "{\"type\":\"Buffer\",\"data\":[1,2]}"
+    },
+    {
+      "id": "decode.raw.byte-string.top-level",
+      "category": "byte-string",
+      "function": "decode",
+      "input": "NCFMQE3VC6Y0C60T10",
+      "header": "",
+      "source_cbor_hex": "43010203",
+      "compare": "exact",
+      "expected": "{\"type\":\"Buffer\",\"data\":[1,2,3]}"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.empty-text",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCFUL9000$BC72",
+      "header": "",
+      "source_cbor_hex": "60",
+      "compare": "exact",
+      "expected": "`"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.false",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF/WV000Z/UK5",
+      "header": "",
+      "source_cbor_hex": "f4",
+      "compare": "exact",
+      "expected": "�"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.nan-double",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF:YVQDW/50J00NWJP2",
+      "header": "",
+      "source_cbor_hex": "fb7ff8000000000000",
+      "compare": "exact",
+      "expected": "��\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.nan-half",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF+YV47P300AQTU2",
+      "header": "",
+      "source_cbor_hex": "f97e00",
+      "compare": "exact",
+      "expected": "�~\u0000"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.nan-single",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF YVF5G+DG9007J4D1",
+      "header": "",
+      "source_cbor_hex": "fa7fc00000",
+      "compare": "exact",
+      "expected": "��\u0000\u0000"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.neg-zero-double",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF$$VCCOV507S1K80",
+      "header": "",
+      "source_cbor_hex": "fb8000000000000000",
+      "compare": "exact",
+      "expected": "��\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.neg-zero-half",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCFX$VCCO300:3UW2",
+      "header": "",
+      "source_cbor_hex": "f98000",
+      "compare": "exact",
+      "expected": "��\u0000"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.null",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF2XV0007AVM5",
+      "header": "",
+      "source_cbor_hex": "f6",
+      "compare": "exact",
+      "expected": "�"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.undefined",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCFAXV000%FVN5",
+      "header": "",
+      "source_cbor_hex": "f7",
+      "compare": "exact",
+      "expected": "�"
+    },
+    {
+      "id": "decode.raw.falsy-cbor.zero",
+      "category": "falsy-cbor",
+      "function": "decode",
+      "input": "NCF9NC000V5010",
+      "header": "",
+      "source_cbor_hex": "00",
+      "compare": "exact",
+      "expected": "\u0000"
+    },
+    {
+      "id": "decode.raw.float.array-of-specials",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFDTDYNREJU$2IB1D.XOU/787OB23BGSAZ7KS094MZD1",
+      "header": "",
+      "source_cbor_hex": "86f98000f97e00f97c00f9fc00fb8000000000000000fa7f800000",
+      "compare": "exact",
+      "expected": "[0,null,null,null,0,null]"
+    },
+    {
+      "id": "decode.raw.float.double-0.000001",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZV3BNDJRLU04ESHB0R24Y 0",
+      "header": "",
+      "source_cbor_hex": "fb3eb0c6f7a0b5ed8d",
+      "compare": "exact",
+      "expected": "0.000001"
+    },
+    {
+      "id": "decode.raw.float.double-0.1",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZV69OG 4QZPS00/CE43",
+      "header": "",
+      "source_cbor_hex": "fb3fb999999999999a",
+      "compare": "exact",
+      "expected": "0.1"
+    },
+    {
+      "id": "decode.raw.float.double-1e-7",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZVO2B:3W%YLBXTU00U25M4",
+      "header": "",
+      "source_cbor_hex": "fb3e7ad7f29abcaf48",
+      "compare": "exact",
+      "expected": "1e-7"
+    },
+    {
+      "id": "decode.raw.float.double-1e20",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF8%VPH4 /B+JCQ3IL00:EIQ0",
+      "header": "",
+      "source_cbor_hex": "fb4415af1d78b58c40",
+      "compare": "exact",
+      "expected": "100000000000000000000"
+    },
+    {
+      "id": "decode.raw.float.double-1e21",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF8%VVQS%3V SR8AVQ00TW8%2",
+      "header": "",
+      "source_cbor_hex": "fb444b1ae4d6e2ef50",
+      "compare": "exact",
+      "expected": "1e+21"
+    },
+    {
+      "id": "decode.raw.float.double-max",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF:YVEGW./7000745X21",
+      "header": "",
+      "source_cbor_hex": "fb7fefffffffffffff",
+      "compare": "exact",
+      "expected": "1.7976931348623157e+308"
+    },
+    {
+      "id": "decode.raw.float.double-min-subnormal",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFL$V100KVHJ51S50",
+      "header": "",
+      "source_cbor_hex": "fb0000000000000001",
+      "compare": "exact",
+      "expected": "5e-324"
+    },
+    {
+      "id": "decode.raw.float.double-whole-1",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFFZVODW/50H00.SC/0",
+      "header": "",
+      "source_cbor_hex": "fb3ff0000000000000",
+      "compare": "exact",
+      "expected": "1"
+    },
+    {
+      "id": "decode.raw.float.half-1.5",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFBZV47P3002IDB1",
+      "header": "",
+      "source_cbor_hex": "f93e00",
+      "compare": "exact",
+      "expected": "1.5"
+    },
+    {
+      "id": "decode.raw.float.half-max-65504",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF+YV::V400JVSQ2",
+      "header": "",
+      "source_cbor_hex": "f97bff",
+      "compare": "exact",
+      "expected": "65504"
+    },
+    {
+      "id": "decode.raw.float.half-subnormal",
+      "category": "float",
+      "function": "decode",
+      "input": "NCFH$VKCO200T9UQ5",
+      "header": "",
+      "source_cbor_hex": "f90001",
+      "compare": "exact",
+      "expected": "5.960464477539063e-8"
+    },
+    {
+      "id": "decode.raw.float.single-1.5",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF7ZVF5G+DG8006J4P5",
+      "header": "",
+      "source_cbor_hex": "fa3fc00000",
+      "compare": "exact",
+      "expected": "1.5"
+    },
+    {
+      "id": "decode.raw.float.single-100000.5",
+      "category": "float",
+      "function": "decode",
+      "input": "NCF0%V2/FDCO900GP5E3",
+      "header": "",
+      "source_cbor_hex": "fa47c35040",
+      "compare": "exact",
+      "expected": "100000.5"
+    },
+    {
+      "id": "decode.raw.indefinite.array",
+      "category": "indefinite",
+      "function": "decode",
+      "input": "NCFHVJ9IPG-32K0D90",
+      "header": "",
+      "source_cbor_hex": "9f0102ff",
+      "compare": "exact",
+      "expected": "[1,2]"
+    },
+    {
+      "id": "decode.raw.indefinite.empty-map",
+      "category": "indefinite",
+      "function": "decode",
+      "input": "NCFO RG-39E0.90",
+      "header": "",
+      "source_cbor_hex": "bfff",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.indefinite.map",
+      "category": "indefinite",
+      "function": "decode",
+      "input": "NCFIYR7EJOGV700V6D+2",
+      "header": "",
+      "source_cbor_hex": "bf616101ff",
+      "compare": "exact",
+      "expected": "{\"a\":1}"
+    },
+    {
+      "id": "decode.raw.indefinite.text",
+      "category": "indefinite",
+      "function": "decode",
+      "input": "NCFPTL2T9-W9F+1/717H0",
+      "header": "",
+      "source_cbor_hex": "7f61616162ff",
+      "compare": "exact",
+      "expected": "\"ab\""
+    },
+    {
+      "id": "decode.raw.integer-above-2^53.nested-bigint",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCF3QBRAJZ:PCCOME0H00%BCP3",
+      "header": "",
+      "source_cbor_hex": "a161611b0020000000000001",
+      "compare": "exact",
+      "expected": "�aa\u001b\u0000 \u0000\u0000\u0000\u0000\u0000\u0001"
+    },
+    {
+      "id": "decode.raw.integer-above-2^53.nint64-bigint",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCF/XMK+1$001GV71",
+      "header": "",
+      "source_cbor_hex": "3bffffffffffffffff",
+      "compare": "exact",
+      "expected": ";��������"
+    },
+    {
+      "id": "decode.raw.integer-above-2^53.uint64-2^53+1-bigint",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFOSIB7A100A%8RA0G10",
+      "header": "",
+      "source_cbor_hex": "1b0020000000000001",
+      "compare": "exact",
+      "expected": "\u001b\u0000 \u0000\u0000\u0000\u0000\u0000\u0001"
+    },
+    {
+      "id": "decode.raw.integer-above-2^53.uint64-max-bigint",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCF-VIK+1 00:DRK0",
+      "header": "",
+      "source_cbor_hex": "1bffffffffffffffff",
+      "compare": "exact",
+      "expected": "\u001b��������"
+    },
+    {
+      "id": "decode.raw.integer-above-2^53.uint64-max-safe",
+      "category": "integer-above-2^53",
+      "function": "decode",
+      "input": "NCFOSI*EIL+1M00ICO81",
+      "header": "",
+      "source_cbor_hex": "1b001fffffffffffff",
+      "compare": "exact",
+      "expected": "9007199254740991"
+    },
+    {
+      "id": "decode.raw.integer-like-keys.duplicate-key-last-wins",
+      "category": "integer-like-keys",
+      "function": "decode",
+      "input": "NCF7QB7EJ4DJE%O7EJCN14I2XG0",
+      "header": "",
+      "source_cbor_hex": "a3616101616202616103",
+      "compare": "exact",
+      "expected": "{\"a\":3,\"b\":2}"
+    },
+    {
+      "id": "decode.raw.integer-like-keys.index-boundary",
+      "category": "integer-like-keys",
+      "function": "decode",
+      "input": "NCF7QBY CAVC%JCW.CAVCORP-9B6YI*8DWXDKS0WO8YT0",
+      "header": "",
+      "source_cbor_hex": "a36a343239343936373239350161780264313233340a",
+      "compare": "exact",
+      "expected": "{\"1234\":10,\"4294967295\":1,\"x\":2}"
+    },
+    {
+      "id": "decode.raw.integer-like-keys.text-map-reordered",
+      "category": "integer-like-keys",
+      "function": "decode",
+      "input": "NCF5QB3EJ.BJ-ADCYIM%O7EJ+MIMCO/003U3X0",
+      "header": "",
+      "source_cbor_hex": "a561620162313002613203616104613005",
+      "compare": "exact",
+      "expected": "{\"0\":5,\"2\":3,\"10\":2,\"b\":1,\"a\":4}"
+    },
+    {
+      "id": "decode.raw.integer-width.uint64-encoded-small",
+      "category": "integer-width",
+      "function": "decode",
+      "input": "NCFOSI88GA%8S50T00",
+      "header": "",
+      "source_cbor_hex": "1b0000000000000001",
+      "compare": "exact",
+      "expected": "1"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.ff-fe",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFQ%V/CQHBMB00ICD.0",
+      "header": "",
+      "source_cbor_hex": "fffe41c328",
+      "compare": "exact",
+      "expected": "��A�("
+    },
+    {
+      "id": "decode.raw.invalid-utf8.in-cbor-text-string",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFEN9.%V200AQTF4",
+      "header": "",
+      "source_cbor_hex": "6261ff",
+      "compare": "exact",
+      "expected": "ba�"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.lone-continuation",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCF*$V9HQ09SA00L/700",
+      "header": "",
+      "source_cbor_hex": "ff8080bf41",
+      "compare": "exact",
+      "expected": "����A"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.out-of-range",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFQ%V2 CMP8 8RL00EQTN2",
+      "header": "",
+      "source_cbor_hex": "fff4908080f5f8",
+      "compare": "exact",
+      "expected": "�������"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.overlong",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFXZVAFK5E8SKFK00S4K93",
+      "header": "",
+      "source_cbor_hex": "ffc080e080af41",
+      "compare": "exact",
+      "expected": "������A"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.surrogate-encoded",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFQ%VX.E9YO8V00U3NO3$V0",
+      "header": "",
+      "source_cbor_hex": "ffeda080eda0bd41",
+      "compare": "exact",
+      "expected": "�������A"
+    },
+    {
+      "id": "decode.raw.invalid-utf8.truncated-multibyte-mid",
+      "category": "invalid-utf8",
+      "function": "decode",
+      "input": "NCFQ%V9FLGPU7*VK00C8GO4",
+      "header": "",
+      "source_cbor_hex": "ffe28241f09f98",
+      "compare": "exact",
+      "expected": "��A�"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.array-key",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCFMRBL*O6ZO5008L841",
+      "header": "",
+      "source_cbor_hex": "a18201020a",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.bool-null-float-keys",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCFDSB0/IDN3X0AI 0N00YPSO4",
+      "header": "",
+      "source_cbor_hex": "a3f501f602f93e0003",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.bytes-key",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCF%RB8ZITIP6002W724",
+      "header": "",
+      "source_cbor_hex": "a142686901",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.int-and-text-same-string",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCF2RB4DJ1CJ4DJYM0AQ1OF0",
+      "header": "",
+      "source_cbor_hex": "a201616161316162",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.int-keys",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCF2RBUBJBLO$5B900-DG:1",
+      "header": "",
+      "source_cbor_hex": "a2016178026179",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.mixed-keys",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCF.PB3EJ3GP0DJ7EJ:*P000%23 G0",
+      "header": "",
+      "source_cbor_hex": "a46162010261626161030100",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.neg-int-key",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCFJQBKCO200*-4F4",
+      "header": "",
+      "source_cbor_hex": "a12001",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.map-non-string-keys.nested-int-key-map",
+      "category": "map-non-string-keys",
+      "function": "decode",
+      "input": "NCF3QB-DJJCI961W71ZB0",
+      "header": "",
+      "source_cbor_hex": "a1616ba10102",
+      "compare": "exact",
+      "expected": "{\"k\":{}}"
+    },
+    {
+      "id": "decode.raw.negative-zero.in-map",
+      "category": "negative-zero",
+      "function": "decode",
+      "input": "NCF3QBAFJ8VMV50DI1DG0",
+      "header": "",
+      "source_cbor_hex": "a16161f98000",
+      "compare": "exact",
+      "expected": "{\"a\":0}"
+    },
+    {
+      "id": "decode.raw.simple-value.simple-16",
+      "category": "simple-value",
+      "function": "decode",
+      "input": "NCF-WV0001LUG5",
+      "header": "",
+      "source_cbor_hex": "f0",
+      "compare": "exact",
+      "expected": "{\"value\":16}"
+    },
+    {
+      "id": "decode.raw.simple-value.simple-255",
+      "category": "simple-value",
+      "function": "decode",
+      "input": "NCFC%VG-3XG09B0",
+      "header": "",
+      "source_cbor_hex": "f8ff",
+      "compare": "exact",
+      "expected": "{\"value\":255}"
+    },
+    {
+      "id": "decode.raw.simple-value.undefined-in-array",
+      "category": "simple-value",
+      "function": "decode",
+      "input": "NCFCTD42Q300V7FX2",
+      "header": "",
+      "source_cbor_hex": "82f701",
+      "compare": "exact",
+      "expected": "[null,1]"
+    },
+    {
+      "id": "decode.raw.simple-value.undefined-in-map",
+      "category": "simple-value",
+      "function": "decode",
+      "input": "NCF:PBAFJ5X7QEHE00TYCX0",
+      "header": "",
+      "source_cbor_hex": "a26161f7616202",
+      "compare": "exact",
+      "expected": "{\"b\":2}"
+    },
+    {
+      "id": "decode.raw.tagged.tag0-date-string",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFJM7XJCK8C*ZL/9C.PDW331VCW CYJCM6CKS0-Q8TU0",
+      "header": "",
+      "source_cbor_hex": "c074323031332d30332d32315432303a30343a30305a",
+      "compare": "exact",
+      "expected": "\"2013-03-21T20:04:00.000Z\""
+    },
+    {
+      "id": "decode.raw.tagged.tag1-epoch-float",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF7Q7A RRK9K.P7C1CN10G4TS0",
+      "header": "",
+      "source_cbor_hex": "c1fb41d452d9ec200000",
+      "compare": "exact",
+      "expected": "\"2013-03-21T20:04:00.500Z\""
+    },
+    {
+      "id": "decode.raw.tagged.tag1-epoch-int",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFOL7SY2H.JV50K41PE0",
+      "header": "",
+      "source_cbor_hex": "c11a514b67b0",
+      "compare": "exact",
+      "expected": "\"2013-03-21T20:04:00.000Z\""
+    },
+    {
+      "id": "decode.raw.tagged.tag1-epoch-out-of-range",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF7Q7LYN6H0O13Q00W9U:0",
+      "header": "",
+      "source_cbor_hex": "c1fb7ff0000000000000",
+      "compare": "exact",
+      "expected": "null"
+    },
+    {
+      "id": "decode.raw.tagged.tag1000-unknown-in-map",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF3QB78B VI8.OZ*8M00/EI.4",
+      "header": "",
+      "source_cbor_hex": "a16174d903e8a10101",
+      "compare": "exact",
+      "expected": "{\"t\":{\"tag\":1000,\"value\":{}}}"
+    },
+    {
+      "id": "decode.raw.tagged.tag2-bignum",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFWP7-MP500B00*Q8D0",
+      "header": "",
+      "source_cbor_hex": "c249010000000000000000",
+      "compare": "exact",
+      "expected": "�I\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "id": "decode.raw.tagged.tag21-base64url-expected",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFPTNXUT6HPCN1K$0-60",
+      "header": "",
+      "source_cbor_hex": "d81543010203",
+      "compare": "exact",
+      "expected": "\"AQID\""
+    },
+    {
+      "id": "decode.raw.tagged.tag24-embedded-cbor",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFPTN8OSJCI961H31MA0",
+      "header": "",
+      "source_cbor_hex": "d81843a10102",
+      "compare": "exact",
+      "expected": "{\"tag\":24,\"value\":{\"type\":\"Buffer\",\"data\":[161,1,2]}}"
+    },
+    {
+      "id": "decode.raw.tagged.tag258-set",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFDXNMHP:*PDZO800EO3C2",
+      "header": "",
+      "source_cbor_hex": "d9010283010203",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.tagged.tag3-neg-bignum",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF+P7-MP500B00K:9E0",
+      "header": "",
+      "source_cbor_hex": "c349010000000000000000",
+      "compare": "exact",
+      "expected": "�I\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "id": "decode.raw.tagged.tag30-unassigned",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFPTNLCR2DP600548Z2",
+      "header": "",
+      "source_cbor_hex": "d81e820103",
+      "compare": "exact",
+      "expected": "{\"tag\":30,\"value\":[1,3]}"
+    },
+    {
+      "id": "decode.raw.tagged.tag33-base64url-text",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFIWN5AJNC39IDB00C-P.2",
+      "header": "",
+      "source_cbor_hex": "d8216459574531",
+      "compare": "exact",
+      "expected": "{\"tag\":33,\"value\":\"YWE1\"}"
+    },
+    {
+      "id": "decode.raw.tagged.tag35-regexp",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFIWN2-T*1JF+1:71DE0",
+      "header": "",
+      "source_cbor_hex": "d82343666f6f",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.tagged.tag37-uuid-text",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFIWNQOJEIIOTIF7M/0KAZIHB0TT5$W0",
+      "header": "",
+      "source_cbor_hex": "d8256b68656c6c6f20776f726c64",
+      "compare": "exact",
+      "expected": "{\"tag\":37,\"value\":\"hello world\"}"
+    },
+    {
+      "id": "decode.raw.tagged.tag4-decimal-fraction",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFEP7W KKS0QS0.80",
+      "header": "",
+      "source_cbor_hex": "c482212a",
+      "compare": "exact",
+      "expected": "{\"tag\":4,\"value\":[-2,-11]}"
+    },
+    {
+      "id": "decode.raw.tagged.tag5-bigfloat",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFMP7B$KCN1YR0380",
+      "header": "",
+      "source_cbor_hex": "c5822003",
+      "compare": "exact",
+      "expected": "{\"tag\":5,\"value\":[-1,3]}"
+    },
+    {
+      "id": "decode.raw.tagged.tag55799-self-describe",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCFNVN:$U0SOIS8K00HA9E0",
+      "header": "",
+      "source_cbor_hex": "d9d9f7a1616101",
+      "compare": "exact",
+      "expected": "{\"tag\":55799,\"value\":{\"a\":1}}"
+    },
+    {
+      "id": "decode.raw.tagged.tag64-uint8-typed-array",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF$XN%IS6HPCN1A.0*70",
+      "header": "",
+      "source_cbor_hex": "d84043010203",
+      "compare": "exact",
+      "expected": "{\"0\":1,\"1\":2,\"2\":3}"
+    },
+    {
+      "id": "decode.raw.tagged.tag65-uint16be-typed-array",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF$XN6JTWGOGCO800.1Q72",
+      "header": "",
+      "source_cbor_hex": "d8414400010002",
+      "compare": "exact",
+      "expected": "{\"0\":1,\"1\":2}"
+    },
+    {
+      "id": "decode.raw.tagged.tag85-float32le-typed-array",
+      "category": "tagged",
+      "function": "decode",
+      "input": "NCF9TNNUTYEO.COB00200N2",
+      "header": "",
+      "source_cbor_hex": "d855440000c03f",
+      "compare": "exact",
+      "expected": "{\"0\":1.5}"
+    },
+    {
+      "id": "decode.raw.text-with-bom.raw-bom-text",
+      "category": "text-with-bom",
+      "function": "decode",
+      "input": "NCF:SFPRFQ+8L+9W$7A.2PP0",
+      "header": "",
+      "source_cbor_hex": "efbbbf68656c6c6f",
+      "compare": "exact",
+      "expected": "hello"
+    },
+    {
+      "id": "decode.raw.text-with-bom.raw-double-bom",
+      "category": "text-with-bom",
+      "function": "decode",
+      "input": "NCF:SFIUF$$V2YVLE64P34W0",
+      "header": "",
+      "source_cbor_hex": "efbbbfefbbbf6869",
+      "compare": "exact",
+      "expected": "﻿hi"
+    },
+    {
+      "id": "decode.raw.trailing-bytes.int-then-int",
+      "category": "trailing-bytes",
+      "function": "decode",
+      "input": "NCFJPCHB0600400",
+      "header": "",
+      "source_cbor_hex": "0102",
+      "compare": "exact",
+      "expected": "\u0001\u0002"
+    },
+    {
+      "id": "decode.raw.trailing-bytes.map-then-byte",
+      "category": "trailing-bytes",
+      "function": "decode",
+      "input": "NCF3QB7EJZCP500HUQB2",
+      "header": "",
+      "source_cbor_hex": "a161610100",
+      "compare": "exact",
+      "expected": "�aa\u0001\u0000"
+    },
+    {
+      "id": "decode.raw.truthy-cbor.empty-array",
+      "category": "truthy-cbor",
+      "function": "decode",
+      "input": "NCFWND000*DG*2",
+      "header": "",
+      "source_cbor_hex": "80",
+      "compare": "exact",
+      "expected": "[]"
+    },
+    {
+      "id": "decode.raw.truthy-cbor.empty-map",
+      "category": "truthy-cbor",
+      "function": "decode",
+      "input": "NCFVMB000-FKQ3",
+      "header": "",
+      "source_cbor_hex": "a0",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decode.raw.truthy-cbor.infinity",
+      "category": "truthy-cbor",
+      "function": "decode",
+      "input": "NCF+YVFTO300L3TS2",
+      "header": "",
+      "source_cbor_hex": "f97c00",
+      "compare": "exact",
+      "expected": "null"
+    },
+    {
+      "id": "decode.raw.truthy-cbor.neg-infinity",
+      "category": "truthy-cbor",
+      "function": "decode",
+      "input": "NCFK%V13H400L3TL5",
+      "header": "",
+      "source_cbor_hex": "f9fc00",
+      "compare": "exact",
+      "expected": "null"
+    },
+    {
+      "id": "decode.raw.truthy-cbor.true",
+      "category": "truthy-cbor",
+      "function": "decode",
+      "input": "NCF6XV000L4VL5",
+      "header": "",
+      "source_cbor_hex": "f5",
+      "compare": "exact",
+      "expected": "true"
+    },
+    {
+      "id": "decode.raw.unicode.control-and-separators",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCF4WP9BC6BIDPL3IFCGM6FA:F9$Z38W0",
+      "header": "",
+      "source_cbor_hex": "6d0001081f227f5ce280a8e280a9",
+      "compare": "exact",
+      "expected": "\"\\u0000\\u0001\\b\\u001f\\\"\\\\  \""
+    },
+    {
+      "id": "decode.raw.unicode.text-emoji",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCFIZP+56P.8ENS22AHZL000.I5C*0",
+      "header": "",
+      "source_cbor_hex": "6af09f9880c3a9e4b8ad20",
+      "compare": "exact",
+      "expected": "\"😀é中 \""
+    },
+    {
+      "id": "decode.scalar-string.false",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF/WV000Z/UK5",
+      "header": "",
+      "compare": "exact",
+      "expected": "�"
+    },
+    {
+      "id": "decode.scalar-string.int-123",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF0UI6Y0%30D30",
+      "header": "",
+      "compare": "exact",
+      "expected": "123"
+    },
+    {
+      "id": "decode.scalar-string.json-empty-string",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCFUL9000$BC72",
+      "header": "",
+      "compare": "exact",
+      "expected": "`"
+    },
+    {
+      "id": "decode.scalar-string.json-string",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCFAQ9799.MP$*0R314E0",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"hello\""
+    },
+    {
+      "id": "decode.scalar-string.null",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF2XV0007AVM5",
+      "header": "",
+      "compare": "exact",
+      "expected": "�"
+    },
+    {
+      "id": "decode.scalar-string.quoted-digits",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF*M9.Q66Y0NF0P50",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"123\""
+    },
+    {
+      "id": "decode.scalar-string.true",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF6XV000L4VL5",
+      "header": "",
+      "compare": "exact",
+      "expected": "true"
+    },
+    {
+      "id": "decode.scalar-string.zero",
+      "category": "scalar-string",
+      "function": "decode",
+      "input": "NCF9NC000V5010",
+      "header": "",
+      "compare": "exact",
+      "expected": "\u0000"
+    },
+    {
+      "id": "decode.text-length.23",
+      "category": "text-length",
+      "function": "decode",
+      "input": "NCFHL5FZOP20B Q21",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"aaaaaaaaaaaaaaaaaaaaaaa\""
+    },
+    {
+      "id": "decode.text-length.24",
+      "category": "text-length",
+      "function": "decode",
+      "input": "NCF0VL-89V50QGGMA1",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"bbbbbbbbbbbbbbbbbbbbbbbb\""
+    },
+    {
+      "id": "decode.text-length.255",
+      "category": "text-length",
+      "function": "decode",
+      "input": "NCFEXL*5KTMML40GBTL0",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\""
+    },
+    {
+      "id": "decode.text-length.256",
+      "category": "text-length",
+      "function": "decode",
+      "input": "NCF1ULMUCAC30001JMSVC",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\""
+    },
+    {
+      "id": "decode.text-parses-as-cbor.aa-is-text-a",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCFGN9YM0N60F40",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"a\""
+    },
+    {
+      "id": "decode.text-parses-as-cbor.at-is-empty-bytes",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCFAOE000Z98K1",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"type\":\"Buffer\",\"data\":[]}"
+    },
+    {
+      "id": "decode.text-parses-as-cbor.backtick-is-empty-text-falsy",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCFUL9000$BC72",
+      "header": "",
+      "compare": "exact",
+      "expected": "`"
+    },
+    {
+      "id": "decode.text-parses-as-cbor.bang-is-minus-2",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCFCMA000JD4Y0",
+      "header": "",
+      "compare": "exact",
+      "expected": "-2"
+    },
+    {
+      "id": "decode.text-parses-as-cbor.nul-is-zero-falsy",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCF9NC000V5010",
+      "header": "",
+      "compare": "exact",
+      "expected": "\u0000"
+    },
+    {
+      "id": "decode.text-parses-as-cbor.space-is-minus-1",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCF8MA000X74X0",
+      "header": "",
+      "compare": "exact",
+      "expected": "-1"
+    },
+    {
+      "id": "decode.text-parses-as-cbor.two-spaces-trailing",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCF/NA000820K10",
+      "header": "",
+      "compare": "exact",
+      "expected": "  "
+    },
+    {
+      "id": "decode.text-parses-as-cbor.x-insufficient",
+      "category": "text-parses-as-cbor",
+      "function": "decode",
+      "input": "NCF RL000GDFV2",
+      "header": "",
+      "compare": "exact",
+      "expected": "x"
+    },
+    {
+      "id": "decode.text-with-bom.bom-json",
+      "category": "text-with-bom",
+      "function": "decode",
+      "input": "NCF:SFPRFN-M%OK *I0V5:Z3DP0",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"a\":1}"
+    },
+    {
+      "id": "decode.text-with-bom.bom-text",
+      "category": "text-with-bom",
+      "function": "decode",
+      "input": "NCF:SFPRFQ+8L+9W$7A.2PP0",
+      "header": "",
+      "compare": "exact",
+      "expected": "hello"
+    },
+    {
+      "id": "decode.unicode.json-emoji",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCF$60O40DEWFVCBEC. CEK9-2NU1D*IUPCJ4VC-ED+FF/HSWFL% K/HSXGN -K/HS/$KU-K%LCVIL7-SD:LF1JWLR-$3",
+      "header": "",
+      "compare": "exact",
+      "expected": "{\"name\":\"Jörg 😀\",\"city\":\"नमस्ते\",\"é\":\"中文\"}"
+    },
+    {
+      "id": "decode.unicode.json-lone-surrogate-escape",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCFHN9UYF/4GIC2.N1GK0",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"a�b\""
+    },
+    {
+      "id": "decode.unicode.json-string-emoji",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCFJYPY77EF6:/4FOS7*V/S1B25*Z0",
+      "header": "",
+      "compare": "exact",
+      "expected": "\"héllo 😀\""
+    },
+    {
+      "id": "decode.unicode.plain-text-emoji",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCFG60050:CW4XO VD82E*IUPCJ174W K/HS%4M3$K:HS5.HS K:HSI3H4NB25",
+      "header": "",
+      "compare": "exact",
+      "expected": "héllo 😀 नमस्ते"
+    },
+    {
+      "id": "decode.unicode.text-lone-surrogate",
+      "category": "unicode",
+      "function": "decode",
+      "input": "NCFGN9ZI9I9O53ERIDN00T RD4",
+      "header": "",
+      "compare": "exact",
+      "expected": "abc�def"
+    },
+    {
+      "id": "decodeMappedData.byte-string.value-bytes",
+      "category": "byte-string",
+      "function": "decodeMappedData",
+      "input": "a1104401020304",
+      "compare": "exact",
+      "expected": "{\"Binary Image\":{\"Data\":1,\"Data format\":2,\"Data sub format\":3,\"Data issuer\":4}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-array",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183281a3004001010202",
+      "compare": "exact",
+      "expected": "{\"Right Thumb\":[{\"Data\":{},\"Data format\":1,\"Data sub format\":2}]}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-bio-hash-with-subformat",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183ea201030200",
+      "compare": "exact",
+      "expected": "{\"Face\":{\"Data format\":\"Bio Hash\",\"Data sub format\":0}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-face",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a2016178183ea4004301020301000201036756656e646f7258",
+      "compare": "exact",
+      "expected": "{\"ID\":\"x\",\"Face\":{\"Data\":{\"0\":1,\"1\":2,\"2\":3},\"Data format\":\"Image\",\"Data sub format\":\"JPEG\",\"Data issuer\":\"VendorX\"}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-format-only",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183ea10103",
+      "compare": "exact",
+      "expected": "{\"Face\":{\"Data format\":3}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-nan-string-code",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183ea20161780200",
+      "compare": "exact",
+      "expected": "{\"Face\":{\"Data format\":\"x\",\"Data sub format\":0}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-string-codes",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183ea201613102623178",
+      "compare": "exact",
+      "expected": "{\"Face\":{\"Data format\":\"Template\",\"Data sub format\":\"Fingerprint Template ISO 19794-2\"}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.biometric-unknown-subformat",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1183ea3004001010209",
+      "compare": "exact",
+      "expected": "{\"Face\":{\"Data\":{},\"Data format\":\"Template\",\"Data sub format\":9}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.depth1-key-in-non-biometric",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a10aa2016161026162",
+      "compare": "exact",
+      "expected": "{\"Address\":{\"Data format\":\"a\",\"Data sub format\":\"b\"}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.gender-array-coercion",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1098101",
+      "compare": "exact",
+      "expected": "{\"Gender\":\"Male\"}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.gender-float-whole",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a109fb3ff0000000000000",
+      "compare": "exact",
+      "expected": "{\"Gender\":\"Male\"}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.gender-string-2",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a1096132",
+      "compare": "exact",
+      "expected": "{\"Gender\":\"Female\"}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.gender-unmapped-7",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a10907",
+      "compare": "exact",
+      "expected": "{\"Gender\":7}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.int-and-text-key-collide",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a201616161316162",
+      "compare": "exact",
+      "expected": "{\"ID\":\"b\"}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.kotlin-style",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a8016a3132333435363738393004695465737420557365720868313939303031303109010a694164647265737320310e0211011283010203",
+      "compare": "exact",
+      "expected": "{\"ID\":\"1234567890\",\"Full Name\":\"Test User\",\"Date of Birth\":\"19900101\",\"Gender\":\"Male\",\"Address\":\"Address 1\",\"Marital Status\":\"Married\",\"Binary Image Format\":\"JPEG\",\"Best Quality Fingers\":[1,2,3]}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.mixed-int-text-keys",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a46162010902613161780a6161",
+      "compare": "exact",
+      "expected": "{\"ID\":\"x\",\"Gender\":\"Female\",\"Address\":\"a\",\"b\":1}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.null-and-bool-values",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a301f609f50ef4",
+      "compare": "exact",
+      "expected": "{\"ID\":null,\"Gender\":true,\"Marital Status\":false}"
+    },
+    {
+      "id": "decodeMappedData.claim169-int-keys.unknown-int-keys",
+      "category": "claim169-int-keys",
+      "function": "decodeMappedData",
+      "input": "a218630119010002",
+      "compare": "exact",
+      "expected": "{\"99\":1,\"256\":2}"
+    },
+    {
+      "id": "decodeMappedData.claim169-roundtrip.case-insensitive",
+      "category": "claim169-roundtrip",
+      "function": "decodeMappedData",
+      "input": "a46134614161390262313403623632a2613100613201",
+      "compare": "exact",
+      "expected": "{\"Full Name\":\"A\",\"Gender\":\"Female\",\"Marital Status\":\"Divorced\",\"Face\":{\"Data format\":\"Image\",\"Data sub format\":\"JPEG\"}}"
+    },
+    {
+      "id": "decodeMappedData.claim169-roundtrip.full",
+      "category": "claim169-roundtrip",
+      "function": "decodeMappedData",
+      "input": "b261316a31323334353637383930613263312e30613363656e6761346954657374205573657261386831393930303130316139016231306931204d61696e2053746231316d74406578616d706c652e636f6d6231326c2b313030303030303030303062313362494e62313402623137016231388301020362353081a361306471383376613101613201623632a46130644141454361310061320061336756656e646f7258623635a3613064556b6c476131026132006c756e6b6e6f776e4669656c64646b657074627a7af6",
+      "compare": "exact",
+      "expected": "{\"ID\":\"1234567890\",\"Version\":\"1.0\",\"Language\":\"eng\",\"Full Name\":\"Test User\",\"Date of Birth\":\"19900101\",\"Gender\":\"Male\",\"Address\":\"1 Main St\",\"Email ID\":\"t@example.com\",\"Phone Number\":\"+10000000000\",\"Nationality\":\"IN\",\"Marital Status\":\"Married\",\"Binary Image Format\":\"JPEG\",\"Best Quality Fingers\":[1,2,3],\"Right Thumb\":[{\"Data\":\"q83v\",\"Data format\":1,\"Data sub format\":1}],\"Face\":{\"Data\":\"AAEC\",\"Data format\":\"Image\",\"Data sub format\":\"PNG\",\"Data issuer\":\"VendorX\"},\"Voice\":{\"Data\":\"UklG\",\"Data format\":\"Sound\",\"Data sub format\":\"WAV\"},\"unknownField\":\"kept\",\"zz\":null}"
+    },
+    {
+      "id": "decodeMappedData.custom-mappers.empty-key-mapper",
+      "category": "custom-mappers",
+      "function": "decodeMappedData",
+      "input": "a201a101f502820304",
+      "args": {
+        "key_mapper": [],
+        "value_mapper": "identity"
+      },
+      "expected": "{\"1\":{\"1\":true},\"2\":[3,4]}",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.custom-mappers.identity-value",
+      "category": "custom-mappers",
+      "function": "decodeMappedData",
+      "input": "a201a101f502820304",
+      "args": {
+        "key_mapper": [
+          {
+            "1": "one",
+            "2": "two"
+          },
+          {
+            "1": "inner-one"
+          },
+          null
+        ],
+        "value_mapper": "identity"
+      },
+      "expected": "{\"one\":{\"inner-one\":true},\"two\":[3,4]}",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.deviation.non-hex-non-json",
+      "category": "deviation",
+      "function": "decodeMappedData",
+      "input": "zz",
+      "compare": "exact",
+      "deviation": "AC-7: JS hex-parses any string (parseInt('zz',16) -> NaN -> byte 0) and returns garbage; Python treats non-hex as JSON and raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": "{}"
+    },
+    {
+      "id": "decodeMappedData.error.empty",
+      "category": "malformed",
+      "function": "decodeMappedData",
+      "input": "",
+      "expect_error": "Failed to decode data as CBOR or JSON: Unexpected end of JSON input",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.error.odd-hex-bad-cbor",
+      "category": "malformed",
+      "function": "decodeMappedData",
+      "input": "a1b",
+      "expect_error": "Failed to decode data as CBOR or JSON: Unexpected token 'a', \"a1b\" is not valid JSON",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.error.odd-hex-not-json",
+      "category": "malformed",
+      "function": "decodeMappedData",
+      "input": "abc",
+      "expect_error": "Failed to decode data as CBOR or JSON: Unexpected token 'a', \"abc\" is not valid JSON",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.error.valid-hex-bad-cbor",
+      "category": "malformed",
+      "function": "decodeMappedData",
+      "input": "a1",
+      "expect_error": "Failed to decode data as CBOR or JSON: Unexpected token 'a', \"a1\" is not valid JSON",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "decodeMappedData.float.values",
+      "category": "float",
+      "function": "decodeMappedData",
+      "input": "a401fa3fc0000002fb3fb999999999999a03fb444b1ae4d6e2ef5004f98000",
+      "compare": "exact",
+      "expected": "{\"ID\":1.5,\"Version\":0.1,\"Language\":1e+21,\"Full Name\":0}"
+    },
+    {
+      "id": "decodeMappedData.json-input.array",
+      "category": "json-input",
+      "function": "decodeMappedData",
+      "input": "[{\"1\":\"a\"},{\"4\":\"b\"}]",
+      "compare": "exact",
+      "expected": "{\"0\":{\"ID\":\"a\"},\"1\":{\"Full Name\":\"b\"}}"
+    },
+    {
+      "id": "decodeMappedData.json-input.nested-whitespace",
+      "category": "json-input",
+      "function": "decodeMappedData",
+      "input": " { \"10\" : { \"1\" : \"y\" } } ",
+      "compare": "exact",
+      "expected": "{\"Address\":{\"Data format\":\"y\"}}"
+    },
+    {
+      "id": "decodeMappedData.json-input.object",
+      "category": "json-input",
+      "function": "decodeMappedData",
+      "input": "{\"1\":\"x\",\"9\":1,\"62\":{\"1\":0,\"2\":1}}",
+      "compare": "exact",
+      "expected": "{\"ID\":\"x\",\"Gender\":\"Male\",\"Face\":{\"Data format\":\"Image\",\"Data sub format\":\"JPEG\"}}"
+    },
+    {
+      "id": "decodeMappedData.map-non-string-keys.bool-key",
+      "category": "map-non-string-keys",
+      "function": "decodeMappedData",
+      "input": "a2f5016178f6",
+      "compare": "exact",
+      "expected": "{\"true\":1,\"x\":null}"
+    },
+    {
+      "id": "decodeMappedData.tagged.date-value",
+      "category": "tagged",
+      "function": "decodeMappedData",
+      "input": "a108c074323031332d30332d32315432303a30343a30305a",
+      "compare": "exact",
+      "expected": "{\"Date of Birth\":{}}"
+    },
+    {
+      "id": "decodeMappedData.tagged.unknown-tag-value",
+      "category": "tagged",
+      "function": "decodeMappedData",
+      "input": "a101d81e820103",
+      "compare": "exact",
+      "expected": "{\"ID\":{\"tag\":30,\"value\":[1,3]}}"
+    },
+    {
+      "id": "decodeMappedData.top-level-array.ints",
+      "category": "top-level-array",
+      "function": "decodeMappedData",
+      "input": "83010203",
+      "compare": "exact",
+      "expected": "{\"0\":1,\"1\":2,\"2\":3}"
+    },
+    {
+      "id": "decodeMappedData.top-level-array.maps",
+      "category": "top-level-array",
+      "function": "decodeMappedData",
+      "input": "82a1016161a1096131",
+      "compare": "exact",
+      "expected": "{\"0\":{\"ID\":\"a\"},\"1\":{\"Gender\":\"1\"}}"
+    },
+    {
+      "id": "decodeMappedData.top-level-scalar.empty-map",
+      "category": "top-level-scalar",
+      "function": "decodeMappedData",
+      "input": "a0",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decodeMappedData.top-level-scalar.int",
+      "category": "top-level-scalar",
+      "function": "decodeMappedData",
+      "input": "182a",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decodeMappedData.top-level-scalar.null",
+      "category": "top-level-scalar",
+      "function": "decodeMappedData",
+      "input": "f6",
+      "compare": "exact",
+      "expected": "{}"
+    },
+    {
+      "id": "decodeMappedData.top-level-scalar.text-spread",
+      "category": "top-level-scalar",
+      "function": "decodeMappedData",
+      "input": "63616263",
+      "compare": "exact",
+      "expected": "{\"0\":\"a\",\"1\":\"b\",\"2\":\"c\"}"
+    },
+    {
+      "id": "decodeMappedData.uppercase-hex.upper",
+      "category": "uppercase-hex",
+      "function": "decodeMappedData",
+      "input": "A2016178096131",
+      "compare": "exact",
+      "expected": "{\"ID\":\"x\",\"Gender\":\"Male\"}"
+    },
+    {
+      "id": "generateQRData.deviation.null-input",
+      "category": "deviation",
+      "function": "generateQRData",
+      "input": null,
+      "header": "",
+      "compare": "exact",
+      "deviation": "AC-2/R3-2: JS encodes CBOR null; Python generate_qr_data(None) raises EncodingError",
+      "python_error": "EncodingError",
+      "js_result": "NCF2XV0007AVM5"
+    },
+    {
+      "id": "generateQRData.empty-string.empty",
+      "category": "empty-string",
+      "function": "generateQRData",
+      "input": "",
+      "header": "",
+      "expected": "NCF3H0000100",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.float.double-0.1",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "0.1",
+      "header": "",
+      "expected": "NCFFZV69OG 4QZPS00/CE43",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.double-1e-7",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1e-7",
+      "header": "",
+      "expected": "NCFFZVO2B:3W%YLBXTU00U25M4",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.double-1e21",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1e21",
+      "header": "",
+      "expected": "NCF8%VVQS%3V SR8AVQ00TW8%2",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.double-1e300",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1e300",
+      "header": "",
+      "expected": "NCF:YVR6DW%O$SGAUEO0032FG2",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.double-min-subnormal",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "5e-324",
+      "header": "",
+      "expected": "NCFL$V100KVHJ51S50",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.exponent-int",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1E2",
+      "header": "",
+      "expected": "NCF*RIV50F30Z20",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.half-range-int-65504",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "65504",
+      "header": "",
+      "expected": "NCF*VIUAW300FP5O5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.in-object",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "{\"h\":1.5,\"s\":0.1,\"w\":2.0,\"n\":-2.5,\"big\":1e300}",
+      "header": "",
+      "expected": "NCF5QB3FJMZP300FN8MNUI VQL628CZICGOA$6SDH0ON14KPQKJ BO3*PHGRG66.1Q 30MKHQ1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.overflow-1e400",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1e400",
+      "header": "",
+      "expected": "NCF+YVFTO300L3TS2",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.float.overflow-neg-1e400",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "-1e400",
+      "header": "",
+      "expected": "NCFK%V13H400L3TL5",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.float.single-1.5",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "1.5",
+      "header": "",
+      "expected": "NCF7ZVF5G+DG8006J4P5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.single-100000.5",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "100000.5",
+      "header": "",
+      "expected": "NCF0%V2/FDCO900GP5E3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.single-max",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "3.4028234663852886e38",
+      "header": "",
+      "expected": "NCF YV56C3CWB006YBM5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.whole-2.0",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "2.0",
+      "header": "",
+      "expected": "NCFBNC0003H030",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.float.zero-point-zero",
+      "category": "float",
+      "function": "generateQRData",
+      "input": "0.0",
+      "header": "",
+      "expected": "NCF9NC000V5010",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.header-prefix.header-only-empty-data",
+      "category": "header-prefix",
+      "function": "generateQRData",
+      "input": "",
+      "header": "HDR",
+      "expected": "HDRNCF3H0000100",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.header-prefix.ncb",
+      "category": "header-prefix",
+      "function": "generateQRData",
+      "input": "{\"a\":1}",
+      "header": "NCB:",
+      "expected": "NCB:NCF3QB7EJN019P0.70",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.header-prefix.unicode-header",
+      "category": "header-prefix",
+      "function": "generateQRData",
+      "input": "[1,2,3]",
+      "header": "hé😀:",
+      "expected": "hé😀:NCF:PD3VC6Y0/B0330",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.header-prefix.uri",
+      "category": "header-prefix",
+      "function": "generateQRData",
+      "input": "hello world",
+      "header": "mosip://",
+      "expected": "mosip://NCFKVPV0QIKP775*16EA9Q00UH132",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.2^53",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "9007199254740992",
+      "header": "",
+      "expected": "NCFHXV::OCCO600K:9+1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.2^53+1",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "9007199254740993",
+      "header": "",
+      "expected": "NCFHXV::OCCO600K:9+1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.2^53+2",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "9007199254740994",
+      "header": "",
+      "expected": "NCF8%V%-T200KVHDR1O80",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.2^64",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "18446744073709551616",
+      "header": "",
+      "expected": "NCFHXV+CSCCO700IVS%4",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.30-digits",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "123456789012345678901234567890",
+      "header": "",
+      "expected": "NCF8%VCWV80S.BW36TW00IO3G3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.max-safe",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "9007199254740991",
+      "header": "",
+      "expected": "NCFOSI*EIL+1M00ICO81",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.neg-2^53+1",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "-9007199254740993",
+      "header": "",
+      "expected": "NCFNZVSSH+DG800K:9X4",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-above-2^53.neg-max-safe",
+      "category": "integer-above-2^53",
+      "function": "generateQRData",
+      "input": "-9007199254740991",
+      "header": "",
+      "expected": "NCFQUM*EIH+1UAW 030 0",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-like-keys.nested-order",
+      "category": "integer-like-keys",
+      "function": "generateQRData",
+      "input": "{\"z\":{\"3\":\"c\",\"1\":\"a\",\"x\":\"y\",\"2\":\"b\"},\"1\":[{\"9\":0,\"8\":0}]}",
+      "header": "",
+      "expected": "NCF:PBKBDTCN*LQHC4ELIDJM+D90EC5LC:CA4KA1FEWKEWY8MU47/K6G1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-like-keys.order",
+      "category": "integer-like-keys",
+      "function": "generateQRData",
+      "input": "{\"b\":1,\"10\":2,\"2\":3,\"a\":4,\"01\":5,\"4294967295\":6,\"4294967294\":7,\"-1\":8,\"1.0\":9,\"0\":10}",
+      "header": "",
+      "expected": "NCF0QB-AD/*IM%O9VCPFOY CAVC%JCQ+CST4GL2/133K2%KIBP1EA2Y1LJE9..GKLP8JFLWJK9B1M1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.integer-width.boundaries",
+      "category": "integer-width",
+      "function": "generateQRData",
+      "input": "[23,24,255,256,65535,65536,4294967295,4294967296,-1,-24,-25,-256,-257,-65536,-65537]",
+      "header": "",
+      "expected": "NCF-X2FIOW00*412EOT*GN04K32-RQ+3AQOD8AN/WNTMQ:COV%U48A5MN2RALIR*LLZ10T.5L5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-array.empty",
+      "category": "json-array",
+      "function": "generateQRData",
+      "input": "[]",
+      "header": "",
+      "expected": "NCFWND000*DG*2",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-array.len-23",
+      "category": "json-array",
+      "function": "generateQRData",
+      "input": "[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]",
+      "header": "",
+      "expected": "NCFGVJWGOP*O6SO:5PJMOC0P%XO68P.24ZP4GE46Y02 2090",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-array.len-24",
+      "category": "json-array",
+      "function": "generateQRData",
+      "input": "[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]",
+      "header": "",
+      "expected": "NCFNRJAMO6HP%*PPSP96Q%MPP0QCYP4/5G353Q5ZE5TY1%H33A0",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-array.mixed",
+      "category": "json-array",
+      "function": "generateQRData",
+      "input": "[1,\"two\",3.5,false,null,{\"x\":[]}]",
+      "header": "",
+      "expected": "NCF-PDHS9%C5YFWLDIRHOS2T0SO9KHJ10N:KF4",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-array.nested",
+      "category": "json-array",
+      "function": "generateQRData",
+      "input": "[[[[1]]],[{}],[[]]]",
+      "header": "",
+      "expected": "NCF7QD VDDVC0XB DRK003XK.0",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.credential-like",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{\"@context\":[\"https://www.w3.org/2018/credentials/v1\"],\"type\":[\"VerifiableCredential\"],\"issuer\":\"did:web:example.com\",\"credentialSubject\":{\"id\":\"did:jwk:abc\",\"fullName\":\"Test User\",\"dateOfBirth\":\"1990/01/01\",\"gender\":[{\"language\":\"eng\",\"value\":\"Male\"}]},\"proof\":{\"type\":\"Ed25519Signature2020\",\"jws\":\"eyJhbGciOiJFZERTQSJ9..sig\"}}",
+      "header": "",
+      "expected": "NCFVZ8.-NGWG333*8KI6QRKIH PWH8ST6B913:D21RQ/D1-5FDO%ISI7P3SBOE5*$FW2GMZ9W3F1:9V3DQW5*09W8DV%5NMK3ZIB-O.SINIJX/B+U7B3M**UH9E2CNZ+TO95V+9:KT44SP.GSUHD383AJZ0DFDKWE5+T8/ G RI%H4SPSA089BQ+SGM.1OXA$PC:HMTKNA DCSB.CP3BJ*E0U6O.HV7HE:3MCC69QRVM5SZI:OR9D31AL/9R$RDMVQEBRX7EC.0V4DC.0FIGW5IZTEY$F0QBU2E5DB*N3687G%3 OJWPM4DCCXOIMDG-NMM7K1SS%D-BVM$EJQ4S869N1AIKM3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.duplicate-keys",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{\"a\":1,\"b\":2,\"a\":3}",
+      "header": "",
+      "expected": "NCF:PB7EJ%ZJ5ZOA00V$I01",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.empty",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{}",
+      "header": "",
+      "expected": "NCFVMB000-FKQ3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.escapes",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{\"q\":\"\\\"x\\\"\\\\ \\/ \\b\\f\\n\\r\\t \\u0041 \\u00e9\",\"c\":\"\\u0001\\u001f\\u007f\"}",
+      "header": "",
+      "expected": "NCF:PBQ7BRCLGGK%UK$9MDMOA0PILLADL-9F2KC3I6ZVFE20UKT*1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.map-24-entries",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{\"k0\":0,\"k1\":1,\"k2\":2,\"k3\":3,\"k4\":4,\"k5\":5,\"k6\":6,\"k7\":7,\"k8\":8,\"k9\":9,\"k10\":10,\"k11\":11,\"k12\":12,\"k13\":13,\"k14\":14,\"k15\":15,\"k16\":16,\"k17\":17,\"k18\":18,\"k19\":19,\"k20\":20,\"k21\":21,\"k22\":22,\"k23\":23}",
+      "header": "",
+      "expected": "NCFEX157P:KG400P48H-I66C2 5-C20UR8RFQSGWDT0QC35CWP3$OFK.RH%U5635HSXA07V2HY5PO7I-UV2RERP*PP5TP/VAQULY-A:FADLKMPAR3BRM6N C//S7:S75GA E94",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.simple",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": "{\"name\":\"Alice\",\"age\":30,\"active\":true,\"tags\":null}",
+      "header": "",
+      "expected": "NCF.PB.NI7DJDQJ:CJ*IJPOJADJUE5G7JYBJPMI+3J8Z6+P4W0ORI3IYQAW1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.json-object.whitespace",
+      "category": "json-object",
+      "function": "generateQRData",
+      "input": " { \"a\" : 1 ,\n \"b\" : [ 1 , 2 ] } ",
+      "header": "",
+      "expected": "NCF:PB7EJ4DJI+Q*CPG0001D*3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.negative-zero.float",
+      "category": "negative-zero",
+      "function": "generateQRData",
+      "input": "-0.0",
+      "header": "",
+      "expected": "NCFX$VCCO300:3UW2",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.negative-zero.int",
+      "category": "negative-zero",
+      "function": "generateQRData",
+      "input": "-0",
+      "header": "",
+      "expected": "NCFX$VCCO300:3UW2",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.negative-zero.nested",
+      "category": "negative-zero",
+      "function": "generateQRData",
+      "input": "{\"a\":-0,\"b\":[-0.0]}",
+      "header": "",
+      "expected": "NCF:PBAFJ8VM$84 GLT49%00LDFK3",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.nested-object.deep",
+      "category": "nested-object",
+      "function": "generateQRData",
+      "input": "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":[1,{\"f\":\"g\"}]}}}}}",
+      "header": "",
+      "expected": "NCF3QB DJ746MED+MC0SO-YI6IH7 90I1YUQHUQ:VE2A1",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.plain-text.hello",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "hello world",
+      "header": "",
+      "expected": "NCFKVPV0QIKP775*16EA9Q00UH132",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.infinity-literal",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "Infinity",
+      "header": "",
+      "expected": "NCF. U8Q92+P3T5YM07Z1XI0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.invalid-json",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "{\"a\":1",
+      "header": "",
+      "expected": "NCFWTL%H9XNMYM0*Y0 80",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.json-with-nan",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "{\"a\":NaN}",
+      "header": "",
+      "expected": "NCFWTL%H90SM4R9-RLD00TZEX4",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.long",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. ",
+      "header": "",
+      "expected": "NCF2M1M69O35-.P$3QO599PPK9Q599F7MWDPA.PL45$DPUM9HHAF70.9T6-AQH5Z+S WT2YGRE5+YAMPLBSRC707+KS0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.multiline",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "line1\nline2\r\nline3\ttab",
+      "header": "",
+      "expected": "NCFEYP9$PQ 68OP6MIT NORP5TM/86 10RWJF5",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.nan-literal",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "NaN",
+      "header": "",
+      "expected": "NCF3YU7%U100D:VT5",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.plain-text.single-quotes",
+      "category": "plain-text",
+      "function": "generateQRData",
+      "input": "{'a':1}",
+      "header": "",
+      "expected": "NCFWTLD1A87NRXL800JSBJ0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.scalar-string.false",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "false",
+      "header": "",
+      "expected": "NCF/WV000Z/UK5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.scalar-string.int-123",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "123",
+      "header": "",
+      "expected": "NCF0UI6Y0%30D30",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.scalar-string.json-empty-string",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "\"\"",
+      "header": "",
+      "expected": "NCFUL9000$BC72",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.scalar-string.json-string",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "\"hello\"",
+      "header": "",
+      "expected": "NCFAQ9799.MP$*0R314E0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.scalar-string.null",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "null",
+      "header": "",
+      "expected": "NCF2XV0007AVM5",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.scalar-string.quoted-digits",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "\"123\"",
+      "header": "",
+      "expected": "NCF*M9.Q66Y0NF0P50",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.scalar-string.true",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "true",
+      "header": "",
+      "expected": "NCF6XV000L4VL5",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.scalar-string.zero",
+      "category": "scalar-string",
+      "function": "generateQRData",
+      "input": "0",
+      "header": "",
+      "expected": "NCF9NC000V5010",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.text-length.23",
+      "category": "text-length",
+      "function": "generateQRData",
+      "input": "\"aaaaaaaaaaaaaaaaaaaaaaa\"",
+      "header": "",
+      "expected": "NCFHL5FZOP20B Q21",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-length.24",
+      "category": "text-length",
+      "function": "generateQRData",
+      "input": "\"bbbbbbbbbbbbbbbbbbbbbbbb\"",
+      "header": "",
+      "expected": "NCF0VL-89V50QGGMA1",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-length.255",
+      "category": "text-length",
+      "function": "generateQRData",
+      "input": "\"ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\"",
+      "header": "",
+      "expected": "NCFEXL*5KTMML40GBTL0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-length.256",
+      "category": "text-length",
+      "function": "generateQRData",
+      "input": "\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\"",
+      "header": "",
+      "expected": "NCF1ULMUCAC30001JMSVC",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.aa-is-text-a",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "aa",
+      "header": "",
+      "expected": "NCFGN9YM0N60F40",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.at-is-empty-bytes",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "@",
+      "header": "",
+      "expected": "NCFAOE000Z98K1",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.backtick-is-empty-text-falsy",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "`",
+      "header": "",
+      "expected": "NCFUL9000$BC72",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.bang-is-minus-2",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "!",
+      "header": "",
+      "expected": "NCFCMA000JD4Y0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.nul-is-zero-falsy",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "\u0000",
+      "header": "",
+      "expected": "NCF9NC000V5010",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.space-is-minus-1",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": " ",
+      "header": "",
+      "expected": "NCF8MA000X74X0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.two-spaces-trailing",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "  ",
+      "header": "",
+      "expected": "NCF/NA000820K10",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-parses-as-cbor.x-insufficient",
+      "category": "text-parses-as-cbor",
+      "function": "generateQRData",
+      "input": "x",
+      "header": "",
+      "expected": "NCF RL000GDFV2",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-with-bom.bom-json",
+      "category": "text-with-bom",
+      "function": "generateQRData",
+      "input": "﻿{\"a\":1}",
+      "header": "",
+      "expected": "NCF:SFPRFN-M%OK *I0V5:Z3DP0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.text-with-bom.bom-text",
+      "category": "text-with-bom",
+      "function": "generateQRData",
+      "input": "﻿hello",
+      "header": "",
+      "expected": "NCF:SFPRFQ+8L+9W$7A.2PP0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.unicode.json-emoji",
+      "category": "unicode",
+      "function": "generateQRData",
+      "input": "{\"name\":\"Jörg 😀\",\"city\":\"नमस्ते\",\"é\":\"中文\"}",
+      "header": "",
+      "expected": "NCF$60O40DEWFVCBEC. CEK9-2NU1D*IUPCJ4VC-ED+FF/HSWFL% K/HSXGN -K/HS/$KU-K%LCVIL7-SD:LF1JWLR-$3",
+      "compare": "exact",
+      "encode_parity": true,
+      "value_input": true
+    },
+    {
+      "id": "generateQRData.unicode.json-lone-surrogate-escape",
+      "category": "unicode",
+      "function": "generateQRData",
+      "input": "\"a\\ud800b\"",
+      "header": "",
+      "expected": "NCFHN9UYF/4GIC2.N1GK0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.unicode.json-string-emoji",
+      "category": "unicode",
+      "function": "generateQRData",
+      "input": "\"héllo 😀\"",
+      "header": "",
+      "expected": "NCFJYPY77EF6:/4FOS7*V/S1B25*Z0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.unicode.plain-text-emoji",
+      "category": "unicode",
+      "function": "generateQRData",
+      "input": "héllo 😀 नमस्ते",
+      "header": "",
+      "expected": "NCFG60050:CW4XO VD82E*IUPCJ174W K/HS%4M3$K:HS5.HS K:HSI3H4NB25",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "generateQRData.unicode.text-lone-surrogate",
+      "category": "unicode",
+      "function": "generateQRData",
+      "input": "abc\ud800def",
+      "header": "",
+      "expected": "NCFGN9ZI9I9O53ERIDN00T RD4",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.case-insensitive-keys-and-values.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"full name\":\"A\",\"GENDER\":\"FEMALE\",\"marital STATUS\":\"divorced\",\"face\":{\"DATA FORMAT\":\"IMAGE\",\"data sub FORMAT\":\"JpEg\"}}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"4\":\"A\",\"9\":2,\"14\":3,\"62\":{\"1\":0,\"2\":1}}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.case-insensitive-keys-and-values.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"full name\":\"A\",\"GENDER\":\"FEMALE\",\"marital STATUS\":\"divorced\",\"face\":{\"DATA FORMAT\":\"IMAGE\",\"data sub FORMAT\":\"JpEg\"}}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a46134614161390262313403623632a2613100613201",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.data-maps-to-zero.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Data\":\"d\",\"Data format\":\"Bio Hash\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"0\":\"d\",\"1\":3}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.data-maps-to-zero.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Data\":\"d\",\"Data format\":\"Bio Hash\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a261306164613103",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.empty-object.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.empty-object.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a0",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.full.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":\"1234567890\",\"Version\":\"1.0\",\"Language\":\"eng\",\"Full Name\":\"Test User\",\"Date of Birth\":\"19900101\",\"Gender\":\"male\",\"Address\":\"1 Main St\",\"Email ID\":\"t@example.com\",\"Phone Number\":\"+10000000000\",\"Nationality\":\"IN\",\"Marital Status\":\"MARRIED\",\"Binary Image Format\":\"jpeg\",\"Best Quality Fingers\":[1,2,3],\"Face\":{\"Data\":\"AAEC\",\"Data format\":\"image\",\"Data sub format\":\"png\",\"Data issuer\":\"VendorX\"},\"Right Thumb\":[{\"Data\":\"q83v\",\"Data format\":\"Template\",\"Data sub format\":\"Fingerprint Template ISO 19794-2\"}],\"Voice\":{\"Data\":\"UklG\",\"Data format\":\"sound\",\"Data sub format\":\"wav\"},\"unknownField\":\"kept\",\"zz\":null}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":\"1234567890\",\"2\":\"1.0\",\"3\":\"eng\",\"4\":\"Test User\",\"8\":\"19900101\",\"9\":1,\"10\":\"1 Main St\",\"11\":\"t@example.com\",\"12\":\"+10000000000\",\"13\":\"IN\",\"14\":2,\"17\":1,\"18\":[1,2,3],\"50\":[{\"0\":\"q83v\",\"1\":1,\"2\":1}],\"62\":{\"0\":\"AAEC\",\"1\":0,\"2\":0,\"3\":\"VendorX\"},\"65\":{\"0\":\"UklG\",\"1\":2,\"2\":0},\"unknownField\":\"kept\",\"zz\":null}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.full.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":\"1234567890\",\"Version\":\"1.0\",\"Language\":\"eng\",\"Full Name\":\"Test User\",\"Date of Birth\":\"19900101\",\"Gender\":\"male\",\"Address\":\"1 Main St\",\"Email ID\":\"t@example.com\",\"Phone Number\":\"+10000000000\",\"Nationality\":\"IN\",\"Marital Status\":\"MARRIED\",\"Binary Image Format\":\"jpeg\",\"Best Quality Fingers\":[1,2,3],\"Face\":{\"Data\":\"AAEC\",\"Data format\":\"image\",\"Data sub format\":\"png\",\"Data issuer\":\"VendorX\"},\"Right Thumb\":[{\"Data\":\"q83v\",\"Data format\":\"Template\",\"Data sub format\":\"Fingerprint Template ISO 19794-2\"}],\"Voice\":{\"Data\":\"UklG\",\"Data format\":\"sound\",\"Data sub format\":\"wav\"},\"unknownField\":\"kept\",\"zz\":null}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "b261316a31323334353637383930613263312e30613363656e6761346954657374205573657261386831393930303130316139016231306931204d61696e2053746231316d74406578616d706c652e636f6d6231326c2b313030303030303030303062313362494e62313402623137016231388301020362353081a361306471383376613101613201623632a46130644141454361310061320061336756656e646f7258623635a3613064556b6c476131026132006c756e6b6e6f776e4669656c64646b657074627a7af6",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.list-of-dicts-nested.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"list\":[{\"ID\":1},[{\"Gender\":\"Male\"}],\"s\",5,null]}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"list\":[{\"1\":1},[{\"9\":1}],\"s\",5,null]}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.list-of-dicts-nested.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"list\":[{\"ID\":1},[{\"Gender\":\"Male\"}],\"s\",5,null]}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a1646c69737485a161310181a1613901617305f6",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.nested-dict-keys.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Guardian\":{\"ID\":\"g1\",\"Full Name\":\"G\",\"inner\":{\"Gender\":\"Others\"}}}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"15\":{\"1\":\"g1\",\"4\":\"G\",\"inner\":{\"9\":3}}}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.nested-dict-keys.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Guardian\":{\"ID\":\"g1\",\"Full Name\":\"G\",\"inner\":{\"Gender\":\"Others\"}}}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a1623135a361316267316134614765696e6e6572a1613903",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.numbers.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":12,\"Version\":2.5,\"Phone Number\":-3,\"big\":9007199254740991}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":12,\"2\":2.5,\"12\":-3,\"big\":9007199254740991}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.numbers.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":12,\"Version\":2.5,\"Phone Number\":-3,\"big\":9007199254740991}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a461310c6132fa4020000062313222636269671b001fffffffffffff",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unicode.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Full Name\":\"Jörg 😀\",\"é\":\"x\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"4\":\"Jörg 😀\",\"é\":\"x\"}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unicode.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Full Name\":\"Jörg 😀\",\"é\":\"x\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a261346a4ac3b6726720f09f988062c3a96178",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unmapped-key-order.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"100\":3,\"zz\":1,\"ID\":\"x\",\"5x\":2,\"Gender\":\"Male\",\"abc\":4,\"ABC\":5}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":\"x\",\"9\":1,\"100\":3,\"zz\":1,\"5x\":2,\"abc\":4,\"ABC\":5}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unmapped-key-order.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"100\":3,\"zz\":1,\"ID\":\"x\",\"5x\":2,\"Gender\":\"Male\",\"abc\":4,\"ABC\":5}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a7613161786139016331303003627a7a016235780263616263046341424305",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unmapped-value-kept.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Gender\":\"unknown\",\"Marital Status\":2,\"Binary Image Format\":true}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"9\":\"unknown\",\"14\":2,\"17\":true}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.unmapped-value-kept.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"Gender\":\"unknown\",\"Marital Status\":2,\"Binary Image Format\":true}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a3613967756e6b6e6f776e62313402623137f5",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.claim169-mapped.value-mapper-not-for-unmapped-field.cbor-off",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"gender2\":\"male\",\"Language\":\"male\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"3\":\"male\",\"gender2\":\"male\"}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.claim169-mapped.value-mapper-not-for-unmapped-field.cbor-on",
+      "category": "claim169-mapped",
+      "function": "getMappedData",
+      "input_json": "{\"gender2\":\"male\",\"Language\":\"male\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a26133646d616c656767656e64657232646d616c65",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.custom-mappers.basic.cbor-off",
+      "category": "custom-mappers",
+      "function": "getMappedData",
+      "input_json": "{\"NAME\":\"x\",\"colour\":\"red\",\"other\":\"Green\",\"Colour2\":\"red\"}",
+      "args": {
+        "cbor_enable": false,
+        "key_mapper": {
+          "name": "n",
+          "Colour": 7
+        },
+        "value_mapper": {
+          "colour": {
+            "Red": "r",
+            "GREEN": 2
+          }
+        }
+      },
+      "expected": "{\"7\":\"r\",\"n\":\"x\",\"other\":\"Green\",\"Colour2\":\"red\"}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.custom-mappers.basic.cbor-on",
+      "category": "custom-mappers",
+      "function": "getMappedData",
+      "input_json": "{\"NAME\":\"x\",\"colour\":\"red\",\"other\":\"Green\",\"Colour2\":\"red\"}",
+      "args": {
+        "cbor_enable": true,
+        "key_mapper": {
+          "name": "n",
+          "Colour": 7
+        },
+        "value_mapper": {
+          "colour": {
+            "Red": "r",
+            "GREEN": 2
+          }
+        }
+      },
+      "expected": "a461376172616e6178656f7468657265477265656e67436f6c6f75723263726564",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.list-input.three-items.cbor-off",
+      "category": "list-input",
+      "function": "getMappedData",
+      "input_json": "[{\"ID\":\"a\",\"Gender\":\"Male\"},{\"Full Name\":\"b\"},[]]",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "[{\"1\":\"a\",\"9\":1},{\"4\":\"b\"},[]]",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.list-input.three-items.cbor-on",
+      "category": "list-input",
+      "function": "getMappedData",
+      "input_json": "[{\"ID\":\"a\",\"Gender\":\"Male\"},{\"Full Name\":\"b\"},[]]",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "[\"a261316161613901\",\"a161346162\",[]]",
+      "compare": "exact",
+      "encode_parity": true
+    },
+    {
+      "id": "getMappedData.mapping-collision.gender-case.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"Gender\":\"Male\",\"gender\":\"Female\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"9\":2}",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "Gender",
+        "gender"
+      ],
+      "collision_mapped_key": "9",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.gender-case.cbor-on",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"Gender\":\"Male\",\"gender\":\"Female\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a1613902",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "Gender",
+        "gender"
+      ],
+      "collision_mapped_key": "9",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.literal-1-then-mapped.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"1\":\"y\",\"id\":\"x\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":\"x\"}",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "1",
+        "id"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.literal-1-then-mapped.cbor-on",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"1\":\"y\",\"id\":\"x\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a161316178",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "1",
+        "id"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.mapped-1-and-literal-1.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"1\":\"y\",\"ID\":\"x\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":\"x\"}",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "ID",
+        "1"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.mapped-1-and-literal-1.cbor-on",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"1\":\"y\",\"ID\":\"x\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a161316178",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "ID",
+        "1"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.nested-level.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"Face\":{\"Data\":\"a\",\"data\":\"b\"}}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"62\":{\"0\":\"b\"}}",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "Data",
+        "data"
+      ],
+      "collision_mapped_key": "0",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.nested-level.cbor-on",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"Face\":{\"Data\":\"a\",\"data\":\"b\"}}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a1623632a161306162",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "Data",
+        "data"
+      ],
+      "collision_mapped_key": "0",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.two-keys-to-1.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":\"x\",\"Data format\":\"Image\"}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"1\":0}",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "ID",
+        "Data format"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.mapping-collision.two-keys-to-1.cbor-on",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"ID\":\"x\",\"Data format\":\"Image\"}",
+      "args": {
+        "cbor_enable": true
+      },
+      "expected": "a1613100",
+      "compare": "exact",
+      "deviation": "AC-13: Python raises MappingError by default; strict=False must equal this JS result",
+      "python_error": "MappingError",
+      "collision_keys": [
+        "ID",
+        "Data format"
+      ],
+      "collision_mapped_key": "1",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.no-collision.unmapped-case.cbor-off",
+      "category": "mapping-collision",
+      "function": "getMappedData",
+      "input_json": "{\"abc\":1,\"ABC\":2,\"Abc\":3}",
+      "args": {
+        "cbor_enable": false
+      },
+      "expected": "{\"abc\":1,\"ABC\":2,\"Abc\":3}",
+      "compare": "exact",
+      "encode_parity": false
+    },
+    {
+      "id": "getMappedData.scalar.bool-false.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": false,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": false
+    },
+    {
+      "id": "getMappedData.scalar.bool-false.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": false,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f4"
+    },
+    {
+      "id": "getMappedData.scalar.bool-true.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": true,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": true
+    },
+    {
+      "id": "getMappedData.scalar.bool-true.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": true,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f5"
+    },
+    {
+      "id": "getMappedData.scalar.float-0.1.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 0.1,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 0.1
+    },
+    {
+      "id": "getMappedData.scalar.float-0.1.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 0.1,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fb3fb999999999999a"
+    },
+    {
+      "id": "getMappedData.scalar.float-1.5.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1.5,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 1.5
+    },
+    {
+      "id": "getMappedData.scalar.float-1.5.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1.5,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fa3fc00000"
+    },
+    {
+      "id": "getMappedData.scalar.float-100000.5.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 100000.5,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 100000.5
+    },
+    {
+      "id": "getMappedData.scalar.float-100000.5.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 100000.5,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fa47c35040"
+    },
+    {
+      "id": "getMappedData.scalar.float-1e21.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1e+21,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 1e+21
+    },
+    {
+      "id": "getMappedData.scalar.float-1e21.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1e+21,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fb444b1ae4d6e2ef50"
+    },
+    {
+      "id": "getMappedData.scalar.float-1e300.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1e+300,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 1e+300
+    },
+    {
+      "id": "getMappedData.scalar.float-1e300.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 1e+300,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fb7e37e43c8800759c"
+    },
+    {
+      "id": "getMappedData.scalar.float-2^53+2.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740994,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 9007199254740994
+    },
+    {
+      "id": "getMappedData.scalar.float-2^53+2.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740994,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fb4340000000000001"
+    },
+    {
+      "id": "getMappedData.scalar.float-2^53.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740992,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 9007199254740992
+    },
+    {
+      "id": "getMappedData.scalar.float-2^53.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740992,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fa5a000000"
+    },
+    {
+      "id": "getMappedData.scalar.float-2^64.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 18446744073709552000,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 18446744073709552000
+    },
+    {
+      "id": "getMappedData.scalar.float-2^64.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 18446744073709552000,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fa5f800000"
+    },
+    {
+      "id": "getMappedData.scalar.float-5e-324.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 5e-324,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 5e-324
+    },
+    {
+      "id": "getMappedData.scalar.float-5e-324.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 5e-324,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fb0000000000000001"
+    },
+    {
+      "id": "getMappedData.scalar.float-inf.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "Infinity"
+      },
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": {
+        "$float": "Infinity"
+      }
+    },
+    {
+      "id": "getMappedData.scalar.float-inf.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "Infinity"
+      },
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f97c00"
+    },
+    {
+      "id": "getMappedData.scalar.float-nan.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "NaN"
+      },
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": {
+        "$float": "NaN"
+      }
+    },
+    {
+      "id": "getMappedData.scalar.float-nan.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "NaN"
+      },
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f97e00"
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-2.5.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -2.5,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -2.5
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-2.5.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -2.5,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fac0200000"
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-2^53.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -9007199254740992,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -9007199254740992
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-2^53.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -9007199254740992,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fada000000"
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-inf.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "-Infinity"
+      },
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": {
+        "$float": "-Infinity"
+      }
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-inf.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "-Infinity"
+      },
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f9fc00"
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-zero.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "-0"
+      },
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": {
+        "$float": "-0"
+      }
+    },
+    {
+      "id": "getMappedData.scalar.float-neg-zero.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": {
+        "$float": "-0"
+      },
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "f98000"
+    },
+    {
+      "id": "getMappedData.scalar.float-single-max.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 3.4028234663852886e+38,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 3.4028234663852886e+38
+    },
+    {
+      "id": "getMappedData.scalar.float-single-max.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 3.4028234663852886e+38,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "fa7f7fffff"
+    },
+    {
+      "id": "getMappedData.scalar.float-whole-2.0.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 2,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 2
+    },
+    {
+      "id": "getMappedData.scalar.float-whole-2.0.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 2,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "02"
+    },
+    {
+      "id": "getMappedData.scalar.int-0.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 0,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 0
+    },
+    {
+      "id": "getMappedData.scalar.int-0.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 0,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "00"
+    },
+    {
+      "id": "getMappedData.scalar.int-23.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 23,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 23
+    },
+    {
+      "id": "getMappedData.scalar.int-23.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 23,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "17"
+    },
+    {
+      "id": "getMappedData.scalar.int-24.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 24,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 24
+    },
+    {
+      "id": "getMappedData.scalar.int-24.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 24,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "1818"
+    },
+    {
+      "id": "getMappedData.scalar.int-255.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 255,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 255
+    },
+    {
+      "id": "getMappedData.scalar.int-255.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 255,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "18ff"
+    },
+    {
+      "id": "getMappedData.scalar.int-256.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 256,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 256
+    },
+    {
+      "id": "getMappedData.scalar.int-256.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 256,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "190100"
+    },
+    {
+      "id": "getMappedData.scalar.int-2^32-1.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 4294967295,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 4294967295
+    },
+    {
+      "id": "getMappedData.scalar.int-2^32-1.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 4294967295,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "1affffffff"
+    },
+    {
+      "id": "getMappedData.scalar.int-2^32.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 4294967296,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 4294967296
+    },
+    {
+      "id": "getMappedData.scalar.int-2^32.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 4294967296,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "1b0000000100000000"
+    },
+    {
+      "id": "getMappedData.scalar.int-65535.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 65535,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 65535
+    },
+    {
+      "id": "getMappedData.scalar.int-65535.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 65535,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "19ffff"
+    },
+    {
+      "id": "getMappedData.scalar.int-65536.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 65536,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 65536
+    },
+    {
+      "id": "getMappedData.scalar.int-65536.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 65536,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "1a00010000"
+    },
+    {
+      "id": "getMappedData.scalar.int-max-safe.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740991,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": 9007199254740991
+    },
+    {
+      "id": "getMappedData.scalar.int-max-safe.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": 9007199254740991,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "1b001fffffffffffff"
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-1.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -1,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -1
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-1.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -1,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "20"
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-24.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -24,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -24
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-24.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -24,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "37"
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-25.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -25,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -25
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-25.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -25,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "3818"
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-max-safe.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -9007199254740991,
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": -9007199254740991
+    },
+    {
+      "id": "getMappedData.scalar.int-neg-max-safe.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": -9007199254740991,
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "3b001ffffffffffffe"
+    },
+    {
+      "id": "getMappedData.scalar.string-23.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "aaaaaaaaaaaaaaaaaaaaaaa",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "aaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "getMappedData.scalar.string-23.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "aaaaaaaaaaaaaaaaaaaaaaa",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "776161616161616161616161616161616161616161616161"
+    },
+    {
+      "id": "getMappedData.scalar.string-24.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "bbbbbbbbbbbbbbbbbbbbbbbb",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "bbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "id": "getMappedData.scalar.string-24.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "bbbbbbbbbbbbbbbbbbbbbbbb",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "7818626262626262626262626262626262626262626262626262"
+    },
+    {
+      "id": "getMappedData.scalar.string-256.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    {
+      "id": "getMappedData.scalar.string-256.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "79010064646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464"
+    },
+    {
+      "id": "getMappedData.scalar.string-emoji.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "😀",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "😀"
+    },
+    {
+      "id": "getMappedData.scalar.string-emoji.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "😀",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "64f09f9880"
+    },
+    {
+      "id": "getMappedData.scalar.string-empty.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": ""
+    },
+    {
+      "id": "getMappedData.scalar.string-empty.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "60"
+    },
+    {
+      "id": "getMappedData.scalar.string-lone-surrogate.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "a\ud800b",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "a\ud800b"
+    },
+    {
+      "id": "getMappedData.scalar.string-lone-surrogate.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "a\ud800b",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "6561efbfbd62"
+    },
+    {
+      "id": "getMappedData.scalar.string.cbor-off",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "abc",
+      "args": {
+        "cbor_enable": false
+      },
+      "compare": "value",
+      "encode_parity": false,
+      "expected_value": "abc"
+    },
+    {
+      "id": "getMappedData.scalar.string.cbor-on",
+      "category": "scalar",
+      "function": "getMappedData",
+      "input_value": "abc",
+      "args": {
+        "cbor_enable": true
+      },
+      "compare": "exact",
+      "encode_parity": true,
+      "expected": "63616263"
+    },
+    {
+      "id": "replaceValuesForClaim169.biometric",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{\"Face\":{\"Data format\":0,\"Data sub format\":4,\"Data\":\"x\"},\"Left Iris\":{\"Data format\":\"2\",\"Data sub format\":\"1\"}}",
+      "expected": "{\"Face\":{\"Data format\":\"Image\",\"Data sub format\":\"WEBP\",\"Data\":\"x\"},\"Left Iris\":{\"Data format\":\"Sound\",\"Data sub format\":\"MP3\"}}",
+      "compare": "exact"
+    },
+    {
+      "id": "replaceValuesForClaim169.biometric-missing-subformat",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{\"Face\":{\"Data format\":0}}",
+      "expected": "{\"Face\":{\"Data format\":0}}",
+      "compare": "exact"
+    },
+    {
+      "id": "replaceValuesForClaim169.biometric-not-object",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{\"Face\":\"abc\",\"Voice\":[1,2]}",
+      "expected": "{\"Face\":\"abc\",\"Voice\":[1,2]}",
+      "compare": "exact"
+    },
+    {
+      "id": "replaceValuesForClaim169.empty",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{}",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "replaceValuesForClaim169.root-unmapped",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{\"Gender\":9,\"Marital Status\":\"x\"}",
+      "expected": "{\"Gender\":9,\"Marital Status\":\"x\"}",
+      "compare": "exact"
+    },
+    {
+      "id": "replaceValuesForClaim169.root-values",
+      "category": "claim169-value-mapper",
+      "function": "replaceValuesForClaim169",
+      "input_json": "{\"Gender\":2,\"Marital Status\":\"3\",\"Binary Image Format\":4,\"Data format\":1,\"other\":1}",
+      "expected": "{\"Gender\":\"Female\",\"Marital Status\":\"Divorced\",\"Binary Image Format\":\"WEBP\",\"Data format\":\"Template\",\"other\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.claim169-like",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "pAFqMTIzNDU2Nzg5MARkVGVzdAkBGD6jAEP_2P8BAAIA",
+      "expected": "{\"1\":\"1234567890\",\"4\":\"Test\",\"9\":1,\"62\":{\"0\":{\"0\":255,\"1\":216,\"2\":255},\"1\":0,\"2\":0}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.false",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "9A",
+      "expected": "false",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.map-int-keys",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "owFheAJhefX2",
+      "expected": "{\"1\":\"x\",\"2\":\"y\",\"true\":null}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.neg-zero-whole",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "gvmAAPtAAAAAAAAAAA",
+      "expected": "[0,2]",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.null",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "9g",
+      "expected": "null",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.padding-1",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "oWFhAQ=",
+      "expected": "{\"a\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.padding-2",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "oWFhAQ==",
+      "expected": "{\"a\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.padding-3",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "oWFhAQ===",
+      "expected": "{\"a\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.string",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "Y2FiYw",
+      "expected": "\"abc\"",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.base64url.url-alphabet",
+      "category": "base64url",
+      "function": "toJson",
+      "input": "oWF-Q_v_vw",
+      "expected": "{\"~\":{\"0\":251,\"1\":255,\"2\":191}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.deviation.invalid-char-dropped",
+      "category": "deviation",
+      "function": "toJson",
+      "input": "oW!FhAQ",
+      "compare": "exact",
+      "deviation": "AC-8: Node drops invalid base64url characters; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": {
+        "a": 1
+      }
+    },
+    {
+      "id": "toJson.deviation.space-dropped",
+      "category": "deviation",
+      "function": "toJson",
+      "input": "oWFh AQ",
+      "compare": "exact",
+      "deviation": "AC-8: Node drops whitespace; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "js_result": {
+        "a": 1
+      }
+    },
+    {
+      "id": "toJson.deviation.standard-base64-plus",
+      "category": "deviation",
+      "function": "toJson",
+      "input": "oW+hAQ",
+      "compare": "exact",
+      "deviation": "AC-8: '+' is outside the base64url alphabet; Python raises DecodingError",
+      "python_error": "DecodingError",
+      "expect_error": "Failed to decode CBOR data: Insufficient data"
+    },
+    {
+      "id": "toJson.error.empty",
+      "category": "malformed",
+      "function": "toJson",
+      "input": "",
+      "expect_error": "Failed to decode CBOR data: Insufficient data",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.error.trailing-bytes",
+      "category": "malformed",
+      "function": "toJson",
+      "input": "AQI",
+      "expect_error": "Failed to decode CBOR data: Unexpected data: 0x2",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.error.truncated-map",
+      "category": "malformed",
+      "function": "toJson",
+      "input": "omFhAQ",
+      "expect_error": "Failed to decode CBOR data: Insufficient data",
+      "python_error": "DecodingError",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.byte-string.empty",
+      "category": "byte-string",
+      "function": "toJson",
+      "input": "QA",
+      "source_cbor_hex": "40",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.byte-string.in-map",
+      "category": "byte-string",
+      "function": "toJson",
+      "input": "oWFkQ96tvg",
+      "source_cbor_hex": "a1616443deadbe",
+      "expected": "{\"d\":{\"0\":222,\"1\":173,\"2\":190}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.byte-string.indefinite",
+      "category": "byte-string",
+      "function": "toJson",
+      "input": "X0EBQQL_",
+      "source_cbor_hex": "5f41014102ff",
+      "expected": "{\"0\":1,\"1\":2}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.byte-string.top-level",
+      "category": "byte-string",
+      "function": "toJson",
+      "input": "QwECAw",
+      "source_cbor_hex": "43010203",
+      "expected": "{\"0\":1,\"1\":2,\"2\":3}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.empty-text",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "YA",
+      "source_cbor_hex": "60",
+      "expected": "\"\"",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.false",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "9A",
+      "source_cbor_hex": "f4",
+      "expected": "false",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.nan-double",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "-3_4AAAAAAAA",
+      "source_cbor_hex": "fb7ff8000000000000",
+      "expected": "null",
+      "compare": "value",
+      "expected_value": {
+        "$float": "NaN"
+      }
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.nan-half",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "-X4A",
+      "source_cbor_hex": "f97e00",
+      "expected": "null",
+      "compare": "value",
+      "expected_value": {
+        "$float": "NaN"
+      }
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.nan-single",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "-n_AAAA",
+      "source_cbor_hex": "fa7fc00000",
+      "expected": "null",
+      "compare": "value",
+      "expected_value": {
+        "$float": "NaN"
+      }
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.neg-zero-double",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "-4AAAAAAAAAA",
+      "source_cbor_hex": "fb8000000000000000",
+      "expected": "0",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.neg-zero-half",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "-YAA",
+      "source_cbor_hex": "f98000",
+      "expected": "0",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.null",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "9g",
+      "source_cbor_hex": "f6",
+      "expected": "null",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.falsy-cbor.zero",
+      "category": "falsy-cbor",
+      "function": "toJson",
+      "input": "AA",
+      "source_cbor_hex": "00",
+      "expected": "0",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.array-of-specials",
+      "category": "float",
+      "function": "toJson",
+      "input": "hvmAAPl-APl8APn8APuAAAAAAAAAAPp_gAAA",
+      "source_cbor_hex": "86f98000f97e00f97c00f9fc00fb8000000000000000fa7f800000",
+      "expected": "[0,null,null,null,0,null]",
+      "compare": "value",
+      "expected_value": [
+        0,
+        {
+          "$float": "NaN"
+        },
+        {
+          "$float": "Infinity"
+        },
+        {
+          "$float": "-Infinity"
+        },
+        0,
+        {
+          "$float": "Infinity"
+        }
+      ]
+    },
+    {
+      "id": "toJson.raw.float.double-0.000001",
+      "category": "float",
+      "function": "toJson",
+      "input": "-z6wxvegte2N",
+      "source_cbor_hex": "fb3eb0c6f7a0b5ed8d",
+      "expected": "0.000001",
+      "compare": "value",
+      "expected_value": 0.000001
+    },
+    {
+      "id": "toJson.raw.float.double-0.1",
+      "category": "float",
+      "function": "toJson",
+      "input": "-z-5mZmZmZma",
+      "source_cbor_hex": "fb3fb999999999999a",
+      "expected": "0.1",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.double-1e-7",
+      "category": "float",
+      "function": "toJson",
+      "input": "-z561_KavK9I",
+      "source_cbor_hex": "fb3e7ad7f29abcaf48",
+      "expected": "1e-7",
+      "compare": "value",
+      "expected_value": 1e-7
+    },
+    {
+      "id": "toJson.raw.float.double-1e20",
+      "category": "float",
+      "function": "toJson",
+      "input": "-0QVrx14tYxA",
+      "source_cbor_hex": "fb4415af1d78b58c40",
+      "expected": "100000000000000000000",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.double-1e21",
+      "category": "float",
+      "function": "toJson",
+      "input": "-0RLGuTW4u9Q",
+      "source_cbor_hex": "fb444b1ae4d6e2ef50",
+      "expected": "1e+21",
+      "compare": "value",
+      "expected_value": 1e+21
+    },
+    {
+      "id": "toJson.raw.float.double-max",
+      "category": "float",
+      "function": "toJson",
+      "input": "-3_v________",
+      "source_cbor_hex": "fb7fefffffffffffff",
+      "expected": "1.7976931348623157e+308",
+      "compare": "value",
+      "expected_value": 1.7976931348623157e+308
+    },
+    {
+      "id": "toJson.raw.float.double-min-subnormal",
+      "category": "float",
+      "function": "toJson",
+      "input": "-wAAAAAAAAAB",
+      "source_cbor_hex": "fb0000000000000001",
+      "expected": "5e-324",
+      "compare": "value",
+      "expected_value": 5e-324
+    },
+    {
+      "id": "toJson.raw.float.double-whole-1",
+      "category": "float",
+      "function": "toJson",
+      "input": "-z_wAAAAAAAA",
+      "source_cbor_hex": "fb3ff0000000000000",
+      "expected": "1",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.half-1.5",
+      "category": "float",
+      "function": "toJson",
+      "input": "-T4A",
+      "source_cbor_hex": "f93e00",
+      "expected": "1.5",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.half-max-65504",
+      "category": "float",
+      "function": "toJson",
+      "input": "-Xv_",
+      "source_cbor_hex": "f97bff",
+      "expected": "65504",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.half-subnormal",
+      "category": "float",
+      "function": "toJson",
+      "input": "-QAB",
+      "source_cbor_hex": "f90001",
+      "expected": "5.960464477539063e-8",
+      "compare": "value",
+      "expected_value": 5.960464477539063e-8
+    },
+    {
+      "id": "toJson.raw.float.single-1.5",
+      "category": "float",
+      "function": "toJson",
+      "input": "-j_AAAA",
+      "source_cbor_hex": "fa3fc00000",
+      "expected": "1.5",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.float.single-100000.5",
+      "category": "float",
+      "function": "toJson",
+      "input": "-kfDUEA",
+      "source_cbor_hex": "fa47c35040",
+      "expected": "100000.5",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.indefinite.array",
+      "category": "indefinite",
+      "function": "toJson",
+      "input": "nwEC_w",
+      "source_cbor_hex": "9f0102ff",
+      "expected": "[1,2]",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.indefinite.empty-map",
+      "category": "indefinite",
+      "function": "toJson",
+      "input": "v_8",
+      "source_cbor_hex": "bfff",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.indefinite.map",
+      "category": "indefinite",
+      "function": "toJson",
+      "input": "v2FhAf8",
+      "source_cbor_hex": "bf616101ff",
+      "expected": "{\"a\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.indefinite.text",
+      "category": "indefinite",
+      "function": "toJson",
+      "input": "f2FhYWL_",
+      "source_cbor_hex": "7f61616162ff",
+      "expected": "\"ab\"",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-above-2^53.nested-bigint",
+      "category": "integer-above-2^53",
+      "function": "toJson",
+      "input": "oWFhGwAgAAAAAAAB",
+      "source_cbor_hex": "a161611b0020000000000001",
+      "expected": "{\"a\":9007199254740993}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-above-2^53.nint64-bigint",
+      "category": "integer-above-2^53",
+      "function": "toJson",
+      "input": "O___________",
+      "source_cbor_hex": "3bffffffffffffffff",
+      "expected": "-18446744073709551616",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-above-2^53.uint64-2^53+1-bigint",
+      "category": "integer-above-2^53",
+      "function": "toJson",
+      "input": "GwAgAAAAAAAB",
+      "source_cbor_hex": "1b0020000000000001",
+      "expected": "9007199254740993",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-above-2^53.uint64-max-bigint",
+      "category": "integer-above-2^53",
+      "function": "toJson",
+      "input": "G___________",
+      "source_cbor_hex": "1bffffffffffffffff",
+      "expected": "18446744073709551615",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-above-2^53.uint64-max-safe",
+      "category": "integer-above-2^53",
+      "function": "toJson",
+      "input": "GwAf________",
+      "source_cbor_hex": "1b001fffffffffffff",
+      "expected": "9007199254740991",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-like-keys.duplicate-key-last-wins",
+      "category": "integer-like-keys",
+      "function": "toJson",
+      "input": "o2FhAWFiAmFhAw",
+      "source_cbor_hex": "a3616101616202616103",
+      "expected": "{\"a\":3,\"b\":2}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-like-keys.index-boundary",
+      "category": "integer-like-keys",
+      "function": "toJson",
+      "input": "o2o0Mjk0OTY3Mjk1AWF4AmQxMjM0Cg",
+      "source_cbor_hex": "a36a343239343936373239350161780264313233340a",
+      "expected": "{\"1234\":10,\"4294967295\":1,\"x\":2}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-like-keys.text-map-reordered",
+      "category": "integer-like-keys",
+      "function": "toJson",
+      "input": "pWFiAWIxMAJhMgNhYQRhMAU",
+      "source_cbor_hex": "a561620162313002613203616104613005",
+      "expected": "{\"0\":5,\"2\":3,\"10\":2,\"b\":1,\"a\":4}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.integer-width.uint64-encoded-small",
+      "category": "integer-width",
+      "function": "toJson",
+      "input": "GwAAAAAAAAAB",
+      "source_cbor_hex": "1b0000000000000001",
+      "expected": "1",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.array-key",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "oYIBAgo",
+      "source_cbor_hex": "a18201020a",
+      "expected": "{\"1,2\":10}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.bool-null-float-keys",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "o_UB9gL5PgAD",
+      "source_cbor_hex": "a3f501f602f93e0003",
+      "expected": "{\"true\":1,\"null\":2,\"1.5\":3}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.bytes-key",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "oUJoaQE",
+      "source_cbor_hex": "a142686901",
+      "expected": "{\"hi\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.int-and-text-same-string",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "ogFhYWExYWI",
+      "source_cbor_hex": "a201616161316162",
+      "expected": "{\"1\":\"b\"}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.int-keys",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "ogFheAJheQ",
+      "source_cbor_hex": "a2016178026179",
+      "expected": "{\"1\":\"x\",\"2\":\"y\"}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.mixed-keys",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "pGFiAQJhYmFhAwEA",
+      "source_cbor_hex": "a46162010261626161030100",
+      "expected": "{\"1\":0,\"2\":\"b\",\"b\":1,\"a\":3}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.neg-int-key",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "oSAB",
+      "source_cbor_hex": "a12001",
+      "expected": "{\"-1\":1}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.map-non-string-keys.nested-int-key-map",
+      "category": "map-non-string-keys",
+      "function": "toJson",
+      "input": "oWFroQEC",
+      "source_cbor_hex": "a1616ba10102",
+      "expected": "{\"k\":{\"1\":2}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.negative-zero.in-map",
+      "category": "negative-zero",
+      "function": "toJson",
+      "input": "oWFh-YAA",
+      "source_cbor_hex": "a16161f98000",
+      "expected": "{\"a\":0}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.simple-value.simple-16",
+      "category": "simple-value",
+      "function": "toJson",
+      "input": "8A",
+      "source_cbor_hex": "f0",
+      "expected": "{\"value\":16}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.simple-value.simple-255",
+      "category": "simple-value",
+      "function": "toJson",
+      "input": "-P8",
+      "source_cbor_hex": "f8ff",
+      "expected": "{\"value\":255}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.simple-value.undefined-in-array",
+      "category": "simple-value",
+      "function": "toJson",
+      "input": "gvcB",
+      "source_cbor_hex": "82f701",
+      "expected": "[null,1]",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.simple-value.undefined-in-map",
+      "category": "simple-value",
+      "function": "toJson",
+      "input": "omFh92FiAg",
+      "source_cbor_hex": "a26161f7616202",
+      "expected": "{\"b\":2}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag0-date-string",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "wHQyMDEzLTAzLTIxVDIwOjA0OjAwWg",
+      "source_cbor_hex": "c074323031332d30332d32315432303a30343a30305a",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag1-epoch-float",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "wftB1FLZ7CAAAA",
+      "source_cbor_hex": "c1fb41d452d9ec200000",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag1-epoch-int",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "wRpRS2ew",
+      "source_cbor_hex": "c11a514b67b0",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag1-epoch-out-of-range",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "wft_8AAAAAAAAA",
+      "source_cbor_hex": "c1fb7ff0000000000000",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag1000-unknown-in-map",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "oWF02QPooQEB",
+      "source_cbor_hex": "a16174d903e8a10101",
+      "expected": "{\"t\":{\"tag\":1000,\"value\":{\"1\":1}}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag2-bignum",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "wkkBAAAAAAAAAAA",
+      "source_cbor_hex": "c249010000000000000000",
+      "expected": "18446744073709551616",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag21-base64url-expected",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2BVDAQID",
+      "source_cbor_hex": "d81543010203",
+      "expected": "{\"tag\":21,\"value\":{\"0\":1,\"1\":2,\"2\":3}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag24-embedded-cbor",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2BhDoQEC",
+      "source_cbor_hex": "d81843a10102",
+      "expected": "{\"tag\":24,\"value\":{\"0\":161,\"1\":1,\"2\":2}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag258-set",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2QECgwECAw",
+      "source_cbor_hex": "d9010283010203",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag3-neg-bignum",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "w0kBAAAAAAAAAAA",
+      "source_cbor_hex": "c349010000000000000000",
+      "expected": "-18446744073709551617",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag30-unassigned",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2B6CAQM",
+      "source_cbor_hex": "d81e820103",
+      "expected": "{\"tag\":30,\"value\":[1,3]}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag33-base64url-text",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2CFkWVdFMQ",
+      "source_cbor_hex": "d8216459574531",
+      "expected": "{\"tag\":33,\"value\":\"YWE1\"}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag35-regexp",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2CNDZm9v",
+      "source_cbor_hex": "d82343666f6f",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag37-uuid-text",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2CVraGVsbG8gd29ybGQ",
+      "source_cbor_hex": "d8256b68656c6c6f20776f726c64",
+      "expected": "{\"tag\":37,\"value\":\"hello world\"}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag4-decimal-fraction",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "xIIhKg",
+      "source_cbor_hex": "c482212a",
+      "expected": "{\"tag\":4,\"value\":[-2,-11]}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag5-bigfloat",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "xYIgAw",
+      "source_cbor_hex": "c5822003",
+      "expected": "{\"tag\":5,\"value\":[-1,3]}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag55799-self-describe",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2dn3oWFhAQ",
+      "source_cbor_hex": "d9d9f7a1616101",
+      "expected": "{\"tag\":55799,\"value\":{\"a\":1}}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag64-uint8-typed-array",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2EBDAQID",
+      "source_cbor_hex": "d84043010203",
+      "expected": "{\"0\":1,\"1\":2,\"2\":3}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag65-uint16be-typed-array",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2EFEAAEAAg",
+      "source_cbor_hex": "d8414400010002",
+      "expected": "{\"0\":1,\"1\":2}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.tagged.tag85-float32le-typed-array",
+      "category": "tagged",
+      "function": "toJson",
+      "input": "2FVEAADAPw",
+      "source_cbor_hex": "d855440000c03f",
+      "expected": "{\"0\":1.5}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.truthy-cbor.empty-array",
+      "category": "truthy-cbor",
+      "function": "toJson",
+      "input": "gA",
+      "source_cbor_hex": "80",
+      "expected": "[]",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.truthy-cbor.empty-map",
+      "category": "truthy-cbor",
+      "function": "toJson",
+      "input": "oA",
+      "source_cbor_hex": "a0",
+      "expected": "{}",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.truthy-cbor.infinity",
+      "category": "truthy-cbor",
+      "function": "toJson",
+      "input": "-XwA",
+      "source_cbor_hex": "f97c00",
+      "expected": "null",
+      "compare": "value",
+      "expected_value": {
+        "$float": "Infinity"
+      }
+    },
+    {
+      "id": "toJson.raw.truthy-cbor.neg-infinity",
+      "category": "truthy-cbor",
+      "function": "toJson",
+      "input": "-fwA",
+      "source_cbor_hex": "f9fc00",
+      "expected": "null",
+      "compare": "value",
+      "expected_value": {
+        "$float": "-Infinity"
+      }
+    },
+    {
+      "id": "toJson.raw.truthy-cbor.true",
+      "category": "truthy-cbor",
+      "function": "toJson",
+      "input": "9Q",
+      "source_cbor_hex": "f5",
+      "expected": "true",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.unicode.control-and-separators",
+      "category": "unicode",
+      "function": "toJson",
+      "input": "bQABCB8if1zigKjigKk",
+      "source_cbor_hex": "6d0001081f227f5ce280a8e280a9",
+      "expected": "\"\\u0000\\u0001\\b\\u001f\\\"\\\\  \"",
+      "compare": "exact"
+    },
+    {
+      "id": "toJson.raw.unicode.text-emoji",
+      "category": "unicode",
+      "function": "toJson",
+      "input": "avCfmIDDqeS4rSA",
+      "source_cbor_hex": "6af09f9880c3a9e4b8ad20",
+      "expected": "\"😀é中 \"",
+      "compare": "exact"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixelpass-python"
+version = "0.1.0"
+description = "Python port of @injistack/pixelpass: Base45 + zlib + CBOR QR payloads, QR codes and Claim 169 mapping"
+readme = "Readme.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "INJI" }]
+keywords = ["pixelpass", "qr", "cbor", "base45", "inji", "mosip", "claim169"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+]
+dependencies = ["qrcode[png]>=7.4"]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7",
+    "cbor2>=5.4",
+    "pillow>=10",
+    "zxing-cpp>=2.2,<3; python_version < \"3.10\"",
+    "zxing-cpp>=2.2; python_version >= \"3.10\"",
+]
+
+[project.urls]
+Homepage = "https://github.com/inji/pixelpass"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pixelpass = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

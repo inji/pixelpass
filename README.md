@@ -9,5 +9,13 @@ This library is available in Kotlin, Swift, and JavaScript, supporting Android, 
 - **Kotlin**: [Android (AAR) & JVM (JAR)](./kotlin/Readme.md)
 - **JavaScript**: [Node.js & Web](./js/Readme.md)
 - **Swift**: [iOS](https://github.com/inji/pixelpass-ios-swift)
+- **Python**: [CPython 3.9+](./python/Readme.md)
+
+## Python
+
+The [`python/`](./python/Readme.md) folder holds `pixelpass-python`, a port of the JavaScript library
+that produces byte-identical QR data for well-formed input. Install it with `pip install ./python`
+and see [python/Readme.md](./python/Readme.md) for the API, the deliberate deviations from JS and the
+security limits.
 
 
