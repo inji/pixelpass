@@ -149,7 +149,10 @@ def _replace_keys_in_list(items: List[Any], lookup: Dict[str, Any], depth: int, 
 # ----------------------------------------------------------------------------- public helpers
 def _short_code(value: Any) -> Optional[float]:
     if _js.is_number(value):
-        return float(value)
+        try:
+            return float(value)
+        except OverflowError:  # BigInt past the double range: JS Number() gives +/-Infinity
+            return math.inf if value > 0 else -math.inf
     if isinstance(value, str):
         return _js.parse_int10(value)
     return None

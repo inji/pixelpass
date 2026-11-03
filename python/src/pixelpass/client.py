@@ -320,12 +320,16 @@ class PixelPass:
 
     def _parse_mapped(self, data: str) -> Any:
         op = "decode_mapped_data"
+        err: Optional[SanitizedCause] = None
         if _HEX_RE.fullmatch(data):
             try:
                 return _cbor.decode_first(bytes.fromhex(data))
+            except _cbor.BignumTooLargeError as exc:  # valid CBOR past our cap: say so, not "neither ... nor JSON"
+                err = sanitize(exc)
             except _cbor.CborError:
                 pass  # JS falls back to JSON.parse when CBOR decoding fails
-        err: Optional[SanitizedCause] = None
+            if err is not None:
+                raise DecodingError(f"{op}: CBOR bignum longer than {_cbor.MAX_BIGNUM_BYTES} bytes") from err
         value: Any = None
         try:
             value = _js.js_parse(data)

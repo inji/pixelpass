@@ -88,8 +88,9 @@ with open("credential.zip", "rb") as fh:
 ### get_mapped_data
 
 Maps keys and values through the Claim 169 tables (or your own), case-insensitively and
-recursively. Returns a `dict` with `str` keys. With `cbor_enable=True` it returns the CBOR encoding
-as lowercase hex.
+recursively. For a `dict` it returns a `dict` with `str` keys; with `cbor_enable=True` it returns the
+CBOR encoding as lowercase hex. For a `list` it maps each item and returns a list of those results
+(a list of hex strings with `cbor_enable=True`).
 
 ```python
 pp.get_mapped_data({"ID": "1234", "Gender": "female"})                    # {'1': '1234', '9': 2}
@@ -100,7 +101,8 @@ pp.get_mapped_data({"Name": "x"}, key_mapper={"name": "n"}, value_mapper={}, str
 ### decode_mapped_data
 
 The reverse of `get_mapped_data`. It reads hex CBOR (or JSON), renames keys depth by depth with the
-list `key_mapper`, applies `value_mapper` and returns compact JSON.
+list `key_mapper`, applies `value_mapper` and returns compact JSON. For a list of strings it returns a
+list of JSON strings, one per item.
 
 ```python
 pp.decode_mapped_data("a261316431323334613902")   # '{"ID":"1234","Gender":"Female"}'
@@ -161,7 +163,8 @@ These differences from the JS library are deliberate:
 - An empty or truncated zlib stream raises `DecodingError` (JS `decode` returns `''`). So do bytes after the end of the zlib stream.
 - Out-of-range Base45 groups (a triplet above 65535 or a pair above 255) raise `DecodingError`. base45-web accepts them.
 - Key collision check in `get_mapped_data`: two input keys that map to the same key (for example `Gender` and `gender`) raise `MappingError`. The message names the keys, never the values. `strict=False` keeps the JS overwrite.
-- Size limits: every decoder rejects input longer than `max_encoded_size`, and inflation stops at `max_decompressed_size` (see Security). JS has no limits.
+- Size limits: every decoder rejects input longer than `max_encoded_size`, and inflation stops at `max_decompressed_size` (see Security). `decode_mapped_data` applies `max_encoded_size` to each list item, not to the whole list. JS has no limits.
+- CBOR bignums (tags 2 and 3) longer than 1024 bytes are rejected: `decode` returns the text, as it does for other undecodable CBOR, while `to_json` and `decode_mapped_data` raise `DecodingError`. JS converts them to BigInt.
 - Input keys that hit `Object.prototype` in JS (`constructor`, `toString`, `__proto__`) are treated as ordinary keys here.
 - Kotlin differs from both JS and Python on scalar strings: the Kotlin `generateQRData` CBOR-encodes only JSON objects and arrays, so `'123'`, `'true'` and `'null'` take its text path. This SDK follows JS and CBOR-encodes them.
 - Deeply nested JSON (JS encodes it): the depth limit is the Python stack (about 1000 levels) and depends on

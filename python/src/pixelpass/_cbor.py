@@ -31,6 +31,7 @@ from ._js import (
 )
 
 _MAX_SAFE = _js.MAX_SAFE_INTEGER
+MAX_BIGNUM_BYTES = 1024  # tag 2/3 bignums: about 2467 decimal digits, under CPython's 4300-digit str() limit
 
 
 class CborError(ValueError):
@@ -39,6 +40,10 @@ class CborError(ValueError):
     def __init__(self, reason: str, pos: int = 0) -> None:
         super().__init__(f"{reason} at pos {pos}")
         self.pos = pos
+
+
+class BignumTooLargeError(CborError):
+    """A tag 2/3 bignum longer than MAX_BIGNUM_BYTES: valid CBOR, rejected by this decoder's cap."""
 
 
 # ============================================================================= encoder
@@ -492,6 +497,9 @@ def _tag_date_epoch(tag: int, value: Any) -> Any:
 def _tag_bignum(tag: int, value: Any) -> Any:
     if not isinstance(value, Buffer) or not value.data:
         return Tagged(tag, value, "Cannot convert value to a BigInt")
+    if len(value.data) > MAX_BIGNUM_BYTES:
+        # str() of a bigger int can hit CPython's 4300-digit limit (raw ValueError) and is quadratic on 3.9
+        raise BignumTooLargeError("bignum too large", 0)
     n = int.from_bytes(value.data, "big")
     return n if tag == 2 else -1 - n
 

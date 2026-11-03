@@ -232,7 +232,10 @@ def to_number(s: str) -> float:
     if t == "-Infinity":
         return -math.inf
     if _NON_DEC.fullmatch(t):
-        return float(int(t, 0))
+        try:
+            return float(int(t, 0))
+        except OverflowError:
+            return math.inf  # above the double range; _NON_DEC has no sign, so JS gives +Infinity
     if _DEC_LITERAL.fullmatch(t):
         return float(t)
     return math.nan
